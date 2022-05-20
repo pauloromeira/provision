@@ -3,7 +3,7 @@ REPO="https://github.com/pauloromeira/provision.git"
 DEPS=("ansible" "psutil")
 VENV="/opt/venv/ansible"
 
-[ $# -eq 0 ] && CMND="pull" || CMND="${1}"
+[[ $# -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull" || CMND="${1}"
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "local" ] && CMND="ansible-playbook"
