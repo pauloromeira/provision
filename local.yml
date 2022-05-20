@@ -4,14 +4,14 @@
   become: true  # enables sudo
 
   tasks:
+    - name: hello world
+      debug:
+        msg: "hello world"
+
     - name: Install packages
       package:
         name:
           - git
-
-    - name: hello world
-      debug:
-        msg: "hello world"
 
     - name: Copy provision to ~/.local/bin/
       become_user: paulo
