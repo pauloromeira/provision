@@ -1,27 +1,27 @@
 ### System bootstrap
 ```sh
-curl -s pauloromeira.com/bootstrap | sudo bash
+curl -s pauloromeira.com/bootstrap | bash
 ```
 
 ### Commands
 Run locally:
 ```sh
-sudo ./provision local [args] playbook
+./provision local [args] playbook
 ```
 
 Pull (always run):
 ```sh
-sudo provision pull [args] [playbook]
+provision pull [args] [playbook]
 ```
 
 Sync (run only if remote changed):
 ```sh
-sudo provision sync [args] [playbook]
+provision sync [args] [playbook]
 ```
 
 Run custom ansible command:
 ```sh
-sudo provision ansible* [args]
+provision ansible* [args]
 ```
 
 ### References
