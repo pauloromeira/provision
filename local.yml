@@ -29,5 +29,6 @@
     - name: Clone dotfiles to ~/.dotfiles/
       become_user: paulo
       git:
-        repo: https://github.com/pauloromeira/dotfiles.git
+        repo: git@github.com:pauloromeira/dotfiles.git
         dest: ~/.dotfiles
+        accept_newhostkey: true
