@@ -13,6 +13,12 @@
         name:
           - git
 
+    - name: Create ~/.local/bin/
+      become_user: paulo
+      file:
+        path: ~/.local/bin/
+        state: directory
+
     - name: Copy provision to ~/.local/bin/
       become_user: paulo
       copy:
