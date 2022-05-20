@@ -1,0 +1,8 @@
+---
+- hosts: localhost  # this will target localhost
+  connection: local  # ansible usually uses ssh, but with this it will use local connection
+
+  tasks:
+    - name: hello world
+      debug:
+        msg: "hello world"

@@ -1,0 +1,16 @@
+#!/bin/bash
+REPO="https://github.com/pauloromeira/provision.git"
+DEPS=("ansible" "psutil")
+VENV="/opt/venv/ansible"
+
+[ $# -eq 0 ] && CMND="pull" || CMND="${1}"
+[ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
+[ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
+[ "${CMND}" = "local" ] && CMND="ansible-playbook"
+
+(command -v dpkg && dpkg -s python3-venv) &> /dev/null \
+  || (command -v apt-get && apt-get update && apt-get install -y python3-venv) > /dev/null
+
+"$(command -v python3 || command -v python)" -m venv "${VENV}" \
+  && "${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
+  && "${VENV}/bin/"${CMND} ${@:2}
