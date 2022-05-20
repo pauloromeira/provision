@@ -6,3 +6,11 @@
     - name: hello world
       debug:
         msg: "hello world"
+
+    - name: copy provision to /usr/local/sbin
+      copy:
+        src: provision
+        dest: /usr/local/sbin/provision
+        owner: root
+        group: root
+        mode: 755
