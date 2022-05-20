@@ -16,5 +16,5 @@ SUDO=""
   || (${SUDO}apt-get update && ${SUDO}apt-get install -y python3-venv)
 
 "$(command -v python3 || command -v python)" -m venv "${VENV}" > /dev/null \
-  &&"${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
+  && "${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
