@@ -1,16 +1,23 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
 DEPS=("ansible" "psutil")
-VENV="/opt/venv/ansible"
+VENV="${HOME}/.local/provision/venv"
+CMND="${1}"
+ARGS="${@:2}"
+SUDO=""
 
-[[ $# -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull" || CMND="${1}"
+[ "${EUID}" -ne 0 ] && ARGS+=("--ask-become-pass") SUDO="sudo "
+[[ "$#" -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull"
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "local" ] && CMND="ansible-playbook"
 
 (command -v dpkg && dpkg -s python3-venv) &> /dev/null \
-  || (command -v apt-get && apt-get update && apt-get install -y python3-venv) > /dev/null
+  || (command -v apt-get > /dev/null \
+    && ${SUDO}apt-get update \
+    && ${SUDO}apt-get install -y python3-venv \
+  )
 
-"$(command -v python3 || command -v python)" -m venv "${VENV}" \
-  && "${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
-  && "${VENV}/bin/"${CMND} ${@:2}
+"$(command -v python3 || command -v python)" -m venv "${VENV}" &> /dev/null \
+  &&"${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
+  && "${VENV}/bin/"${CMND} ${ARGS[@]}

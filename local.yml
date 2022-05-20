@@ -4,7 +4,7 @@
   become: true  # enables sudo
 
   tasks:
-    - name: install packages
+    - name: Install packages
       package:
         name:
           - git
@@ -13,15 +13,14 @@
       debug:
         msg: "hello world"
 
-    - name: copy provision to /usr/local/sbin
+    - name: Copy provision to ~/.local/bin/
+      become_user: paulo
       copy:
         src: provision
-        dest: /usr/local/sbin/provision
-        owner: root
-        group: root
-        mode: 755
+        dest: ~/.local/bin/provision
+        mode: 0775
 
-    - name: Clone dotfiles to ~/.dotfiles
+    - name: Clone dotfiles to ~/.dotfiles/
       become_user: paulo
       git:
         repo: https://github.com/pauloromeira/dotfiles.git
