@@ -1,48 +1,20 @@
 ---
 - hosts: all
   become: true
+
   pre_tasks:
-    - import_tasks: tasks/update_package_cache.yml
-      tags: update,upgrade,install
+    - import_tasks: tasks/package/update_cache.yml
+      tags: package,update,upgrade,install
 
   tasks:
-    - name: hello world
-      debug:
-        msg: "hello world"
+    - import_tasks: tasks/package/install.yml
+      tags: package,install
 
-    - name: Create ~/.local/bin/
-      become_user: paulo
-      file:
-        path: ~/.local/bin/
-        state: directory
+    - import_tasks: tasks/config/provision.yml
+      tags: config,provision
 
-    - name: Copy provision to ~/.local/bin/
-      become_user: paulo
-      copy:
-        src: provision.sh
-        dest: ~/.local/bin/provision
-        mode: 0775
+    - import_tasks: tasks/config/keyboard.yml
+      tags: config,keyboard
 
-    - import_tasks: tasks/keyboard_config.yml
-      tags: keyboard,config
-
-    - name: Install packages
-      package:
-        name:
-          - git
-
-    - name: Clone dotfiles to ~/.dotfiles/
-      tags: dotfiles
-      become_user: paulo
-      git:
-        repo: https://github.com/pauloromeira/dotfiles.git
-        dest: ~/.dotfiles
-
-    - name: Set dotfiles push to ssh url
-      tags: dotfiles
-      become_user: paulo
-      git_config:
-        repo: ~/.dotfiles
-        scope: local
-        name: remote.origin.pushurl
-        value: git@github.com:pauloromeira/dotfiles.git
+    - import_tasks: tasks/config/dotfiles.yml
+      tags: config,dotfiles

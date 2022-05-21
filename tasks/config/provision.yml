@@ -1,0 +1,13 @@
+---
+- name: Provision | create ~/.local/bin/
+  become_user: paulo
+  file:
+    path: ~/.local/bin/
+    state: directory
+
+- name: Provision | copy provision.sh to ~/.local/bin/provision
+  become_user: paulo
+  copy:
+    src: provision.sh
+    dest: ~/.local/bin/provision
+    mode: 0775

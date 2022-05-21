@@ -1,0 +1,5 @@
+---
+- name: Package | install packages
+  package:
+    name:
+      - git
