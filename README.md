@@ -24,6 +24,11 @@ Run custom ansible command:
 provision ansible* [args]
 ```
 
+Gather facts
+```sh
+provision ansible all -m setup
+```
+
 ### References
 - tutorial: [Using Ansible to automate your Laptop and Desktop configs](https://www.youtube.com/watch?v=gIDywsGBqf4)
   - https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
