@@ -11,7 +11,10 @@ SUDO=""
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "local" ] && CMND="ansible-playbook"
 
-[ "${EUID}" -ne 0 ] && SUDO="sudo " export ANSIBLE_BECOME_ASK_PASS="True"
+if [ "${EUID}" -ne 0 ]; then
+  SUDO="sudo "
+  export ANSIBLE_BECOME_ASK_PASS="True"
+fi
 export ANSIBLE_PYTHON_INTERPRETER="${VENV}/bin/python"
 
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \

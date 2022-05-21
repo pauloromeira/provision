@@ -6,6 +6,12 @@
       debug:
         msg: "hello world"
 
+    - name: Create ~/.local/bin/
+      become_user: paulo
+      file:
+        path: ~/.local/bin/
+        state: directory
+
     - name: Copy provision to ~/.local/bin/
       become_user: paulo
       copy:
@@ -19,12 +25,6 @@
         name:
           - git
           - silversearcher-ag
-
-    - name: Create ~/.local/bin/
-      become_user: paulo
-      file:
-        path: ~/.local/bin/
-        state: directory
 
     - name: Clone dotfiles to ~/.dotfiles/
       become_user: paulo
