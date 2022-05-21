@@ -31,7 +31,6 @@
         update_cache: yes
         name:
           - git
-          - silversearcher-ag
 
     - name: Clone dotfiles to ~/.dotfiles/
       tags: dotfiles
