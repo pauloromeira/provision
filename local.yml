@@ -41,7 +41,7 @@
         remote: provision
         dest: ~/.dotfiles
 
-    - name: Add dotfiles remote origin url
+    - name: Set dotfiles remote origin url
       tags: dotfiles
       git_config:
         repo: ~/.dotfiles
@@ -49,10 +49,18 @@
         name: remote.origin.url
         value: git@github.com:pauloromeira/dotfiles.git
 
-    - name: Add dotfiles remote origin fetch
+    - name: Set dotfiles remote origin fetch
       tags: dotfiles
       git_config:
         repo: ~/.dotfiles
         scope: local
         name: remote.origin.fetch
         value: "+refs/heads/*:refs/remotes/origin/*"
+
+    - name: Set master remote to origin
+      tags: dotfiles
+      git_config:
+        repo: ~/.dotfiles
+        scope: local
+        name: branch.master.remote
+        value: origin
