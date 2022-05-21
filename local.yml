@@ -1,23 +1,10 @@
 ---
-- hosts: localhost  # this will target localhost
-  connection: local  # ansible usually uses ssh, but with this it will use local connection
-  become: true  # enables sudo
+- hosts: all
 
   tasks:
     - name: hello world
       debug:
         msg: "hello world"
-
-    - name: Install packages
-      package:
-        name:
-          - git
-
-    - name: Create ~/.local/bin/
-      become_user: paulo
-      file:
-        path: ~/.local/bin/
-        state: directory
 
     - name: Copy provision to ~/.local/bin/
       become_user: paulo
@@ -25,6 +12,19 @@
         src: provision
         dest: ~/.local/bin/provision
         mode: 0775
+
+    - name: Install packages
+      package:
+        update_cache: yes
+        name:
+          - git
+          - silversearcher-ag
+
+    - name: Create ~/.local/bin/
+      become_user: paulo
+      file:
+        path: ~/.local/bin/
+        state: directory
 
     - name: Clone dotfiles to ~/.dotfiles/
       become_user: paulo
