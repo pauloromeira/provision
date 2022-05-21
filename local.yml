@@ -10,8 +10,8 @@
       tags: package,update,upgrade,install
 
   tasks:
-    - import_tasks: tasks/package/command_line.yml
-      tags: package,install,cli,command_line
+    - import_tasks: tasks/package/cmdline.yml
+      tags: package,install,cli,cmdline
 
     - import_tasks: tasks/package/graphical.yml
       tags: package,install,gui,graphical
