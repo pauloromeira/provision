@@ -1,7 +1,7 @@
 ---
 - name: Wallpaper > copy file
   copy:
-    src: files/wallpaper.png
+    src: files/config/wallpaper.png
     dest: /usr/share/backgrounds/wallpaper.png
     owner: root
     group: root
