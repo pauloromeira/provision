@@ -18,3 +18,6 @@
 
     - import_tasks: tasks/config/dotfiles.yml
       tags: config,dotfiles
+
+    - import_tasks: tasks/config/wallpaper.yml
+      tags: config,wallpaper,aesthetic
