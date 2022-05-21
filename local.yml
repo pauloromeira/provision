@@ -19,6 +19,12 @@
         dest: ~/.local/bin/provision
         mode: 0775
 
+    - name: Swap ctrl/caps and set right alt as compose key
+      become_user: paulo
+      dconf:
+        key: "/org/gnome/desktop/input-sources/xkb-options"
+        value: "['ctrl:swapcaps', 'compose:ralt']"
+
     - name: Install packages
       package:
         update_cache: yes
