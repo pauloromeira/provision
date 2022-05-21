@@ -34,8 +34,25 @@
           - silversearcher-ag
 
     - name: Clone dotfiles to ~/.dotfiles/
+      tags: dotfiles
       become_user: paulo
       git:
-        repo: git@github.com:pauloromeira/dotfiles.git
+        repo: https://github.com/pauloromeira/dotfiles.git
+        remote: provision
         dest: ~/.dotfiles
-        accept_newhostkey: true
+
+    - name: Add dotfiles remote origin url
+      tags: dotfiles
+      git_config:
+        repo: ~/.dotfiles
+        scope: local
+        name: remote.origin.url
+        value: git@github.com:pauloromeira/dotfiles.git
+
+    - name: Add dotfiles remote origin fetch
+      tags: dotfiles
+      git_config:
+        repo: ~/.dotfiles
+        scope: local
+        name: remote.origin.fetch
+        value: "+refs/heads/*:refs/remotes/origin/*"
