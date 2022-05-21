@@ -1,5 +1,8 @@
 ---
 - hosts: all
+  become: true
+  pre_tasks:
+    - import_tasks: tasks/update_package_cache.yml
 
   tasks:
     - name: hello world
@@ -26,9 +29,7 @@
         value: "['ctrl:swapcaps', 'compose:ralt']"
 
     - name: Install packages
-      become: true
       package:
-        update_cache: yes
         name:
           - git
 
@@ -41,6 +42,7 @@
 
     - name: Set dotfiles push to ssh url
       tags: dotfiles
+      become_user: paulo
       git_config:
         repo: ~/.dotfiles
         scope: local
