@@ -37,29 +37,12 @@
       become_user: paulo
       git:
         repo: https://github.com/pauloromeira/dotfiles.git
-        remote: provision
         dest: ~/.dotfiles
 
-    - name: Set dotfiles remote origin url
+    - name: Set dotfiles push to ssh url
       tags: dotfiles
       git_config:
         repo: ~/.dotfiles
         scope: local
-        name: remote.origin.url
+        name: remote.origin.pushurl
         value: git@github.com:pauloromeira/dotfiles.git
-
-    - name: Set dotfiles remote origin fetch
-      tags: dotfiles
-      git_config:
-        repo: ~/.dotfiles
-        scope: local
-        name: remote.origin.fetch
-        value: "+refs/heads/*:refs/remotes/origin/*"
-
-    - name: Set master remote to origin
-      tags: dotfiles
-      git_config:
-        repo: ~/.dotfiles
-        scope: local
-        name: branch.master.remote
-        value: origin
