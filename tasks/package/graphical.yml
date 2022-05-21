@@ -1,4 +1,13 @@
 ---
+- name: Package > GUI > add flathub repository to user installation
+  tags: flatpak,flathub
+  become_user: paulo
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/
+    method: user
+
 - name: Package > GUI > install flatpak packages
   tags: flatpak
   become_user: paulo
