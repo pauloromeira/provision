@@ -3,6 +3,9 @@
   become: true
 
   pre_tasks:
+    - import_tasks: tasks/config/provision.yml
+      tags: config,provision
+
     - import_tasks: tasks/package/update_cache.yml
       tags: package,update,upgrade,install
 
@@ -15,9 +18,6 @@
 
     - import_tasks: tasks/package/hardware.yml
       tags: package,install,hw,hardware
-
-    - import_tasks: tasks/config/provision.yml
-      tags: config,provision
 
     - import_tasks: tasks/config/keyboard.yml
       tags: config,keyboard
