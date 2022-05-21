@@ -1,11 +1,11 @@
 ---
-- name: Dotfiles | clone to ~/.dotfiles/
+- name: Dotfiles > clone to ~/.dotfiles/
   become_user: paulo
   git:
     repo: https://github.com/pauloromeira/dotfiles.git
     dest: ~/.dotfiles
 
-- name: Dotfiles | set push ssh url
+- name: Dotfiles > set push ssh url
   become_user: paulo
   git_config:
     repo: ~/.dotfiles

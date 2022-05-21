@@ -1,5 +1,5 @@
 ---
-- name: Package | CLI | install packages
+- name: Package > CLI > install packages
   package:
     name:
       - git

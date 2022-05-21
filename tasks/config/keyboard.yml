@@ -1,6 +1,6 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-- name: Keyboard | swap ctrl/caps and set right alt as compose key
+- name: Keyboard > swap ctrl/caps and set right alt as compose key
   become_user: paulo
   dconf:
     key: "/org/gnome/desktop/input-sources/xkb-options"
