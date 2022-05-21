@@ -6,7 +6,7 @@ curl -s pauloromeira.com/bootstrap | bash
 ### Commands
 Run locally:
 ```sh
-./provision local [args] playbook
+./provision.sh local [args] playbook
 ```
 
 Pull (always run):

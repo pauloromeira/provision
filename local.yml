@@ -15,7 +15,7 @@
     - name: Copy provision to ~/.local/bin/
       become_user: paulo
       copy:
-        src: provision
+        src: provision.sh
         dest: ~/.local/bin/provision
         mode: 0775
 
