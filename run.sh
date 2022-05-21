@@ -1,2 +1,2 @@
 #!/bin/bash
-./provision.sh local local.yml
+./provision.sh local local.yml ${@}

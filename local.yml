@@ -7,8 +7,14 @@
       tags: package,update,upgrade,install
 
   tasks:
-    - import_tasks: tasks/package/install.yml
-      tags: package,install
+    - import_tasks: tasks/package/command_line.yml
+      tags: package,install,cli,command_line
+
+    - import_tasks: tasks/package/graphical.yml
+      tags: package,install,gui,graphical
+
+    - import_tasks: tasks/package/hardware.yml
+      tags: package,install,hw,hardware
 
     - import_tasks: tasks/config/provision.yml
       tags: config,provision
@@ -20,4 +26,4 @@
       tags: config,dotfiles
 
     - import_tasks: tasks/config/wallpaper.yml
-      tags: config,wallpaper,aesthetic
+      tags: config,wallpaper,appearance

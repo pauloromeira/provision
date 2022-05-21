@@ -1,0 +1,4 @@
+---
+- name: Package | install hardware drivers
+  debug:
+    msg: "TODO: install hardware drivers"
