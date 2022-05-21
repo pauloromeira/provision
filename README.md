@@ -32,4 +32,5 @@ provision ansible all -m setup
 ### References
 - tutorial: [Using Ansible to automate your Laptop and Desktop configs](https://www.youtube.com/watch?v=gIDywsGBqf4)
   - https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
+- https://github.com/geerlingguy/mac-dev-playbook
 - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
