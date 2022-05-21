@@ -26,7 +26,7 @@ provision ansible* [args]
 
 Gather facts
 ```sh
-provision ansible all -m setup
+provision ansible localhost -m setup
 ```
 
 ### References
