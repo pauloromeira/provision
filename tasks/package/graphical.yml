@@ -11,7 +11,7 @@
   flatpak_remote:
     name: flathub
     state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
 
 - name: Package > GUI > flatpak > install packages
