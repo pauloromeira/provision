@@ -2,6 +2,10 @@
 ```sh
 curl -s pauloromeira.com/bootstrap | bash
 ```
+OR
+```sh
+wget -qO - pauloromeira.com/bootstrap | bash
+```
 
 Run specific tags
 ```sh
