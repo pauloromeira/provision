@@ -1,14 +1,15 @@
 ---
-- name: Dotfiles > clone to ~/.dotfiles/
+- name: Dotfiles > clone and setup repository
   become_user: paulo
-  git:
-    repo: https://github.com/pauloromeira/dotfiles.git
-    dest: ~/.dotfiles
+  block:
+    - name: Dotfiles > clone to ~/.dotfiles/
+      git:
+        repo: https://github.com/pauloromeira/dotfiles.git
+        dest: ~/.dotfiles
 
-- name: Dotfiles > set push ssh url
-  become_user: paulo
-  git_config:
-    repo: ~/.dotfiles
-    scope: local
-    name: remote.origin.pushurl
-    value: git@github.com:pauloromeira/dotfiles.git
+    - name: Dotfiles > set push ssh url
+      git_config:
+        repo: ~/.dotfiles
+        scope: local
+        name: remote.origin.pushurl
+        value: git@github.com:pauloromeira/dotfiles.git

@@ -17,10 +17,10 @@ Skip specific tags
 curl -s pauloromeira.com/bootstrap | bash -s - --skip-tags SKIP_TAGS
 ```
 
-### Commands (after bootstrap)
+### Commands
 Run locally:
 ```sh
-provision local
+./provision.sh local
 ```
 
 Pull (always run):

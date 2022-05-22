@@ -1,6 +1,5 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-
 - name: Dock > configure dock (gnome)
   tags: gnome
   when: desktop == "gnome"
