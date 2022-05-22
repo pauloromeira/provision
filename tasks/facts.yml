@@ -1,4 +1,4 @@
 ---
 - name: Facts > get desktop environment
   set_fact:
-    desktop: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':')|last|lower|trim }}"
+    desktop: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}"
