@@ -1,6 +1,7 @@
 ---
 # To get all dconf settings run: `dconf dump /`
 - name: Keyboard > swap ctrl/caps and set right alt as compose key (dconf)
+  tags: gnome
   become_user: paulo
   dconf:
     key: "/org/gnome/desktop/input-sources/xkb-options"
@@ -8,6 +9,7 @@
 
 # TODO: restart X server
 - name: Keyboard > swap ctrl/caps and set right alt as compose key (xorg.conf)
+  tags: xfce
   copy:
     src: files/config/keyboard.conf
     dest: /usr/share/X11/xorg.conf.d/10-keyboard.conf
