@@ -44,8 +44,15 @@ provision setup
 ```
 
 ### References
-- tutorial: [Using Ansible to automate your Laptop and Desktop configs](https://www.youtube.com/watch?v=gIDywsGBqf4)
+Tutorials/arcticles:
+  - [Using Ansible to automate your Laptop and Desktop configs](https://www.youtube.com/watch?v=gIDywsGBqf4)
+  - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
+
+Repos:
   - https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
-- https://github.com/geerlingguy/mac-dev-playbook
-- https://git.todevski.com/ansible/playbooks/workstation/
-- https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
+  - https://github.com/geerlingguy/mac-dev-playbook
+  - https://git.todevski.com/ansible/playbooks/workstation/
+  - https://github.com/kespinola/dotfiles
+
+User guide:
+  - https://docs.ansible.com/ansible/latest/user_guide/index.html
