@@ -1,33 +1,27 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-- name: Dock > set position to bottom
-  tags: gnome
-  become_user: paulo
-  dconf:
-    key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
-    value: "'BOTTOM'"
-  when: desktop == "gnome"
 
-- name: Dock > disable extend height
+- name: Dock > configure dock (gnome)
   tags: gnome
-  become_user: paulo
-  dconf:
-    key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
-    value: "false"
   when: desktop == "gnome"
+  become_user: paulo
+  block:
+    - name: Dock > set position to bottom
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
+        value: "'BOTTOM'"
 
-- name: Dock > disable fixed
-  tags: gnome
-  become_user: paulo
-  dconf:
-    key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
-    value: "false"
-  when: desktop == "gnome"
+    - name: Dock > disable extend height
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
+        value: "false"
 
-- name: Dock > enable intelligent hide
-  tags: gnome
-  become_user: paulo
-  dconf:
-    key: "/org/gnome/shell/extensions/dash-to-dock/intellihide"
-    value: "true"
-  when: desktop == "gnome"
+    - name: Dock > disable fixed
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
+        value: "false"
+
+    - name: Dock > enable intelligent hide
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/intellihide"
+        value: "true"
