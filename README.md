@@ -17,10 +17,10 @@ Skip specific tags
 curl -s pauloromeira.com/bootstrap | bash -s - --skip-tags SKIP_TAGS
 ```
 
-### Commands
+### Commands (after bootstrap)
 Run locally:
 ```sh
-./provision.sh local [args] playbook
+provision local
 ```
 
 Pull (always run):
@@ -40,7 +40,7 @@ provision ansible* [args]
 
 Gather facts
 ```sh
-provision ansible localhost -m setup
+provision setup
 ```
 
 ### References
