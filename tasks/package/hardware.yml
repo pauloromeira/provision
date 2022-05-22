@@ -1,4 +1,4 @@
 ---
-- name: Package > install hardware drivers
+- name: Package > hardware> install drivers
   debug:
     msg: "TODO: install hardware drivers"
