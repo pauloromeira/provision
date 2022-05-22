@@ -33,5 +33,9 @@
       tags: config,wallpaper,gui,desktop,appearance
       when: desktop
 
+    - import_tasks: tasks/config/dock.yml
+      tags: config,dock,gui,desktop,appearance
+      when: desktop
+
     - import_tasks: tasks/debug.yml
       tags: never,debug
