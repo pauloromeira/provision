@@ -9,7 +9,8 @@ SUDO=""
 [[ "$#" -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull"
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
-[ "${CMND}" = "local" ] && CMND="ansible-playbook"
+[ "${CMND}" = "playbook" ] && CMND="ansible-playbook"
+[ "${*}" = "local" ] && CMND="ansible-playbook local.yml"
 [ "${*}" = "setup" ] && CMND="ansible localhost -m setup"
 
 if [ "${EUID}" -ne 0 ]; then
