@@ -3,6 +3,16 @@
 curl -s pauloromeira.com/bootstrap | bash
 ```
 
+Run specific tags
+```sh
+curl -s pauloromeira.com/bootstrap | bash -s - --tags TAGS
+```
+
+Skip specific tags
+```sh
+curl -s pauloromeira.com/bootstrap | bash -s - --skip-tags SKIP_TAGS
+```
+
 ### Commands
 Run locally:
 ```sh
