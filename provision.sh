@@ -6,6 +6,7 @@ CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
 
+[[ "$#" -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull"
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "local" ] && CMND="ansible-playbook"
