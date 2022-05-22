@@ -1,0 +1,4 @@
+---
+- name: Debug
+  debug:
+    msg: "Debug: {{ desktop or 'no desktop environment' }}"

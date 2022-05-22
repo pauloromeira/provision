@@ -10,6 +10,7 @@ SUDO=""
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "local" ] && CMND="ansible-playbook"
+[ "${*}" = "setup" ] && CMND="ansible localhost -m setup"
 
 if [ "${EUID}" -ne 0 ]; then
   SUDO="sudo "

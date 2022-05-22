@@ -6,8 +6,9 @@
   dconf:
     key: "/org/gnome/desktop/input-sources/xkb-options"
     value: "['ctrl:swapcaps', 'compose:ralt']"
+  when: desktop == "gnome"
 
-# TODO: restart X server
+    # TODO: restart X server
 - name: Keyboard > swap ctrl/caps and set right alt as compose key (xorg.conf)
   tags: xfce
   copy:
@@ -16,3 +17,4 @@
     owner: root
     group: root
     mode: 0644
+  when: desktop != "gnome"

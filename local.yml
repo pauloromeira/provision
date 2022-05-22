@@ -3,6 +3,9 @@
   become: true
 
   pre_tasks:
+    - import_tasks: tasks/facts.yml
+      tags: facts,always
+
     - import_tasks: tasks/config/provision.yml
       tags: config,provision
 
@@ -14,7 +17,8 @@
       tags: package,install,cli,cmdline
 
     - import_tasks: tasks/package/graphical.yml
-      tags: package,install,gui,graphical
+      tags: package,install,gui,desktop,graphical
+      when: desktop
 
     - import_tasks: tasks/package/hardware.yml
       tags: package,install,hw,hardware
@@ -26,4 +30,8 @@
       tags: config,dotfiles
 
     - import_tasks: tasks/config/wallpaper.yml
-      tags: config,wallpaper,appearance
+      tags: config,wallpaper,gui,desktop,appearance
+      when: desktop
+
+    - import_tasks: tasks/debug.yml
+      tags: never,debug

@@ -11,15 +11,18 @@
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/wallpaper.png'"
+  when: desktop == "gnome"
 
 - name: Wallpaper > set dark background
   become_user: paulo
   dconf:
     key: "/org/gnome/desktop/background/picture-uri-dark"
     value: "'file:///usr/share/backgrounds/wallpaper.png'"
+  when: desktop == "gnome"
 
 - name: Wallpaper > set zoom position
   become_user: paulo
   dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
+  when: desktop == "gnome"
