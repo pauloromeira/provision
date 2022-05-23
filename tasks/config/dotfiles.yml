@@ -8,7 +8,7 @@
         repo: https://github.com/pauloromeira/dotfiles2.git
         dest: ~/.dotfiles2
 
-    - name: Dotfiles > set push ssh url
+    - name: Dotfiles > set ssh push url
       git_config:
         repo: ~/.dotfiles2
         scope: local
