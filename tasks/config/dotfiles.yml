@@ -20,6 +20,11 @@
   become_user: paulo
   command:
     chdir: ~/.dotfiles2
-    cmd: stow --dotfiles --verbose=2 .
+    cmd: stow --dotfiles --verbose=2 "{{ item }}"
   register: stow_dotfiles
   changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
+  loop:
+    - git
+    - pdb
+    - tmux
+    - vim
