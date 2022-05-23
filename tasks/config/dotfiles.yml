@@ -15,16 +15,22 @@
         name: remote.origin.pushurl
         value: git@github.com:pauloromeira/dotfiles2.git
 
-- name: Dotfiles > create symlinks
-  tags: symlinks
+
+- name: Dotfiles > find and create symlinks
   become_user: paulo
-  command:
-    chdir: ~/.dotfiles2
-    cmd: stow --dotfiles --verbose=2 "{{ item }}"
-  register: stow_dotfiles
-  changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
-  loop:
-    - git
-    - pdb
-    - tmux
-    - vim
+  tags: symlinks
+  block:
+    - name: Dotfiles > find directories
+      find:
+        paths: ~/.dotfiles2
+        recurse: no
+        file_type: directory
+      register: dotfiles
+
+    - name: Dotfiles > create symlinks
+      command:
+        chdir: ~/.dotfiles2
+        cmd: stow --dotfiles --verbose=2 "{{ item }}"
+      register: stow_dotfiles
+      changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
+      with_items: "{{ dotfiles.files | map(attribute='path') | map('basename') }}"
