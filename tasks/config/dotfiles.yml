@@ -1,15 +1,22 @@
 ---
+# TODO: Migrate dotfiles and change from dotfiles2 to dotfiles
 - name: Dotfiles > clone and setup repository
   become_user: paulo
   block:
-    - name: Dotfiles > clone to ~/.dotfiles/
+    - name: Dotfiles > clone to ~/.dotfiles2/ (temporary)
       git:
-        repo: https://github.com/pauloromeira/dotfiles.git
-        dest: ~/.dotfiles
+        repo: https://github.com/pauloromeira/dotfiles2.git
+        dest: ~/.dotfiles2
 
     - name: Dotfiles > set push ssh url
       git_config:
-        repo: ~/.dotfiles
+        repo: ~/.dotfiles2
         scope: local
         name: remote.origin.pushurl
-        value: git@github.com:pauloromeira/dotfiles.git
+        value: git@github.com:pauloromeira/dotfiles2.git
+
+- name: Dotfiles > create symlinks
+  become_user: paulo
+  command:
+    chdir: ~/.dotfiles2
+    cmd: stow --dotfiles .
