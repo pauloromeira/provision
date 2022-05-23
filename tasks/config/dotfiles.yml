@@ -16,7 +16,10 @@
         value: git@github.com:pauloromeira/dotfiles2.git
 
 - name: Dotfiles > create symlinks
+  tags: symlinks
   become_user: paulo
   command:
     chdir: ~/.dotfiles2
-    cmd: stow --dotfiles .
+    cmd: stow --dotfiles --verbose=2 .
+  register: stow_dotfiles
+  changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
