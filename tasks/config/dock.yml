@@ -4,23 +4,11 @@
   tags: gnome
   when: desktop == "gnome"
   become_user: paulo
-  block:
-    - name: Dock > set position to bottom
-      dconf:
-        key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
-        value: "'BOTTOM'"
-
-    - name: Dock > disable extend height
-      dconf:
-        key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
-        value: "false"
-
-    - name: Dock > disable fixed
-      dconf:
-        key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
-        value: "false"
-
-    - name: Dock > enable intelligent hide
-      dconf:
-        key: "/org/gnome/shell/extensions/dash-to-dock/intellihide"
-        value: "true"
+  dconf:
+    key: "{{ '/org/gnome/shell/extensions/dash-to-dock/' + item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "dock-position", value: "'BOTTOM'" }
+    - { key: "extend-height", value: "false" }
+    - { key: "dock-fixed", value: "false" }
+    - { key: "intellihide", value: "true" }
