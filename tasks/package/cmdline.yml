@@ -6,12 +6,12 @@
       - curl
       - stow
 
-- name: Package > CLI > install ansible pip requirements
+- name: Package > CLI > pip > install ansible requirements
   become_user: paulo
   pip:
     name: psutil
 
-- name: Package > CLI > install pipx in a virtualenv
+- name: Package > CLI > pipx > install in virtualenv
   tags: pipx
   become_user: paulo
   pip:
@@ -19,10 +19,17 @@
     virtualenv: ~/.local/venvs/pipx
     virtualenv_command: "{{ global_python_interpreter }} -m venv"
 
-- name: Package > CLI > create pipx symlink in ~/.local/bin
+- name: Package > CLI > pipx > create symlink in ~/.local/bin
   tags: pipx
   become_user: paulo
   file:
     src: ~/.local/venvs/pipx/bin/pipx
     dest: ~/.local/bin/pipx
     state: link
+
+- name: Package > CLI > pipx > install mitmproxy
+  tags: pipx
+  become_user: paulo
+  community.general.pipx:
+    name: mitmproxy
+    executable: /home/paulo/.local/bin/pipx
