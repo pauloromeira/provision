@@ -1,6 +1,6 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-- name: Dock > configure dock (gnome)
+- name: Dock > dconf setup (gnome)
   tags: gnome
   when: desktop == "gnome"
   become_user: paulo
