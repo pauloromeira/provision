@@ -11,10 +11,18 @@
   pip:
     name: psutil
 
-- name: Package > CLI > install pipx
+- name: Package > CLI > install pipx in a virtualenv
   tags: pipx
   become_user: paulo
   pip:
     name: pipx
     virtualenv: ~/.local/venvs/pipx
     virtualenv_command: "{{ global_python_interpreter }} -m venv"
+
+- name: Package > CLI > create pipx symlink in ~/.local/bin
+  tags: pipx
+  become_user: paulo
+  file:
+    src: ~/.local/venvs/pipx/bin/pipx
+    dest: ~/.local/bin/pipx
+    state: link
