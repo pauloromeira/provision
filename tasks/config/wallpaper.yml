@@ -10,18 +10,10 @@
   tags: gnome
   when: desktop == "gnome"
   become_user: paulo
-  block:
-    - name: Wallpaper > set light background
-      dconf:
-        key: "/org/gnome/desktop/background/picture-uri"
-        value: "'file:///usr/share/backgrounds/wallpaper.png'"
-
-    - name: Wallpaper > set dark background
-      dconf:
-        key: "/org/gnome/desktop/background/picture-uri-dark"
-        value: "'file:///usr/share/backgrounds/wallpaper.png'"
-
-    - name: Wallpaper > set zoom position
-      dconf:
-        key: "/org/gnome/desktop/background/picture-options"
-        value: "'zoom'"
+  dconf:
+    key: "{{ '/org/gnome/desktop/background/' + item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "picture-uri", value: "'file:///usr/share/backgrounds/wallpaper.png'" }
+    - { key: "picture-uri-dark", value: "'file:///usr/share/backgrounds/wallpaper.png'" }
+    - { key: "picture-options", value: "'zoom'" }
