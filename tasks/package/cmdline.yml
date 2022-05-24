@@ -1,7 +1,20 @@
 ---
-- name: Package > CLI > install packages
+- name: Package > CLI > install system packages
   package:
     name:
       - git
       - curl
       - stow
+
+- name: Package > CLI > install ansible pip requirements
+  become_user: paulo
+  pip:
+    name: psutil
+
+- name: Package > CLI > install pipx
+  tags: pipx
+  become_user: paulo
+  pip:
+    name: pipx
+    virtualenv: ~/.local/venvs/pipx
+    virtualenv_command: "{{ global_python_interpreter }} -m venv"

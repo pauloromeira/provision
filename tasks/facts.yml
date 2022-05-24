@@ -2,3 +2,7 @@
 - name: Facts > get desktop environment
   set_fact:
     desktop: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}"
+
+- name: Facts > get global python interpreter
+  set_fact:
+    global_python_interpreter: "{{ lookup('env','GLOBAL_PYTHON_INTERPRETER') }}"

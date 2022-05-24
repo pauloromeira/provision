@@ -1,7 +1,6 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
-DEPS=("ansible" "psutil")
-VENV="${HOME}/.local/provision/venv"
+VENV="${HOME}/.local/venvs/provision"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
@@ -18,11 +17,13 @@ if [ "${EUID}" -ne 0 ]; then
   ARGS+=("--ask-become-pass")
   # export ANSIBLE_BECOME_ASK_PASS="True"  # this way is asking twice on ansible-pull
 fi
-export ANSIBLE_PYTHON_INTERPRETER="${VENV}/bin/python"
 
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
   || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-venv)
 
-"$(command -v python3 || command -v python)" -m venv "${VENV}" > /dev/null \
-  && "${VENV}/bin/python" -m pip install ${DEPS[@]} > /dev/null \
+export ANSIBLE_PYTHON_INTERPRETER="${VENV}/bin/python"
+export GLOBAL_PYTHON_INTERPRETER="$(command -v python3 || command -v python)"
+
+"${GLOBAL_PYTHON_INTERPRETER}" -m venv "${VENV}" \
+  && "${VENV}/bin/python" -m pip install ansible > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
