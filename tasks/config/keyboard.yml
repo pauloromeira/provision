@@ -1,6 +1,6 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-- name: Keyboard > swap ctrl/caps and set right alt as compose key (dconf)
+- name: Keyboard > swap ctrl/caps and set right alt as compose key (gnome)
   tags: gnome
   become_user: paulo
   dconf:
