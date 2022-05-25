@@ -45,15 +45,16 @@
   become_user: paulo
   community.general.pipx:
     name: ipython
-    inject_packages:
-      - arrow
-      - ipdb
-      - jmespath
-      - openpyxl
-      - pandas
-      - parsel
-      - python-slugify
-      - requests
-      - scrapy
-      - tenacity
+    inject_packages: "{{ item }}"
     state: inject
+  loop:
+    - arrow
+    - ipdb
+    - jmespath
+    - openpyxl
+    - pandas
+    - parsel
+    - python-slugify
+    - requests
+    - scrapy
+    - tenacity
