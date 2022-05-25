@@ -40,5 +40,8 @@
     - import_tasks: tasks/package/tmux_plugins.yml
       tags: package,install,cli,cmdline,tmux
 
+    - import_tasks: tasks/package/vim.yml
+      tags: package,install,cli,cmdline,vim
+
     - import_tasks: tasks/debug.yml
       tags: never,debug

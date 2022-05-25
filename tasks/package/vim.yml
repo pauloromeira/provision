@@ -1,0 +1,37 @@
+---
+- name: Vim > create folders
+  become_user: paulo
+  file:
+    path: "~/.vim/{{ item }}"
+    state: directory
+  loop:
+    - "autoload"
+    - "local"
+    - "temp/undo"
+    - "temp/backup"
+    - "temp/swap"
+    - "temp/view"
+    - "temp/session"
+    - "files/info"
+
+- name: Vim > Plug > download plugin manager
+  become_user: paulo
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
+
+- name: Vim > Plugins > clone forks
+  become_user: paulo
+  git:
+    repo: "https://pauloromeira@github.com/pauloromeira/{{ item }}.git"
+    dest: "~/.vim/local/{{ item }}"
+  loop:
+    - vim-tomorrow-theme
+    - vim-custom-snippets
+    - restore_view.vim
+    - vim-startmode
+
+- name: Vim > Plug > install plugins
+  become_user: paulo
+  command:
+    cmd: vim +PlugInstall +qall
