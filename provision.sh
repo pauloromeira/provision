@@ -22,6 +22,6 @@ export ANSIBLE_PYTHON_INTERPRETER="${PYTH}"
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
   || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-pip)
 
-"${PYTH}" -m pip install --disable-pip-version-check --user pipx > /dev/null \
+"${PYTH}" -m pip install --user --disable-pip-version-check pipx > /dev/null \
   && "${PYTH}" -m pipx install ansible --include-deps > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
