@@ -1,6 +1,6 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
-VENV="${HOME}/.local/venvs/provision"
+VENV="${HOME}/.provision/.venv"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
@@ -21,9 +21,8 @@ fi
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
   || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-venv)
 
-export ANSIBLE_PYTHON_INTERPRETER="${VENV}/bin/python"
-export GLOBAL_PYTHON_INTERPRETER="$(command -v python3 || command -v python)"
+export ANSIBLE_PYTHON_INTERPRETER="$(command -v python3 || command -v python)"
 
-"${GLOBAL_PYTHON_INTERPRETER}" -m venv "${VENV}" \
+"${ANSIBLE_PYTHON_INTERPRETER}" -m venv "${VENV}" \
   && "${VENV}/bin/python" -m pip install ansible > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
