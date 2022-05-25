@@ -40,7 +40,7 @@
       when: desktop
 
     - import_tasks: tasks/package/graphical.yml
-      tags: package,install,gui,desktop,graphical
+      tags: never,package,install,gui,desktop,graphical
       when: desktop
 
     - import_tasks: tasks/debug.yml
