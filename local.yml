@@ -25,7 +25,7 @@
     - import_tasks: tasks/config/dotfiles.yml
       tags: config,dotfiles
 
-    - import_tasks: tasks/package/tmux_plugins.yml
+    - import_tasks: tasks/package/tmux.yml
       tags: package,install,cli,cmdline,tmux
 
     - import_tasks: tasks/package/vim.yml
