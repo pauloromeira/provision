@@ -1,4 +1,4 @@
-- name: Tmux > tmux plugin manager (tpm)
+- name: Tmux plugins > tpm > tmux plugin manager
   tags: tpm
   become_user: paulo
   block:
@@ -7,7 +7,7 @@
         repo: https://github.com/tmux-plugins/tpm.git
         dest: ~/.tmux/plugins/tpm
 
-    - name: Tmux > tpm > install plugins
+    - name: Tmux plugins > tpm > install plugins
       command:
         cmd: ~/.tmux/plugins/tpm/bin/install_plugins
       register: tpm_install

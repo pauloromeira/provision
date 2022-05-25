@@ -37,7 +37,7 @@
       tags: config,dock,gui,desktop,appearance
       when: desktop
 
-    - import_tasks: tasks/package/tmux.yml
+    - import_tasks: tasks/package/tmux_plugins.yml
       tags: package,install,cli,cmdline,tmux
 
     - import_tasks: tasks/debug.yml
