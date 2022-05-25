@@ -1,6 +1,6 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
-PYTH="$(command -v python3 || command -v python)"
+DEPS=(git python3 python3-pip python3-venv)
 VENV="${HOME}/.local/pipx/venvs/ansible"
 CMND="${1}"
 ARGS="${@:2}"
@@ -17,12 +17,15 @@ if [ "${EUID}" -ne 0 ]; then
   SUDO="sudo "
   export ANSIBLE_BECOME_ASK_PASS="True"
 fi
-export ANSIBLE_PYTHON_INTERPRETER="${PYTH}"
+
+# Dependencies: debian
+(command -v dpkg && dpkg -s ${DEPS[@]} || ! command -v apt-get) &> /dev/null \
+  || (${SUDO}apt-get update && ${SUDO}apt-get install -y ${DEPS[@]})
+
+PYTHON="$(command -v python3 || command -v python)"
+export ANSIBLE_PYTHON_INTERPRETER="${PYTHON}"
 export PATH="${HOME}/.local/bin:${PATH}"
 
-(command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
-  || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-pip python3-venv)
-
-"${PYTH}" -m pip install --user --disable-pip-version-check pipx > /dev/null \
-  && "${PYTH}" -m pipx install ansible --include-deps > /dev/null \
+"${PYTHON}" -m pip install --user --disable-pip-version-check pipx > /dev/null \
+  && "${PYTHON}" -m pipx install ansible --include-deps > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
