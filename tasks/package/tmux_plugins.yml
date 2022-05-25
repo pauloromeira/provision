@@ -12,3 +12,9 @@
         cmd: ~/.tmux/plugins/tpm/bin/install_plugins
       register: tpm_install
       changed_when: tpm_install.stdout | regex_search('(?m)^Installing')
+
+    - name: Tmux plugins > tpm > debug
+      tags: debug
+      debug:
+        var: tpm_install.stdout
+      changed_when: tpm_install.changed
