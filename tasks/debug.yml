@@ -1,4 +1,16 @@
 ---
-- name: Debug
+- name: Debug > set debug_fact
+  set_fact:
+    debug_fact:
+      msg: "hello world"
+      args:
+        - arg1
+        - arg2
+
+- name: Debug msg
   debug:
-    msg: "Debug: {{ desktop or 'no desktop environment' }}"
+    msg: "Debug: {{ debug_fact.msg }}"
+
+- name: Debug var
+  debug:
+    var: debug_fact
