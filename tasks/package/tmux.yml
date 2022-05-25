@@ -1,0 +1,10 @@
+- name: Tmux > clone plugin manager
+  become_user: paulo
+  git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: ~/.tmux/plugins/tpm
+
+- name: Tmux > install plugins
+  become_user: paulo
+  command:
+    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
