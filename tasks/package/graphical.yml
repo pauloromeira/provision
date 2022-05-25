@@ -19,11 +19,12 @@
   become_user: paulo
   flatpak:
     method: user
-    name:
-      - com.spotify.Client
-      - com.google.Chrome
-      - io.dbeaver.DBeaverCommunity
-      - com.getpostman.Postman
-      - org.remmina.Remmina
-      - org.gnome.Cheese
-      - org.gimp.GIMP
+    name: "{{ item }}"
+  loop:
+    - com.spotify.Client
+    - com.google.Chrome
+    - io.dbeaver.DBeaverCommunity
+    - com.getpostman.Postman
+    - org.remmina.Remmina
+    - org.gnome.Cheese
+    - org.gimp.GIMP
