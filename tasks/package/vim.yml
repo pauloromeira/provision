@@ -11,6 +11,10 @@
     - cmake
     - python3-dev
 
+- name: Package > Vim > install tagbar dependencies
+  package:
+    name: universal-ctags
+
 - name: Package > Vim > create folders
   become_user: paulo
   file:
