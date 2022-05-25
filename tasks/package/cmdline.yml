@@ -21,14 +21,23 @@
     name: pipx
     extra_args: --user
 
-- name: Package > CLI > pipx > install mitmproxy
-  tags: pipx
+- name: Package > CLI > pipx > install packages
+  tags: pipx,install
   become_user: paulo
   community.general.pipx:
-    name: mitmproxy
+    name: "{{ item }}"
+  loop:
+    - mitmproxy
+    - ranger-fm
+    - ipython
+    - dvc
 
-- name: Package > CLI > pipx > install ranger
-  tags: pipx
+- name: Package > CLI > pipx > inject into ipython
+  tags: pipx,install
   become_user: paulo
   community.general.pipx:
-    name: ranger-fm
+    name: ipython
+    inject_packages:
+      - requests
+      - parsel
+    state: inject
