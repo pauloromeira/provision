@@ -1,5 +1,9 @@
 ---
-- name: Vim > create folders
+- name: Package > Vim > install vim-gtk
+  package:
+    name: vim-gtk
+
+- name: Package > Vim > create folders
   become_user: paulo
   file:
     path: "~/.vim/{{ item }}"
@@ -14,7 +18,7 @@
     - "temp/session"
     - "files/info"
 
-- name: Vim > Plug > download plugin manager
+- name: Package > Vim > Plug > download plugin manager
   become_user: paulo
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -31,7 +35,7 @@
     - restore_view.vim
     - vim-startmode
 
-- name: Vim > Plug > install plugins
+- name: Package > Vim > Plug > install plugins
   become_user: paulo
   command:
     cmd: vim +PlugInstall +qall

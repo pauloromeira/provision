@@ -6,7 +6,6 @@
     - git
     - curl
     - stow
-    - vim-gtk
     - tmux
 
 - name: Package > CLI > pip > install ansible requirements
