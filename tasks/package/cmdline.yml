@@ -10,6 +10,7 @@
   become_user: paulo
   pip:
     name: psutil
+    extra_args: --user
 
 - name: Package > CLI > pip > install pipx
   tags: pipx
@@ -23,3 +24,9 @@
   become_user: paulo
   community.general.pipx:
     name: mitmproxy
+
+- name: Package > CLI > pipx > install ranger
+  tags: pipx
+  become_user: paulo
+  community.general.pipx:
+    name: ranger
