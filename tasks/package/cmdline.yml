@@ -27,10 +27,18 @@
   community.general.pipx:
     name: "{{ item }}"
   loop:
-    - mitmproxy
-    - ranger-fm
-    - ipython
+    - awscli
+    - docker-compose
     - dvc
+    - faker
+    - flake8
+    - ipython
+    - magic-wormhole
+    - mitmproxy
+    - notebook
+    - ranger-fm
+    - tmuxp
+    - youtube-dl
 
 - name: Package > CLI > pipx > inject into ipython
   tags: pipx,install
@@ -38,6 +46,14 @@
   community.general.pipx:
     name: ipython
     inject_packages:
-      - requests
+      - arrow
+      - ipdb
+      - jmespath
+      - openpyxl
+      - pandas
       - parsel
+      - python-slugify
+      - requests
+      - scrapy
+      - tenacity
     state: inject
