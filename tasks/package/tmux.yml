@@ -1,10 +1,14 @@
-- name: Tmux > clone plugin manager
+- name: Tmux > tmux plugin manager (tpm)
+  tags: tpm
   become_user: paulo
-  git:
-    repo: https://github.com/tmux-plugins/tpm.git
-    dest: ~/.tmux/plugins/tpm
+  block:
+    - name: Tmux > tpm > clone plugin manager
+      git:
+        repo: https://github.com/tmux-plugins/tpm.git
+        dest: ~/.tmux/plugins/tpm
 
-- name: Tmux > install plugins
-  become_user: paulo
-  command:
-    cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+    - name: Tmux > tpm > install plugins
+      command:
+        cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+      register: tpm_install
+      changed_when: tpm_install.stdout | regex_search('(?m)^Installing')
