@@ -35,3 +35,5 @@
   become_user: paulo
   command:
     cmd: vim +PlugInstall +qall
+  register: vim_plug_install
+  changed_when: vim_plug_install.stdout | regex_search('Resolving\s+deltas')
