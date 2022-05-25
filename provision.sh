@@ -1,11 +1,12 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
-VENV="${HOME}/.provision/.venv"
+PYTH="$(command -v python3 || command -v python)"
+VENV="${HOME}/.local/pipx/venvs/ansible"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
 
-[[ "$#" -eq 0 || "${*}" = "bootstrap" ]] && CMND="pull"
+[[ "$#" -eq 0 || "${CMND}" = "bootstrap" ]] && CMND="pull"
 [ "${CMND}" = "pull" ] && CMND="ansible-pull -U ${REPO}"
 [ "${CMND}" = "sync" ] && CMND="ansible-pull -o -U ${REPO}"
 [ "${CMND}" = "playbook" ] && CMND="ansible-playbook"
@@ -14,15 +15,13 @@ SUDO=""
 
 if [ "${EUID}" -ne 0 ]; then
   SUDO="sudo "
-  ARGS+=("--ask-become-pass")
-  # export ANSIBLE_BECOME_ASK_PASS="True"  # this way is asking twice on ansible-pull
+  export ANSIBLE_BECOME_ASK_PASS="True"
 fi
+export ANSIBLE_PYTHON_INTERPRETER="${PYTH}"
 
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
-  || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-venv)
+  || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-pip)
 
-export ANSIBLE_PYTHON_INTERPRETER="$(command -v python3 || command -v python)"
-
-"${ANSIBLE_PYTHON_INTERPRETER}" -m venv "${VENV}" \
-  && "${VENV}/bin/python" -m pip install ansible > /dev/null \
+"${PYTH}" -m pip install --user pipx > /dev/null \
+  && "${PYTH}" -m pipx install ansible --include-deps > /dev/null \
   && "${VENV}/bin/"${CMND} ${ARGS[@]}
