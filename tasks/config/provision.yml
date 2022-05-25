@@ -2,7 +2,7 @@
 - name: Provision > setup provision command
   become_user: paulo
   block:
-    - name: Provision > create ~/.local/bin/
+    - name: Provision > create dir ~/.local/bin/
       file:
         path: ~/.local/bin/
         state: directory
