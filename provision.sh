@@ -18,6 +18,7 @@ if [ "${EUID}" -ne 0 ]; then
   export ANSIBLE_BECOME_ASK_PASS="True"
 fi
 export ANSIBLE_PYTHON_INTERPRETER="${PYTH}"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 (command -v dpkg && dpkg -s python3-venv || ! command -v apt-get) &> /dev/null \
   || (${SUDO}apt-get update && ${SUDO}apt-get install -y git python3-pip)
