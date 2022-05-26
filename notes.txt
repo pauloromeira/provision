@@ -1,2 +1,29 @@
 # create role structure:
 ./provision.sh ansible-galaxy role init
+
+
+* ------------ TODO ------------- *
+[ ] pyenv or asdf
+  - asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
+[ ] FZF?
+[ ] Other utilities/packages such as
+  - bat
+  - tree
+  - silversearcher
+  - xclip and/or xsel
+  - wget?
+  - make?
+  - gcc?
+  - unrar?
+  - sqlite?
+[ ] Drivers
+[ ] bashrc
+  [ ] local bashrc
+  [ ] bash aliases
+[ ] Virtualbox
+[ ] Vlc
+[ ] .dotfiles/ubuntu/bin
+[ ] Tlp
+
+[ ] playbook for full-upgrade
+[ ] option to full-upgrade before provision
