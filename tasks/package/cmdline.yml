@@ -35,7 +35,7 @@
     extra_args: --user
 
 - name: Package > CLI > pipx > install packages
-  tags: pipx,install
+  tags: pipx
   become_user: "{{ user_id }}"
   community.general.pipx:
     name: "{{ item }}"
@@ -54,7 +54,7 @@
     - youtube-dl
 
 - name: Package > CLI > pipx > inject into ipython
-  tags: pipx,install
+  tags: pipx
   become_user: "{{ user_id }}"
   community.general.pipx:
     name: ipython

@@ -12,14 +12,14 @@
       tags: config,provision
 
     - import_tasks: tasks/package/update_cache.yml
-      tags: package,update,upgrade,install
+      tags: package,update,upgrade
 
   tasks:
     - import_tasks: tasks/package/cmdline.yml
-      tags: package,install,cli,cmdline
+      tags: package,cli,cmdline
 
     - import_tasks: tasks/package/hardware.yml
-      tags: package,install,hw,hardware
+      tags: package,hw,hardware
 
     - import_tasks: tasks/config/keyboard.yml
       tags: config,keyboard
@@ -28,16 +28,16 @@
       tags: config,dotfiles
 
     - import_tasks: tasks/package/tmux.yml
-      tags: package,install,cli,cmdline,tmux
+      tags: package,cli,cmdline,tmux
 
     - import_tasks: tasks/package/vim.yml
-      tags: package,install,cli,cmdline,vim
+      tags: package,cli,cmdline,vim
 
     - import_tasks: tasks/package/docker.yml
-      tags: package,install,cli,cmdline,docker
+      tags: package,cli,cmdline,docker
 
     - import_tasks: tasks/package/tlp.yml
-      tags: package,install,cli,cmdline,tlp
+      tags: package,cli,cmdline,tlp
 
     - import_tasks: tasks/config/dock.yml
       tags: config,dock,gui,desktop,appearance
@@ -48,11 +48,11 @@
       when: user_desktop
 
     - import_tasks: tasks/package/virtualbox.yml
-      tags: never,package,install,gui,desktop,graphical,virtualbox
+      tags: never,package,gui,desktop,graphical,virtualbox
       when: user_desktop
 
     - import_tasks: tasks/package/graphical.yml
-      tags: never,package,install,gui,desktop,graphical
+      tags: never,package,gui,desktop,graphical
       when: user_desktop
 
     - import_tasks: tasks/debug.yml
