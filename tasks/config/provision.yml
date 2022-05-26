@@ -1,31 +1,31 @@
 ---
 - name: Provision > clone repository
-  become_user: paulo
+  become_user: "{{ user_id }}"
   block:
     - name: Provision > clone to ~/.provision/
       git:
-        repo: https://github.com/pauloromeira/provision.git
-        dest: ~/.provision
+        repo: "https://github.com/{{ github_user }}/provision.git"
+        dest: "{{ provision_dir }}"
         update: no
 
     - name: Provision > set ssh push url
       git_config:
-        repo: ~/.provision
+        repo: "{{ provision_dir }}"
         scope: local
         name: remote.origin.pushurl
-        value: git@github.com:pauloromeira/provision.git
+        value: "git@github.com:{{ github_user }}/provision.git"
 
 - name: Provision > setup provision command
-  become_user: paulo
+  become_user: "{{ user_id }}"
   block:
     - name: Provision > create dir ~/.local/bin/
       file:
-        path: ~/.local/bin/
+        path: "{{ user_dir }}/.local/bin/"
         state: directory
 
     - name: Provision > create hard link on ~/.local/bin/provision
       file:
-        src: ~/.provision/provision.sh
-        dest: ~/.local/bin/provision
+        src: "{{ provision_dir }}/provision.sh"
+        dest: "{{ user_dir }}/.local/bin/provision"
         state: hard
         force: yes
