@@ -3,11 +3,7 @@
   set_fact:
     "{{ item.key }}": "{{ item.value }}"
   loop:
-    - key: "user_id"
-      value: "{{ ansible_user_id }}"
-    - key: "user_dir"
-      value: "{{ ansible_user_dir }}"
-    - key: "user_desktop"
-      value: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}"
-    - key: "dpkg_arch"
-      value: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    - { key: "user_id", value: "{{ ansible_user_id }}" }
+    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
+    - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}" }
+    - { key: "dpkg_arch", value: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}" }
