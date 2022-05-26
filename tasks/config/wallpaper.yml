@@ -9,7 +9,7 @@
 - name: Wallpaper > dconf setup (gnome)
   tags: gnome
   when: desktop == "gnome"
-  become_user: paulo
+  become_user: "{{ user_id }}"
   dconf:
     key: "{{ '/org/gnome/desktop/background/' + item.key }}"
     value: "{{ item.value }}"
