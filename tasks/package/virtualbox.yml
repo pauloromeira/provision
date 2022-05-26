@@ -6,12 +6,12 @@
     url: "{{ item }}"
     state: present
   loop:
-    - "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
-    - "https://www.virtualbox.org/download/oracle_vbox.asc"
+    - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    - https://www.virtualbox.org/download/oracle_vbox.asc
 
 - name: Virtualbox > Add apt repository
   apt_repository:
-    repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+    repo: "deb [arch={{ dpkg_arch }}] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
     filename: "virtualbox-{{ ansible_lsb.codename }}"
     state: present
 
