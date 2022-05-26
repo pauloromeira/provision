@@ -3,11 +3,12 @@
 #   - https://www.virtualbox.org/wiki/Linux_Downloads
 - name: Virtualbox > Add apt keys
   apt_key:
-    url: "{{ item }}"
+    url: "https://www.virtualbox.org/download/{{ item }}.asc"
+    keyring: "/etc/apt/trusted.gpg.d/{{ item }}.gpg"
     state: present
   loop:
-    - https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    - https://www.virtualbox.org/download/oracle_vbox.asc
+    - oracle_vbox_2016
+    - oracle_vbox
 
 - name: Virtualbox > Add apt repository
   apt_repository:
