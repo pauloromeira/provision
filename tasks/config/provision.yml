@@ -1,8 +1,8 @@
 ---
-- name: Provision > clone repository
+- name: Provision > clone and configure repository
   become_user: "{{ user_id }}"
   block:
-    - name: Provision > clone to ~/.provision/
+    - name: Provision > clone repository
       git:
         repo: "https://github.com/{{ github_user }}/provision.git"
         dest: "{{ provision_dir }}"
