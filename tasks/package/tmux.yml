@@ -5,16 +5,16 @@
 
 - name: Tmux > Tpm > tmux plugin manager
   tags: tpm
-  become_user: paulo
+  become_user: "{{ user_id }}"
   block:
     - name: Tmux > Tpm > clone plugin manager
       git:
         repo: https://github.com/tmux-plugins/tpm.git
-        dest: ~/.tmux/plugins/tpm
+        dest: "{{ tmux_dir }}/plugins/tpm"
 
     - name: Tmux > Tpm > install plugins
       command:
-        cmd: ~/.tmux/plugins/tpm/bin/install_plugins
+        cmd: "{{ tmux_dir }}/plugins/tpm/bin/install_plugins"
       register: tmux_tpm_install
       changed_when: tmux_tpm_install.stdout | regex_search('(?m)^Installing')
 

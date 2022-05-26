@@ -3,3 +3,4 @@ localhost
 
 [all:vars]
 ansible_connection = local
+github_user = pauloromeira
