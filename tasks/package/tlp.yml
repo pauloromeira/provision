@@ -8,11 +8,17 @@
   loop:
     - power-profiles-daemon
 
-- name: Tlp > Add apt PPA
+- name: Tlp > Add gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 2042F03C5FABD0BA2CED40412B3F92F902D65EFF
+    keyring: /etc/apt/trusted.gpg.d/tlp.gpg
+
+- name: Tlp > Add apt repository
   apt_repository:
-    repo: ppa:linrunner/tlp
-    state: present
+    repo: "deb [arch={{ dpkg_arch }}] https://ppa.launchpadcontent.net/linrunner/tlp/ubuntu {{ ansible_lsb.codename }} main"
     filename: "tlp-{{ ansible_lsb.codename }}"
+    state: present
 
 - name: Tlp > Install
   apt:
