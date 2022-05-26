@@ -7,6 +7,11 @@ OR
 wget -qO - pauloromeira.com/bootstrap | bash
 ```
 
+Full bootstrap (includes GUI applications)
+```sh
+curl -s pauloromeira.com/bootstrap | bash -s - --tags full
+```
+
 Run specific tags
 ```sh
 curl -s pauloromeira.com/bootstrap | bash -s - --tags TAGS
