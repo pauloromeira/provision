@@ -29,7 +29,7 @@
     - name: Dotfiles > stow > create symlinks
       command:
         chdir: "{{ dotfiles_dir }}"
-        cmd: stow --dotfiles --adopt --verbose=2 "{{ item }}"
+        cmd: stow --adopt --verbose=2 "{{ item }}"
       register: stow_dotfiles
       changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
       with_items: "{{ dotfiles.files | map(attribute='path') | map('basename') }}"
