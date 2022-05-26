@@ -23,7 +23,7 @@
     - tlp
     - tlp-rdw
 
-- name: Tlp > Ensure tlp started
+- name: Tlp > Ensure service started
   service:
     name: tlp
     state: started

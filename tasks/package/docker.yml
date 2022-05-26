@@ -44,12 +44,6 @@
     - docker-ce-cli
     - containerd.io
 
-- name: Docker > Ensure docker started
-  service:
-    name: docker
-    state: started
-    enabled: yes
-
 - name: Docker > Ensure docker group exists
   group:
     name: docker
@@ -60,3 +54,9 @@
     name: "{{ user_id }}"
     groups: docker
     append: yes
+
+- name: Docker > Ensure service started
+  service:
+    name: docker
+    state: started
+    enabled: yes
