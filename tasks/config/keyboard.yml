@@ -2,7 +2,7 @@
 # To get all dconf settings run: `dconf dump /`
 - name: Keyboard > swap ctrl/caps and set right alt as compose key (gnome)
   tags: gnome
-  become_user: paulo
+  become_user: "{{ user_id }}"
   dconf:
     key: "/org/gnome/desktop/input-sources/xkb-options"
     value: "['ctrl:swapcaps', 'compose:ralt']"
