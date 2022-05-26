@@ -6,6 +6,7 @@
     - import_tasks: tasks/facts.yml
       tags: facts,always
 
+
 - hosts: all
   become: true
   tags: full
@@ -41,21 +42,22 @@
     - import_tasks: tasks/package/tlp.yml
       tags: package,cli,cmdline,tlp
 
-    - import_tasks: tasks/config/dock.yml
-      tags: config,dock,gui,desktop,appearance
+    - name: GUI tasks
       when: user_desktop
+      tags: gui,desktop,graphical
+      block:
+        - import_tasks: tasks/config/dock.yml
+          tags: config,dock,appearance
 
-    - import_tasks: tasks/config/wallpaper.yml
-      tags: config,wallpaper,gui,desktop,appearance
-      when: user_desktop
+        - import_tasks: tasks/config/wallpaper.yml
+          tags: config,wallpaper,appearance
 
-    - import_tasks: tasks/package/virtualbox.yml
-      tags: never,package,gui,desktop,graphical,virtualbox
-      when: user_desktop
+        - import_tasks: tasks/package/graphical.yml
+          tags: never,package
 
-    - import_tasks: tasks/package/graphical.yml
-      tags: never,package,gui,desktop,graphical
-      when: user_desktop
+        - import_tasks: tasks/package/virtualbox.yml
+          tags: never,package,virtualbox
+
 
 - hosts: all
   become: false
