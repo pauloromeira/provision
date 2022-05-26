@@ -3,27 +3,21 @@
 
 
 * ------------ TODO ------------- *
-[ ] pyenv or asdf
-  - asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
-[ ] FZF?
-[ ] Other utilities/packages such as
-  - bat
-  - tree
-  - silversearcher
-  - xclip and/or xsel
-  - wget?
-  - make?
-  - gcc?
-  - unrar?
-  - sqlite?
-[ ] Drivers
 [ ] bashrc
   [ ] local bashrc
   [ ] bash aliases
+[ ] pyenv or asdf
+  - asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
+[ ] Drivers
 [ ] Virtualbox
-[ ] Vlc
 [ ] .dotfiles/ubuntu/bin
-[ ] Tlp
+[ ] FZF?
+[ ] Vlc
+
 
 [ ] playbook for full-upgrade
 [ ] option to full-upgrade before provision
+[ ] Tlp
+  [ ] thinkpad-specific
+  [ ] add tlp config to dotfiles?
+  [ ] see if running check is correct
