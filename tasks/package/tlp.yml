@@ -1,0 +1,30 @@
+---
+# References:
+#   - https://linrunner.de/tlp/installation/ubuntu.html
+- name: Tlp > Uninstall conflicting packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - power-profiles-daemon
+
+- name: Tlp > Add apt PPA
+  apt_repository:
+    repo: ppa:linrunner/tlp
+    state: present
+    filename: "tlp-{{ ansible_lsb.codename }}"
+
+- name: Tlp > Install
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - tlp
+    - tlp-rdw
+
+- name: Tlp > Ensure tlp started
+  service:
+    name: tlp
+    state: started
+    enabled: yes
