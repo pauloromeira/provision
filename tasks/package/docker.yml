@@ -1,5 +1,7 @@
 ---
-# Reference: https://docs.docker.com/engine/install/ubuntu/
+# References:
+#   - https://docs.docker.com/engine/install/ubuntu/
+#   - https://docs.docker.com/engine/install/linux-postinstall/
 - name: Docker > Uninstall old versions
   apt:
     name: "{{ item }}"
@@ -47,3 +49,14 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Docker > Ensure docker group exists
+  group:
+    name: docker
+    state: present
+
+- name: Docker > Add user to docker group
+  user:
+    name: "{{ user_id }}"
+    groups: docker
+    append: yes
