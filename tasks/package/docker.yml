@@ -31,7 +31,7 @@
 
 - name: Docker > Add apt repository
   apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    repo: "deb [arch={{ dpkg_arch }} signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     filename: "docker-{{ ansible_lsb.codename }}"
     state: present
 
