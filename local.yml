@@ -1,12 +1,14 @@
 ---
 - hosts: all
   become: false
+  tags: full
   pre_tasks:
     - import_tasks: tasks/facts.yml
       tags: facts,always
 
 - hosts: all
   become: true
+  tags: full
   pre_tasks:
     - import_tasks: tasks/config/provision.yml
       tags: config,provision
@@ -55,5 +57,8 @@
       tags: never,package,gui,desktop,graphical
       when: user_desktop
 
+- hosts: all
+  become: false
+  tags: never,debug
+  tasks:
     - import_tasks: tasks/debug.yml
-      tags: never,debug
