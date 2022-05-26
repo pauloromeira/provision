@@ -47,6 +47,10 @@
       tags: config,wallpaper,gui,desktop,appearance
       when: user_desktop
 
+    - import_tasks: tasks/package/virtualbox.yml
+      tags: never,package,install,gui,desktop,graphical,virtualbox
+      when: user_desktop
+
     - import_tasks: tasks/package/graphical.yml
       tags: never,package,install,gui,desktop,graphical
       when: user_desktop
