@@ -31,6 +31,9 @@
     - import_tasks: tasks/package/vim.yml
       tags: package,install,cli,cmdline,vim
 
+    - import_tasks: tasks/package/docker.yml
+      tags: package,install,cli,cmdline,docker
+
     - import_tasks: tasks/config/dock.yml
       tags: config,dock,gui,desktop,appearance
       when: desktop
