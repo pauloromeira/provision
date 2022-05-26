@@ -38,15 +38,15 @@
 
     - import_tasks: tasks/config/dock.yml
       tags: config,dock,gui,desktop,appearance
-      when: desktop
+      when: user_desktop
 
     - import_tasks: tasks/config/wallpaper.yml
       tags: config,wallpaper,gui,desktop,appearance
-      when: desktop
+      when: user_desktop
 
     - import_tasks: tasks/package/graphical.yml
       tags: never,package,install,gui,desktop,graphical
-      when: desktop
+      when: user_desktop
 
     - import_tasks: tasks/debug.yml
       tags: never,debug
