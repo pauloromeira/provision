@@ -1,11 +1,13 @@
 ---
 - hosts: all
-  become: true
-
+  become: false
   pre_tasks:
     - import_tasks: tasks/facts.yml
       tags: facts,always
 
+- hosts: all
+  become: true
+  pre_tasks:
     - import_tasks: tasks/config/provision.yml
       tags: config,provision
 

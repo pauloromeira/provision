@@ -1,4 +1,19 @@
 ---
-- name: Facts > get desktop environment
+- name: Facts > get desktop info
   set_fact:
-    desktop: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}"
+    "{{ item.key }}": "{{ item.value }}"
+  loop:
+    - { key: "desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}" }
+
+- name: Facts > get user info
+  set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  loop:
+    - { key: "user_id", value: "{{ ansible_user_id }}" }
+    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
+
+- name: Facts > get vim info
+  set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  loop:
+    - { key: "vim_dir", value: "{{ user_dir }}/.vim" }
