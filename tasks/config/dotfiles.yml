@@ -7,6 +7,7 @@
       git:
         repo: https://github.com/pauloromeira/dotfiles2.git
         dest: ~/.dotfiles2
+        update: no
 
     - name: Dotfiles > set ssh push url
       git_config:
