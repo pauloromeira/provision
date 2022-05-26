@@ -1,7 +1,7 @@
 ---
 # References:
 #   - https://www.virtualbox.org/wiki/Linux_Downloads
-- name: Virtualbox > Add apt keys
+- name: Virtualbox > Add gpg keys
   apt_key:
     url: "https://www.virtualbox.org/download/{{ item }}.asc"
     keyring: "/etc/apt/trusted.gpg.d/{{ item }}.gpg"

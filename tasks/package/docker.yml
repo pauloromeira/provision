@@ -23,7 +23,7 @@
     - gnupg
     - lsb-release
 
-- name: Docker > Add official GPG key
+- name: Docker > Add gpg key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
