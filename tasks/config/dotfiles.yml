@@ -1,6 +1,6 @@
 ---
 # TODO: Migrate dotfiles and change from dotfiles2 to dotfiles
-- name: Dotfiles > clone and setup repository
+- name: Dotfiles > clone repository
   become_user: paulo
   block:
     - name: Dotfiles > clone to ~/.dotfiles2/ (temporary)

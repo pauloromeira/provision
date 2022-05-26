@@ -1,4 +1,20 @@
 ---
+- name: Provision > clone repository
+  become_user: paulo
+  block:
+    - name: Provision > clone to ~/.provision/
+      git:
+        repo: https://github.com/pauloromeira/provision.git
+        dest: ~/.provision
+        update: no
+
+    - name: Provision > set ssh push url
+      git_config:
+        repo: ~/.provision
+        scope: local
+        name: remote.origin.pushurl
+        value: git@github.com:pauloromeira/provision.git
+
 - name: Provision > setup provision command
   become_user: paulo
   block:
@@ -7,8 +23,9 @@
         path: ~/.local/bin/
         state: directory
 
-    - name: Provision > copy provision.sh to ~/.local/bin/provision
-      copy:
-        src: provision.sh
+    - name: Provision > create hard link on ~/.local/bin/provision
+      file:
+        src: ~/.provision/provision.sh
         dest: ~/.local/bin/provision
-        mode: 0775
+        state: hard
+        force: yes
