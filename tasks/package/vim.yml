@@ -16,9 +16,9 @@
     name: universal-ctags
 
 - name: Package > Vim > create folders
-  become_user: paulo
+  become_user: "{{ user_id }}"
   file:
-    path: "~/.vim/{{ item }}"
+    path: "{{ vim_dir }}/{{ item }}"
     state: directory
   loop:
     - "autoload"
@@ -31,16 +31,16 @@
     - "files/info"
 
 - name: Package > Vim > download plugin manager
-  become_user: paulo
+  become_user: "{{ user_id }}"
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: ~/.vim/autoload/plug.vim
+    dest: "{{ vim_dir }}/autoload/plug.vim"
 
 - name: Vim > Plugins > clone forks
-  become_user: paulo
+  become_user: "{{ user_id }}"
   git:
     repo: "https://pauloromeira@github.com/pauloromeira/{{ item }}.git"
-    dest: "~/.vim/local/{{ item }}"
+    dest: "{{ vim_dir }}/local/{{ item }}"
   loop:
     - vim-tomorrow-theme
     - vim-custom-snippets
@@ -48,7 +48,7 @@
     - vim-startmode
 
 - name: Package > Vim > install plugins
-  become_user: paulo
+  become_user: "{{ user_id }}"
   command:
     cmd: vim +PlugInstall +qall
   register: vim_plug_install
