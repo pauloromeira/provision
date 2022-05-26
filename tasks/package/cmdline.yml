@@ -1,18 +1,31 @@
 ---
-- name: Package > CLI > install system packages
+- name: Package > CLI > install provision requirements
   package:
     name: "{{ item }}"
   loop:
     - git
-    - curl
     - stow
-    - tmux
 
-- name: Package > CLI > pip > install ansible requirements
+- name: Package > CLI > pip > install provision requirements
   become_user: "{{ user_id }}"
   pip:
     name: psutil
     extra_args: --user
+
+- name: Package > CLI > install utilities
+  package:
+    name: "{{ item }}"
+  loop:
+    - bat
+    - curl
+    - gcc
+    - make
+    - silversearcher-ag
+    - sqlite
+    - tree
+    - unrar
+    - wget
+    - xsel
 
 - name: Package > CLI > pip > install pipx
   tags: pipx
