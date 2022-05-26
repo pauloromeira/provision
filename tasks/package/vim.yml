@@ -21,14 +21,14 @@
     path: "{{ vim_dir }}/{{ item }}"
     state: directory
   loop:
-    - "autoload"
-    - "local"
-    - "temp/undo"
-    - "temp/backup"
-    - "temp/swap"
-    - "temp/view"
-    - "temp/session"
-    - "files/info"
+    - autoload
+    - local
+    - temp/undo
+    - temp/backup
+    - temp/swap
+    - temp/view
+    - temp/session
+    - files/info
 
 - name: Package > Vim > download plugin manager
   become_user: "{{ user_id }}"
