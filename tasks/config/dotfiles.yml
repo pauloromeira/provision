@@ -1,35 +1,34 @@
 ---
-# TODO: Migrate dotfiles and change from dotfiles2 to dotfiles
-- name: Dotfiles > clone repository
-  become_user: paulo
+- name: Dotfiles > clone and configure repository
+  become_user: "{{ user_id }}"
   block:
-    - name: Dotfiles > clone to ~/.dotfiles2/ (temporary)
+    - name: Dotfiles > clone repository via https
       git:
-        repo: https://github.com/pauloromeira/dotfiles2.git
-        dest: ~/.dotfiles2
+        repo: "{{ git_https_url }}/{{ dotfiles_repo }}.git"
+        dest: "{{ dotfiles_dir }}"
         update: no
 
-    - name: Dotfiles > set ssh push url
+    - name: Dotfiles > set push ssh url
       git_config:
-        repo: ~/.dotfiles2
+        repo: "{{ dotfiles_dir }}"
         scope: local
         name: remote.origin.pushurl
-        value: git@github.com:pauloromeira/dotfiles2.git
+        value: "{{ git_ssh_url }}/{{ dotfiles_repo }}.git"
 
 - name: Dotfiles > find packages and create symlinks
-  become_user: paulo
+  become_user: "{{ user_id }}"
   tags: symlinks
   block:
     - name: Dotfiles > find packages
       find:
-        paths: ~/.dotfiles2
+        paths: "{{ dotfiles_dir }}"
         recurse: no
         file_type: directory
       register: dotfiles
 
     - name: Dotfiles > stow > create symlinks
       command:
-        chdir: ~/.dotfiles2
+        chdir: "{{ dotfiles_dir }}"
         cmd: stow --dotfiles --adopt --verbose=2 "{{ item }}"
       register: stow_dotfiles
       changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')

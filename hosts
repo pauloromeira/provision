@@ -3,8 +3,8 @@ localhost
 
 [all:vars]
 ansible_connection = local
-git_https_url = https://pauloromeira@github.com/pauloromeira
-git_ssh_url = git@github.com:pauloromeira
+git_https_url = "https://pauloromeira@github.com/pauloromeira"
+git_ssh_url = "git@github.com:pauloromeira"
 provision_repo = "provision"
 dotfiles_repo = "dotfiles2"
 vim_dir = "{{ user_dir }}/.vim"

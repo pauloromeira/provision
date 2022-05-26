@@ -2,18 +2,18 @@
 - name: Provision > clone and configure repository
   become_user: "{{ user_id }}"
   block:
-    - name: Provision > clone repository
+    - name: Provision > clone repository via https
       git:
-        repo: "https://github.com/{{ github_user }}/provision.git"
+        repo: "{{ git_https_url }}/{{ provision_repo }}.git"
         dest: "{{ provision_dir }}"
         update: no
 
-    - name: Provision > set ssh push url
+    - name: Provision > set push ssh url
       git_config:
         repo: "{{ provision_dir }}"
         scope: local
         name: remote.origin.pushurl
-        value: "git@github.com:{{ github_user }}/provision.git"
+        value: "{{ git_ssh_url }}/{{ provision_repo }}.git"
 
 - name: Provision > setup provision command
   become_user: "{{ user_id }}"
