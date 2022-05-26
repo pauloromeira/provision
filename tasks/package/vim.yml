@@ -39,7 +39,7 @@
 - name: Vim > Plugins > clone forks
   become_user: "{{ user_id }}"
   git:
-    repo: "https://{{ github_user }}@github.com/{{ github_user }}/{{ item }}.git"
+    repo: "{{ git_https_url }}/{{ item }}.git"
     dest: "{{ vim_dir }}/local/{{ item }}"
   loop:
     - vim-tomorrow-theme
