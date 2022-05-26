@@ -7,7 +7,7 @@
 
 - name: Package > GUI > flatpak > add flathub remote
   tags: flatpak,flathub
-  become_user: paulo
+  become_user: "{{ user_id }}"
   flatpak_remote:
     name: flathub
     state: present
@@ -16,7 +16,7 @@
 
 - name: Package > GUI > flatpak > install packages
   tags: flatpak
-  become_user: paulo
+  become_user: "{{ user_id }}"
   flatpak:
     method: user
     name: "{{ item }}"

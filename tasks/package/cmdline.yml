@@ -9,21 +9,21 @@
     - tmux
 
 - name: Package > CLI > pip > install ansible requirements
-  become_user: paulo
+  become_user: "{{ user_id }}"
   pip:
     name: psutil
     extra_args: --user
 
 - name: Package > CLI > pip > install pipx
   tags: pipx
-  become_user: paulo
+  become_user: "{{ user_id }}"
   pip:
     name: pipx
     extra_args: --user
 
 - name: Package > CLI > pipx > install packages
   tags: pipx,install
-  become_user: paulo
+  become_user: "{{ user_id }}"
   community.general.pipx:
     name: "{{ item }}"
   loop:
@@ -42,7 +42,7 @@
 
 - name: Package > CLI > pipx > inject into ipython
   tags: pipx,install
-  become_user: paulo
+  become_user: "{{ user_id }}"
   community.general.pipx:
     name: ipython
     inject_packages: "{{ item }}"
