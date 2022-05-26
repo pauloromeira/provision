@@ -21,7 +21,7 @@
     - gcc
     - make
     - silversearcher-ag
-    - sqlite
+    - sqlite3
     - tree
     - unrar
     - wget
