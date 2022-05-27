@@ -12,3 +12,9 @@
     - { key: "extend-height", value: "false" }
     - { key: "dock-fixed", value: "false" }
     - { key: "intellihide", value: "true" }
+    - { key: "custom-theme-shrink", value: "true" }
+    - { key: "customize-alphas", value: "true" }
+    - { key: "max-alpha", value: "0.8" }
+    - { key: "min-alpha", value: "0.8" }
+    - { key: "transparency-mode", value: "'DYNAMIC'" }
+    - { key: "show-trash", value: "false" }
