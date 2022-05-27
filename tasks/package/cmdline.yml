@@ -19,11 +19,14 @@
     - bat
     - curl
     - gcc
+    - htop
     - make
+    - openssh-client
     - silversearcher-ag
     - sqlite3
     - tree
     - unrar
+    - unzip
     - wget
     - xsel
 
