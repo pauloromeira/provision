@@ -50,7 +50,7 @@
           tags: config,dock,appearance
 
         - import_tasks: tasks/config/wallpaper.yml
-          tags: config,wallpaper,appearance
+          tags: never,config,wallpaper,appearance
 
         - import_tasks: tasks/package/graphical.yml
           tags: never,package
