@@ -1,0 +1,7 @@
+- name: Power > disable auto brightness
+  tags: gnome
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
+    value: "false"
+  when: user_desktop == "gnome"
