@@ -1,44 +1,20 @@
 ---
-- name: Package > CLI > install provision requirements
-  package:
+- name:  Pipx > Install dependencies
+  apt:
     name: "{{ item }}"
+    state: present
   loop:
-    - git
-    - stow
+    - python3
+    - python3-pip
 
-- name: Package > CLI > pip > install provision requirements
-  become_user: "{{ user_id }}"
-  pip:
-    name: psutil
-    extra_args: --user
-
-- name: Package > CLI > install utilities
-  package:
-    name: "{{ item }}"
-  loop:
-    - bat
-    - curl
-    - ffmpeg
-    - gcc
-    - htop
-    - make
-    - openssh-client
-    - silversearcher-ag
-    - sqlite3
-    - tree
-    - unrar
-    - unzip
-    - wget
-    - xsel
-
-- name: Package > CLI > pip > install pipx
+- name: Pipx > Install
   tags: pipx
   become_user: "{{ user_id }}"
   pip:
     name: pipx
     extra_args: --user
 
-- name: Package > CLI > pipx > install packages
+- name: Pipx > Install packages
   tags: pipx
   become_user: "{{ user_id }}"
   community.general.pipx:
@@ -47,7 +23,6 @@
     - awscli
     - docker-compose
     - dvc
-    - faker
     - flake8
     - ipython
     - magic-wormhole
@@ -57,7 +32,7 @@
     - tmuxp
     - youtube-dl
 
-- name: Package > CLI > pipx > inject into ipython
+- name: Pipx > Inject into ipython
   tags: pipx
   become_user: "{{ user_id }}"
   community.general.pipx:
@@ -66,6 +41,7 @@
     state: inject
   loop:
     - arrow
+    - faker
     - ipdb
     - jmespath
     - openpyxl

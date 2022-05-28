@@ -1,0 +1,32 @@
+---
+- name: System > Install provision requirements
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+    - stow
+
+- name: System > Pip > Install provision requirements
+  become_user: "{{ user_id }}"
+  pip:
+    name: psutil
+    extra_args: --user
+
+- name: System > Install utilities
+  package:
+    name: "{{ item }}"
+  loop:
+    - bat
+    - curl
+    - ffmpeg
+    - gcc
+    - htop
+    - make
+    - openssh-client
+    - silversearcher-ag
+    - sqlite3
+    - tree
+    - unrar
+    - unzip
+    - wget
+    - xsel

@@ -18,11 +18,14 @@
       tags: package,update,upgrade
 
   tasks:
-    - import_tasks: tasks/package/cmdline.yml
-      tags: package,cli,cmdline
-
     - import_tasks: tasks/package/hardware.yml
       tags: package,hw,hardware
+
+    - import_tasks: tasks/package/system.yml
+      tags: package,cli,cmdline,system
+
+    - import_tasks: tasks/package/pipx.yml
+      tags: package,cli,cmdline,pipx
 
     - import_tasks: tasks/config/locale.yml
       tags: config,locale
