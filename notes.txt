@@ -3,8 +3,6 @@
 
 
 * ------------ TODO ------------- *
-[ ] .dotfiles/ubuntu/bin
-[ ] Vlc
 [ ] Drivers
 [ ]  asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
 
