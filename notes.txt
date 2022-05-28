@@ -3,11 +3,10 @@
 
 
 * ------------ TODO ------------- *
-[ ] pyenv or asdf
-  - asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
-[ ] Drivers
 [ ] .dotfiles/ubuntu/bin
 [ ] Vlc
+[ ] Drivers
+[ ]  asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
 
 
 [ ] playbook for full-upgrade
