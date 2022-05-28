@@ -1,0 +1,19 @@
+---
+- name: Clock > Set format to 24h
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "{{ item }}/clock-format"
+    value: "'24h'"
+  loop:
+    - /org/gnome/desktop/interface
+    - /org/gtk/settings/file-chooser
+
+- name: Formats > Set formats to UK
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/system/locale/region"
+    value: "'en_GB.UTF-8'"

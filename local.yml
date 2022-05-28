@@ -24,6 +24,9 @@
     - import_tasks: tasks/package/hardware.yml
       tags: package,hw,hardware
 
+    - import_tasks: tasks/config/locale.yml
+      tags: config,locale
+
     - import_tasks: tasks/config/power.yml
       tags: config,power
 
