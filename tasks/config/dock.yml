@@ -14,7 +14,7 @@
     - { key: "intellihide", value: "true" }
     - { key: "custom-theme-shrink", value: "true" }
     - { key: "customize-alphas", value: "true" }
-    - { key: "max-alpha", value: "0.8" }
-    - { key: "min-alpha", value: "0.8" }
+    - { key: "max-alpha", value: "0.87" }
+    - { key: "min-alpha", value: "0.87" }
     - { key: "transparency-mode", value: "'DYNAMIC'" }
     - { key: "show-trash", value: "false" }
