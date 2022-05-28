@@ -1,0 +1,30 @@
+---
+# References:
+#   - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
+- name:  Kubectl > Install requirements
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+
+- name: Kubectl > Add kubernetes gpg key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+    keyring: /etc/apt/trusted.gpg.d/kubernetes.gpg
+
+# As of this writing, the most recent repo available is from Ubuntu 16.04 Xenial Xerus
+- name: Kubectl > Add kubernetes apt repository (xenial)
+  apt_repository:
+    repo: "deb [arch={{ dpkg_arch }}] https://apt.kubernetes.io/ kubernetes-xenial main"
+    filename: "kubernetes-xenial"
+    state: present
+
+- name: Kubectl > Install
+  apt:
+    name: kubectl
+    state: present
+    update_cache: yes

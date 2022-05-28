@@ -48,11 +48,14 @@
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 
+    - import_tasks: tasks/package/tlp.yml
+      tags: package,cli,cmdline,tlp
+
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
-    - import_tasks: tasks/package/tlp.yml
-      tags: package,cli,cmdline,tlp
+    - import_tasks: tasks/package/kubectl.yml
+      tags: package,cli,cmdline,kubectl
 
     - name: GUI tasks
       when: user_desktop
