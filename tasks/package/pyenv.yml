@@ -1,0 +1,45 @@
+---
+# References:
+#   - https://github.com/pyenv/pyenv-installer
+#   - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+#   - https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv
+- name:  Pyenv > Install python build dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - build-essential
+    - curl
+    - libbz2-dev
+    - libffi-dev
+    - liblzma-dev
+    - libncursesw5-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxmlsec1-dev
+    - llvm
+    - make
+    - tk-dev
+    - wget
+    - xz-utils
+    - zlib1g-dev
+
+- name: Pyenv > Clone pyenv repository
+  become_user: "{{ user_id }}"
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ pyenv_dir }}"
+
+- name: Pyenv > Clone pyenv plugins repositories
+  become_user: "{{ user_id }}"
+  git:
+    repo: "https://github.com/pyenv/{{ item }}.git"
+    dest: "{{ pyenv_dir }}/plugins/{{ item }}"
+  loop:
+    - pyenv-doctor
+    - pyenv-installer
+    - pyenv-update
+    - pyenv-virtualenv
+    - pyenv-which-ext

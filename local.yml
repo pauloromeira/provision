@@ -39,6 +39,9 @@
     - import_tasks: tasks/package/vim.yml
       tags: package,cli,cmdline,vim
 
+    - import_tasks: tasks/package/pyenv.yml
+      tags: package,cli,cmdline,pyenv
+
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
