@@ -22,7 +22,7 @@
     name: "{{ item }}"
   loop:
     - com.spotify.Client
-    - com.google.Chrome
+    - org.chromium.Chromium
     - io.dbeaver.DBeaverCommunity
     - com.getpostman.Postman
     - org.remmina.Remmina
