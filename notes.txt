@@ -3,15 +3,10 @@
 
 
 * ------------ TODO ------------- *
-[ ] bashrc
-  [ ] local bashrc
-  [ ] bash aliases
 [ ] pyenv or asdf
   - asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
 [ ] Drivers
-[ ] Virtualbox
 [ ] .dotfiles/ubuntu/bin
-[ ] FZF?
 [ ] Vlc
 
 
