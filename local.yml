@@ -24,8 +24,11 @@
     - import_tasks: tasks/package/hardware.yml
       tags: package,hw,hardware
 
-    - import_tasks: tasks/config/keyboard.yml
-      tags: config,keyboard
+    - import_tasks: tasks/config/power.yml
+      tags: config,power
+
+    - import_tasks: tasks/config/peripherals.yml
+      tags: config,peripherals
 
     - import_tasks: tasks/config/dotfiles.yml
       tags: config,dotfiles
