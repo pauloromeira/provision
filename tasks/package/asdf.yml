@@ -32,3 +32,13 @@
     dest: "{{ asdf_dir }}"
     version: "{{ asdf_release }}"
     depth: 1
+
+- name: Asdf > Clone plugins repositories
+  become_user: "{{ user_id }}"
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ asdf_dir }}/plugins/{{ item.name }}"
+    depth: 1
+  loop:
+    - name: aws-vault
+      repo: https://github.com/karancode/asdf-aws-vault.git
