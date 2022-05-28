@@ -57,8 +57,9 @@
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
-    - import_tasks: tasks/package/kubectl.yml
-      tags: package,cli,cmdline,kubectl
+    # Installed via asdf
+    # - import_tasks: tasks/package/kubectl.yml
+    #   tags: package,cli,cmdline,kubectl
 
     - name: GUI tasks
       when: user_desktop

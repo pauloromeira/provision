@@ -40,5 +40,7 @@
     dest: "{{ asdf_dir }}/plugins/{{ item.name }}"
     depth: 1
   loop:
+    - name: kubectl
+      repo: https://github.com/asdf-community/asdf-kubectl.git
     - name: aws-vault
       repo: https://github.com/karancode/asdf-aws-vault.git
