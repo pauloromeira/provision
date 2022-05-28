@@ -3,8 +3,8 @@
   become: false
   tags: full,always
   pre_tasks:
-    - import_tasks: tasks/facts.yml
-      tags: facts
+    - import_tasks: tasks/requirements.yml
+      tags: requirements
 
 
 - hosts: all
@@ -13,9 +13,6 @@
   pre_tasks:
     - import_tasks: tasks/config/provision.yml
       tags: config,provision
-
-    - import_tasks: tasks/package/update_cache.yml
-      tags: package,update,upgrade
 
   tasks:
     - import_tasks: tasks/package/hardware.yml

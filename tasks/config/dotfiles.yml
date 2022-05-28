@@ -1,4 +1,11 @@
 ---
+- name: Dotfiles > Install requirements
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+    - stow
+
 - name: Dotfiles > clone and configure repository
   become_user: "{{ user_id }}"
   block:

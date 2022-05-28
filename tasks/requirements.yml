@@ -1,0 +1,35 @@
+---
+- name: Requirements > apt > update cache
+  become: true
+  tags: apt
+  apt:
+    update_cache: yes
+  when: ansible_pkg_mgr == "apt"
+
+- name: Requirements > pacman > update cache
+  become: true
+  tags: pacman
+  pacman:
+    update_cache: yes
+  when: ansible_pkg_mgr == "pacman"
+
+- name: Requirements > Install system requirements
+  become: true
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+
+- name: Requirements > Install pip requirements
+  pip:
+    name: psutil
+    extra_args: --user
+
+- name: Requirements > Gather extra facts
+  set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  loop:
+    - { key: "user_id", value: "{{ ansible_user_id }}" }
+    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
+    - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP').split(':') | last | lower | trim }}" }
+    - { key: "dpkg_arch", value: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}" }

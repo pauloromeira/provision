@@ -1,17 +1,4 @@
 ---
-- name: System > Install provision requirements
-  package:
-    name: "{{ item }}"
-  loop:
-    - git
-    - stow
-
-- name: System > Pip > Install provision requirements
-  become_user: "{{ user_id }}"
-  pip:
-    name: psutil
-    extra_args: --user
-
 - name: System > Install utilities
   package:
     name: "{{ item }}"
@@ -22,6 +9,7 @@
     - gcc
     - htop
     - make
+    - mkisofs
     - network-manager-openvpn
     - network-manager-openvpn-gnome
     - openssh-client
