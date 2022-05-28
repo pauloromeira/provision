@@ -22,7 +22,10 @@
     - gcc
     - htop
     - make
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
     - openssh-client
+    - openvpn
     - silversearcher-ag
     - sqlite3
     - tree
