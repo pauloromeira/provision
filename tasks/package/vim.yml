@@ -1,9 +1,24 @@
 ---
-- name: Package > Vim > install vim-gtk
+
+- name: Vim > Add jonathonf gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659
+    keyring: /etc/apt/trusted.gpg.d/vim-jonathonf.gpg
+
+- name: Vim > Add jonathonf apt repository
+  apt_repository:
+    repo: "deb [arch={{ dpkg_arch }}] https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
+    filename: "vim-jonathonf-{{ ansible_lsb.codename }}"
+    state: present
+
+- name: Vim > install vim-gtk
   package:
     name: vim-gtk
+    state: present
+    update_cache: yes
 
-- name: Package > Vim > install YouCompleteMe dependencies
+- name: Vim > install YouCompleteMe dependencies
   package:
     name: "{{ item }}"
   loop:
@@ -11,11 +26,11 @@
     - cmake
     - python3-dev
 
-- name: Package > Vim > install tagbar dependencies
+- name: Vim > install tagbar dependencies
   package:
     name: universal-ctags
 
-- name: Package > Vim > create folders
+- name: Vim > create folders
   become_user: "{{ user_id }}"
   file:
     path: "{{ vim_dir }}/{{ item }}"
@@ -30,13 +45,13 @@
     - temp/session
     - files/info
 
-- name: Package > Vim > download plugin manager
+- name: Vim > download plugin manager
   become_user: "{{ user_id }}"
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     dest: "{{ vim_dir }}/autoload/plug.vim"
 
-- name: Package > Vim > Plugins > clone forks
+- name: Vim > Plugins > clone forks
   become_user: "{{ user_id }}"
   git:
     repo: "{{ git_https_url }}/{{ item }}.git"
@@ -47,7 +62,7 @@
     - restore_view.vim
     - vim-startmode
 
-- name: Package > Vim > install plugins
+- name: Vim > install plugins
   become_user: "{{ user_id }}"
   command:
     cmd: vim +PlugInstall +qall
