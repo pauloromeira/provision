@@ -1,3 +1,4 @@
+---
 - name: Power > disable auto brightness
   tags: gnome
   become_user: "{{ user_id }}"
