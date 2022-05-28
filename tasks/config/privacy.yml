@@ -1,0 +1,16 @@
+---
+- name: Location > Disable location services
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/system/location/enabled"
+    value: "false"
+
+- name: Reports > Disable report technical problems
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/desktop/privacy/report-technical-problems"
+    value: "true"

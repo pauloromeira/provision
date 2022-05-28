@@ -27,6 +27,9 @@
     - import_tasks: tasks/config/locale.yml
       tags: config,locale
 
+    - import_tasks: tasks/config/privacy.yml
+      tags: config,privacy
+
     - import_tasks: tasks/config/power.yml
       tags: config,power
 
