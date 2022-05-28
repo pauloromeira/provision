@@ -1,5 +1,4 @@
 ---
-
 - name: Vim > Add jonathonf gpg key
   apt_key:
     keyserver: keyserver.ubuntu.com

@@ -18,6 +18,7 @@
   loop:
     - bat
     - curl
+    - ffmpeg
     - gcc
     - htop
     - make
