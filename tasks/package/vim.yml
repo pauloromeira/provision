@@ -11,9 +11,9 @@
     filename: "vim-jonathonf-{{ ansible_lsb.codename }}"
     state: present
 
-- name: Vim > install vim-gtk
+- name: Vim > install vim-gtk3
   package:
-    name: vim-gtk
+    name: vim-gtk3
     state: present
     update_cache: yes
 
