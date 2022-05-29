@@ -53,13 +53,13 @@
 
 - name: Asdf > Install plugins latest versions
   become_user: "{{ user_id }}"
-  command: asdf install "{{ item.name }}" "{{ item.version }}"
+  command: "{{ asdf_dir }}/bin/asdf install {{ item.name }} {{ item.version }}"
   register: asdf_plugins_installed
   changed_when: "'already installed' not in asdf_plugins_installed.stdout"
   with_items: "{{ asdf_plugins }}"
 
 - name: Asdf > Set plugins global versions
   become_user: "{{ user_id }}"
-  command: asdf global "{{ item.item.name }}" "{{ item.item.version }}"
+  command: "{{ asdf_dir }}/bin/asdf global {{ item.item.name }} {{ item.item.version }}"
   when: item.changed
   with_items: "{{ asdf_plugins_installed.results }}"
