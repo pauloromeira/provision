@@ -37,6 +37,6 @@
       command:
         chdir: "{{ dotfiles_dir }}"
         cmd: stow --no-folding --adopt --verbose=2 "{{ item }}"
-      register: stow_dotfiles
-      changed_when: stow_dotfiles.stderr | regex_search('(?m)^LINK')
+      register: this
+      changed_when: this.stderr | regex_search('(?m)^LINK')
       with_items: "{{ dotfiles.files | map(attribute='path') | map('basename') }}"

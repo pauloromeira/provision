@@ -33,14 +33,33 @@
     version: "{{ asdf_release }}"
     depth: 1
 
+- name: Asdf > Set asdf plugins
+  set_fact:
+    asdf_plugins:
+      - name: kubectl
+        repo: https://github.com/asdf-community/asdf-kubectl.git
+        version: latest
+      - name: aws-vault
+        repo: https://github.com/karancode/asdf-aws-vault.git
+        version: latest
+
 - name: Asdf > Clone plugins repositories
   become_user: "{{ user_id }}"
   git:
     repo: "{{ item.repo }}"
     dest: "{{ asdf_dir }}/plugins/{{ item.name }}"
     depth: 1
-  loop:
-    - name: kubectl
-      repo: https://github.com/asdf-community/asdf-kubectl.git
-    - name: aws-vault
-      repo: https://github.com/karancode/asdf-aws-vault.git
+  with_items: "{{ asdf_plugins }}"
+
+- name: Asdf > Install plugins latest versions
+  become_user: "{{ user_id }}"
+  command: asdf install "{{ item.name }}" "{{ item.version }}"
+  register: asdf_plugins_installed
+  changed_when: "'already installed' not in asdf_plugins_installed.stdout"
+  with_items: "{{ asdf_plugins }}"
+
+- name: Asdf > Set plugins global versions
+  become_user: "{{ user_id }}"
+  command: asdf global "{{ item.item.name }}" "{{ item.item.version }}"
+  when: item.changed
+  with_items: "{{ asdf_plugins_installed.results }}"
