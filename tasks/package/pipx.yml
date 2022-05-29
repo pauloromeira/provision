@@ -60,5 +60,4 @@
     - parsel
     - python-slugify
     - requests
-    - scrapy
     - tenacity
