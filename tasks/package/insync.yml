@@ -1,0 +1,20 @@
+---
+# References:
+#   - https://www.insynchq.com/downloads
+- name: Insync > Add gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: ACCAF35C
+    keyring: /etc/apt/trusted.gpg.d/insync.gpg
+
+- name: Insync > Add apt repository
+  apt_repository:
+    repo: "deb [arch={{ dpkg_arch }}] http://apt.insync.io/ubuntu {{ ansible_lsb.codename }} non-free contrib"
+    filename: "insync-{{ ansible_lsb.codename }}"
+    state: present
+
+- name: Insync > Install
+  apt:
+    name: insync
+    state: present
+    update_cache: yes

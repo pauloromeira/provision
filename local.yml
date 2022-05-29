@@ -77,6 +77,9 @@
         - import_tasks: tasks/package/virtualbox.yml
           tags: never,package,virtualbox
 
+        - import_tasks: tasks/package/insync.yml
+          tags: never,package,insync
+
 
 - hosts: all
   become: false
