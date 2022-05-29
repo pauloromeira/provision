@@ -7,6 +7,16 @@
     - python3
     - python3-pip
 
+# https://github.com/mxmlnkn/ratarmount
+- name:  Pipx > ratarmount > dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - fuse
+    - sqlite3
+    - unar
+
 - name: Pipx > Install
   tags: pipx
   become_user: "{{ user_id }}"
@@ -29,6 +39,7 @@
     - mitmproxy
     - notebook
     - ranger-fm
+    - ratarmount
     - tmuxp
     - youtube-dl
 
