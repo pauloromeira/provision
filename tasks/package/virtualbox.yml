@@ -15,9 +15,9 @@
     repo: "deb [arch={{ dpkg_arch }}] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
     filename: "virtualbox-{{ ansible_lsb.codename }}"
     state: present
+    update_cache: yes
 
 - name: Virtualbox > Install
   apt:
     name: virtualbox
     state: present
-    update_cache: yes

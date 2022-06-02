@@ -12,9 +12,9 @@
     repo: "deb [arch={{ dpkg_arch }}] http://apt.insync.io/ubuntu {{ ansible_lsb.codename }} non-free contrib"
     filename: "insync-{{ ansible_lsb.codename }}"
     state: present
+    update_cache: yes
 
 - name: Insync > Install
   apt:
     name: insync
     state: present
-    update_cache: yes

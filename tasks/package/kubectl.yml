@@ -22,9 +22,9 @@
     repo: "deb [arch={{ dpkg_arch }}] https://apt.kubernetes.io/ kubernetes-xenial main"
     filename: "kubernetes-xenial"
     state: present
+    update_cache: yes
 
 - name: Kubectl > Install
   apt:
     name: kubectl
     state: present
-    update_cache: yes

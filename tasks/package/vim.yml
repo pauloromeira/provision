@@ -10,12 +10,12 @@
     repo: "deb [arch={{ dpkg_arch }}] https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
     filename: "vim-jonathonf-{{ ansible_lsb.codename }}"
     state: present
+    update_cache: yes
 
 - name: Vim > install vim-gtk3
   package:
     name: vim-gtk3
     state: present
-    update_cache: yes
 
 - name: Vim > install YouCompleteMe dependencies
   package:
