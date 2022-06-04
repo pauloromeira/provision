@@ -1,7 +1,7 @@
 ---
 # References:
 #   - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
-- name:  Kubectl > Install requirements
+- name: Kubectl > Install requirements
   apt:
     name: "{{ item }}"
     state: present

@@ -3,7 +3,7 @@
 #   - https://github.com/pyenv/pyenv-installer
 #   - https://github.com/pyenv/pyenv/wiki#suggested-build-environment
 #   - https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv
-- name:  Pyenv > Install python build dependencies
+- name: Pyenv > Install python build dependencies
   apt:
     name: "{{ item }}"
     state: present

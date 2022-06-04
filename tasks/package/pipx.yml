@@ -1,5 +1,5 @@
 ---
-- name:  Pipx > Install dependencies
+- name: Pipx > Install dependencies
   apt:
     name: "{{ item }}"
     state: present
@@ -8,7 +8,7 @@
     - python3-pip
 
 # https://github.com/mxmlnkn/ratarmount
-- name:  Pipx > ratarmount > dependencies
+- name: Pipx > ratarmount > dependencies
   apt:
     name: "{{ item }}"
     state: present

@@ -1,7 +1,7 @@
 ---
 # References:
 #   - http://asdf-vm.com/guide/getting-started.html
-- name:  Asdf > Install dependencies
+- name: Asdf > Install dependencies
   apt:
     name: "{{ item }}"
     state: present
@@ -9,7 +9,7 @@
     - curl
     - git
 
-- name:  Asdf > Get latest release
+- name: Asdf > Get latest release
   uri:
     url: https://github.com/asdf-vm/asdf/releases/latest
     method: HEAD
