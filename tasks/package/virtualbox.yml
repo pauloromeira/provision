@@ -21,3 +21,15 @@
   apt:
     name: virtualbox
     state: present
+
+- name: Virtualbox > Extension Pack > Accept license
+  debconf:
+    name: virtualbox-ext-pack
+    question: virtualbox-ext-pack/license
+    vtype: select
+    value: 'true'
+
+- name: Virtualbox > Extension Pack > Install
+  apt:
+    name: virtualbox-ext-pack
+    state: present
