@@ -14,6 +14,7 @@
         repo: "{{ git_https_url }}/{{ dotfiles_repo }}.git"
         dest: "{{ dotfiles_dir }}"
         update: no
+      register: dotfiles_clone
 
     - name: Dotfiles > set push ssh url
       git_config:
@@ -31,7 +32,7 @@
         paths: "{{ dotfiles_dir }}"
         recurse: no
         file_type: directory
-      register: dotfiles
+      register: packages
 
     - name: Dotfiles > stow > create symlinks
       command:
@@ -39,4 +40,13 @@
         cmd: stow --no-folding --adopt --verbose=2 "{{ item }}"
       register: this
       changed_when: this.stderr | regex_search('(?m)^LINK')
-      with_items: "{{ dotfiles.files | map(attribute='path') | map('basename') }}"
+      with_items: "{{ packages.files | map(attribute='path') | map('basename') }}"
+
+- name: Dotfiles > stash local differences
+  become_user: "{{ user_id }}"
+  command:
+    chdir: "{{ dotfiles_dir }}"
+    cmd: git stash push -m "[backup:provision] {{ dotfiles_clone.after }}"
+  when: not dotfiles_clone.before  # only after repo was just cloned
+  register: this
+  changed_when: "'No local changes' not in this.stdout"
