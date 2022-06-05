@@ -3,8 +3,10 @@
 
 
 * ------------ TODO ------------- *
+[ ] Replace apt_key. References:
+  - https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html
+  - https://wiki.debian.org/DebianRepository/UseThirdParty
 [ ] Drivers
-[ ]  asdf ref: https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
 
 
 [ ] playbook for full-upgrade
