@@ -21,3 +21,4 @@
     - unzip
     - wget
     - xsel
+    - jq
