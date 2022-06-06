@@ -60,6 +60,9 @@
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
+    - import_tasks: tasks/package/1password-cli.yml
+      tags: package,cli,cmdline,1password,1password-cli
+
     # Installed via asdf
     # - import_tasks: tasks/package/kubectl.yml
     #   tags: package,cli,cmdline,kubectl
