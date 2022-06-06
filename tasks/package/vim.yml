@@ -63,7 +63,6 @@
 
 - name: Vim > install plugins
   become_user: "{{ user_id }}"
-  command:
-    cmd: vim +PlugInstall +qall
+  command: vim +PlugInstall +qall
   register: vim_plug_install
   changed_when: vim_plug_install.stdout | regex_search('Resolving\s+deltas')

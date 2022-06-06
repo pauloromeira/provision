@@ -13,8 +13,7 @@
         dest: "{{ tmux_dir }}/plugins/tpm"
 
     - name: Tmux > Tpm > install plugins
-      command:
-        cmd: "{{ tmux_dir }}/plugins/tpm/bin/install_plugins"
+      command: "{{ tmux_dir }}/plugins/tpm/bin/install_plugins"
       register: tmux_tpm_install
       changed_when: tmux_tpm_install.stdout | regex_search('(?m)^Installing')
 
