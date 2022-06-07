@@ -13,7 +13,7 @@
       git:
         repo: "{{ git_https_url }}/{{ dotfiles_repo }}.git"
         dest: "{{ dotfiles_dir }}"
-        update: no
+        update: false
       register: dotfiles_clone
 
     - name: Dotfiles > set push ssh url
@@ -30,7 +30,7 @@
     - name: Dotfiles > find packages
       find:
         paths: "{{ dotfiles_dir }}"
-        recurse: no
+        recurse: false
         file_type: directory
       register: packages
 

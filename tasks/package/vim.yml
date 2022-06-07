@@ -10,7 +10,7 @@
     repo: "deb [arch={{ dpkg_arch }}] https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
     filename: "vim-jonathonf-{{ ansible_lsb.codename }}"
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Vim > install vim-gtk3
   package:

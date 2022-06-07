@@ -24,7 +24,7 @@
     repo: "deb [arch={{ dpkg_arch }} signed-by=/usr/share/keyrings/tlp-archive-keyring.gpg] https://ppa.launchpadcontent.net/linrunner/tlp/ubuntu {{ ansible_lsb.codename }} main"
     filename: tlp
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Tlp > Install
   apt:
@@ -38,4 +38,4 @@
   service:
     name: tlp
     state: started
-    enabled: yes
+    enabled: true

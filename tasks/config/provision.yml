@@ -6,7 +6,7 @@
       git:
         repo: "{{ git_https_url }}/{{ provision_repo }}.git"
         dest: "{{ provision_dir }}"
-        update: no
+        update: false
 
     - name: Provision > set push ssh url
       git_config:
@@ -28,4 +28,4 @@
         src: "{{ provision_dir }}/provision.sh"
         dest: "{{ user_dir }}/.local/bin/provision"
         state: hard
-        force: yes
+        force: true

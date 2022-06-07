@@ -34,7 +34,7 @@
     repo: "deb [arch={{ dpkg_arch }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     filename: "docker-{{ ansible_lsb.codename }}"
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Docker > Install Docker Engine
   apt:
@@ -54,10 +54,10 @@
   user:
     name: "{{ user_id }}"
     groups: docker
-    append: yes
+    append: true
 
 - name: Docker > Ensure service started
   service:
     name: docker
     state: started
-    enabled: yes
+    enabled: true
