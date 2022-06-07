@@ -46,7 +46,7 @@
   become_user: "{{ user_id }}"
   command:
     chdir: "{{ dotfiles_dir }}"
-    cmd: git stash push -m "[backup:provision] {{ dotfiles_clone.after }}"
+    cmd: git stash push -m "[provision:backup] {{ dotfiles_clone.after }}"
   when: not dotfiles_clone.before  # only after repo was just cloned
   register: this
   changed_when: "'No local changes' not in this.stdout"
