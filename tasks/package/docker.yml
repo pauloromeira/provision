@@ -23,7 +23,8 @@
     - gnupg
     - lsb-release
 
-- import_role:
+- name: Docker > Add apt repository
+  import_role:
     name: apt_add_repository
   vars:
     repo_name: docker
