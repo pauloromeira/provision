@@ -10,19 +10,14 @@
     - ca-certificates
     - curl
 
-- name: Kubectl > Add kubernetes gpg key
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-    keyring: /etc/apt/trusted.gpg.d/kubernetes.gpg
-
 # As of this writing, the most recent repo available is from Ubuntu 16.04 Xenial Xerus
 - name: Kubectl > Add kubernetes apt repository (xenial)
-  apt_repository:
-    repo: "deb [arch={{ dpkg_arch }}] https://apt.kubernetes.io/ kubernetes-xenial main"
-    filename: "kubernetes-xenial"
-    state: present
-    update_cache: true
+  import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: kubernetes
+    repo_source: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+    key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
 - name: Kubectl > Install
   apt:
