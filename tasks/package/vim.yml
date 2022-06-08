@@ -1,16 +1,11 @@
 ---
-- name: Vim > Add jonathonf gpg key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659
-    keyring: /etc/apt/trusted.gpg.d/vim-jonathonf.gpg
-
 - name: Vim > Add jonathonf apt repository
-  apt_repository:
-    repo: "deb [arch={{ dpkg_arch }}] https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
-    filename: "vim-jonathonf-{{ ansible_lsb.codename }}"
-    state: present
-    update_cache: true
+  import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: vim-jonathonf
+    repo_source: "deb https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
+    key_id: 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659
 
 - name: Vim > install vim-gtk3
   package:
