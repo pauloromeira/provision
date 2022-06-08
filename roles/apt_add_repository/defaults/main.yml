@@ -1,0 +1,4 @@
+---
+dearmor: false
+key_server: keyserver.ubuntu.com
+keyrings_dir: /usr/share/keyrings

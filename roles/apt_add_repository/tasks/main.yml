@@ -1,0 +1,52 @@
+---
+# References:
+#   - https://wiki.debian.org/DebianRepository/UseThirdParty
+#   - https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html
+- name: Check mandatory variables are defined
+  assert:
+    that:
+      - repo_name is defined
+      - key_url is defined or key_id is defined
+      - repo is defined
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - gpg
+
+- name: "{{ repo_name }} > Get gpg key from url{{ dearmor and ' (armored)' or '' }}"
+  get_url:
+    url: "{{ key_url }}"
+    dest: "{{ key_dest }}"
+  register: get_url_result
+  when: key_url is defined
+
+- name: "{{ repo_name }} > Get gpg key from keyserver{{ dearmor and ' (armored)' or '' }}"
+  command: >
+    gpg
+    --yes
+    --no-default-keyring
+    --keyring "{{ key_dest }}"
+    --keyserver "{{ key_server }}"
+    --recv-keys "{{ key_id }}"
+  register: get_keyserver_result
+  changed_when: "'not changed' not in get_keyserver_result.stderr"
+  when: key_id is defined
+
+- name: "{{ repo_name }} > Dearmor gpg key"
+  command: >
+    gpg
+    --yes
+    --no-default-keyring
+    --output "{{ key_path }}"
+    --dearmor "{{ key_dest }}"
+  when: dearmor and (get_keyserver_result.changed or get_url_result.changed)
+
+- name: "{{ repo_name }} > Add apt repository"
+  apt_repository:
+    repo: "{{ repo_split[0] }} [arch={{ dpkg_arch }} signed-by={{ key_path }}] {{ repo_split[1] }}"
+    filename: "{{ repo_name }}"
+    state: present
+    update_cache: true
