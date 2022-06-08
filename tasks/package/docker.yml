@@ -23,18 +23,13 @@
     - gnupg
     - lsb-release
 
-- name: Docker > Add gpg key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-    keyring: /etc/apt/trusted.gpg.d/docker.gpg
-
-- name: Docker > Add apt repository
-  apt_repository:
-    repo: "deb [arch={{ dpkg_arch }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
-    filename: "docker-{{ ansible_lsb.codename }}"
-    state: present
-    update_cache: true
+- import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: docker
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    key_url: https://download.docker.com/linux/ubuntu/gpg
+    dearmor: false
 
 - name: Docker > Install Docker Engine
   apt:
