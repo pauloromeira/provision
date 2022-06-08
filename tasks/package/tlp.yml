@@ -8,23 +8,13 @@
   loop:
     - power-profiles-daemon
 
-- name: Tlp > Add gpg key
-  command: >
-    gpg
-    --yes
-    --no-default-keyring
-    --keyring /usr/share/keyrings/tlp-archive-keyring.gpg
-    --keyserver keyserver.ubuntu.com
-    --recv-keys 2042F03C5FABD0BA2CED40412B3F92F902D65EFF
-  register: this
-  changed_when: "'not changed' not in this.stderr"
-
 - name: Tlp > Add apt repository
-  apt_repository:
-    repo: "deb [arch={{ dpkg_arch }} signed-by=/usr/share/keyrings/tlp-archive-keyring.gpg] https://ppa.launchpadcontent.net/linrunner/tlp/ubuntu {{ ansible_lsb.codename }} main"
-    filename: tlp
-    state: present
-    update_cache: true
+  import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: tlp
+    repo_source: "deb https://ppa.launchpadcontent.net/linrunner/tlp/ubuntu {{ ansible_lsb.codename }} main"
+    key_id: 2042F03C5FABD0BA2CED40412B3F92F902D65EFF
 
 - name: Tlp > Install
   apt:
