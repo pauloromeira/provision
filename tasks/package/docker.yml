@@ -30,7 +30,6 @@
     repo_name: docker
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     key_url: https://download.docker.com/linux/ubuntu/gpg
-    dearmor: false
 
 - name: Docker > Install Docker Engine
   apt:
