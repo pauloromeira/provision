@@ -5,9 +5,9 @@
 - name: Check mandatory variables are defined
   assert:
     that:
-      - repo_name is defined
       - key_url is defined or key_id is defined
-      - repo is defined
+      - repo_name is defined
+      - repo_source is defined
 
 - name: Install dependencies
   apt:
@@ -16,14 +16,14 @@
   loop:
     - gpg
 
-- name: "{{ repo_name }} > Get gpg key from url{{ dearmor and ' (armored)' or '' }}"
+- name: "{{ repo_name }} > Get gpg key from url{{ armored_key and ' (armored)' or '' }}"
   get_url:
     url: "{{ key_url }}"
     dest: "{{ key_dest }}"
   register: get_url_result
   when: key_url is defined
 
-- name: "{{ repo_name }} > Get gpg key from keyserver{{ dearmor and ' (armored)' or '' }}"
+- name: "{{ repo_name }} > Get gpg key from keyserver{{ armored_key and ' (armored)' or '' }}"
   command: >
     gpg
     --yes
@@ -42,7 +42,7 @@
     --no-default-keyring
     --output "{{ key_path }}"
     --dearmor "{{ key_dest }}"
-  when: dearmor and (get_keyserver_result.changed or get_url_result.changed)
+  when: armored_key and (get_keyserver_result.changed or get_url_result.changed)
 
 - name: "{{ repo_name }} > Add apt repository"
   apt_repository:

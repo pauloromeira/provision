@@ -28,7 +28,7 @@
     name: apt_add_repository
   vars:
     repo_name: docker
-    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    repo_source: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     key_url: https://download.docker.com/linux/ubuntu/gpg
 
 - name: Docker > Install Docker Engine
