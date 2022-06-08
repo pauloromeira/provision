@@ -3,15 +3,12 @@
 
 
 * ------------ TODO ------------- *
-[ ] Replace apt_key. References:
-  - https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html
-  - https://wiki.debian.org/DebianRepository/UseThirdParty
+[ ] Configure terminal
+[ ] Make chromium the default browser
 [ ] Drivers
-
-
-[ ] playbook for full-upgrade
-[ ] option to full-upgrade before provision
 [ ] Tlp
   [ ] thinkpad-specific
   [ ] add tlp config to dotfiles?
-  [ ] see if running check is correct
+[ ] Browser: add extensions
+[ ] Dock: add dash-to-dock gnome extension if not pop-os 22.04
+  - https://extensions.gnome.org/extension/307/dash-to-dock/
