@@ -1,21 +1,13 @@
 ---
 # References:
 #   - https://www.virtualbox.org/wiki/Linux_Downloads
-- name: Virtualbox > Add gpg keys
-  apt_key:
-    url: "https://www.virtualbox.org/download/{{ item }}.asc"
-    keyring: "/etc/apt/trusted.gpg.d/{{ item }}.gpg"
-    state: present
-  loop:
-    - oracle_vbox_2016
-    - oracle_vbox
-
 - name: Virtualbox > Add apt repository
-  apt_repository:
-    repo: "deb [arch={{ dpkg_arch }}] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
-    filename: "virtualbox-{{ ansible_lsb.codename }}"
-    state: present
-    update_cache: true
+  import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: virtualbox
+    repo_source: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+    key_url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
 
 - name: Virtualbox > Install
   apt:
