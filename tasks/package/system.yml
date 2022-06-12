@@ -8,6 +8,8 @@
     - ffmpeg
     - gcc
     - htop
+    - jq
+    - libnotify-bin
     - make
     - mkisofs
     - network-manager-openvpn
@@ -21,4 +23,3 @@
     - unzip
     - wget
     - xsel
-    - jq
