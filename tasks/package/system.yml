@@ -16,6 +16,7 @@
     - network-manager-openvpn-gnome
     - openssh-client
     - openvpn
+    - pdftk
     - silversearcher-ag
     - sqlite3
     - tree
