@@ -63,6 +63,9 @@
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
 
+    - import_tasks: tasks/package/aws-ssm-plugin.yml
+      tags: package,cli,cmdline,aws-ssm-plugin
+
     # Installed via asdf
     # - import_tasks: tasks/package/kubectl.yml
     #   tags: package,cli,cmdline,kubectl
