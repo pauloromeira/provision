@@ -1,0 +1,22 @@
+---
+# References:
+#   - https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions
+- name: VS Code > Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+
+- name: VS Code > Add apt repository
+  import_role:
+    name: apt_add_repository
+  vars:
+    repo_name: vscode
+    repo_source: "deb https://packages.microsoft.com/repos/code stable main"
+    key_url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: VS Code > Install
+  apt:
+    name: code
+    state: present

@@ -86,6 +86,9 @@
         - import_tasks: tasks/package/virtualbox.yml
           tags: never,package,virtualbox
 
+        - import_tasks: tasks/package/vscode.yml
+          tags: never,package,vscode
+
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 
