@@ -11,7 +11,7 @@
 
 - name: Virtualbox > Install
   apt:
-    name: virtualbox
+    name: virtualbox-6.1
     state: present
 
 - name: Virtualbox > Ensure vboxusers group exists
@@ -26,15 +26,15 @@
     groups: vboxusers
     append: true
 
-- name: Virtualbox > Extension Pack > Accept license
-  debconf:
-    name: virtualbox-ext-pack
-    question: virtualbox-ext-pack/license
-    vtype: select
-    value: 'true'
+# - name: Virtualbox > Extension Pack > Accept license
+#   debconf:
+#     name: virtualbox-ext-pack
+#     question: virtualbox-ext-pack/license
+#     vtype: select
+#     value: 'true'
 
-# Add USB 2.0 and USB 3.0 support
-- name: Virtualbox > Extension Pack > Install
-  apt:
-    name: virtualbox-ext-pack
-    state: present
+# # Add USB 2.0 and USB 3.0 support
+# - name: Virtualbox > Extension Pack > Install
+#   apt:
+#     name: virtualbox-ext-pack
+#     state: present
