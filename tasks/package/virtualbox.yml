@@ -26,26 +26,34 @@
     groups: vboxusers
     append: true
 
-- name: Virtualbox > Extension Pack > Get Virtualbox info
+- name: Virtualbox > Get info
   command: virtualbox --help
   changed_when: false
   register: vbox_info
 
-- name: Virtualbox > Extension Pack > Get Virtualbox version
+- name: Virtualbox > Get version
   set_fact:
     vbox_version: "{{ vbox_info.stdout_lines[0].split() | last | trim('v') }}"
 
-- name: Virtualbox > Extension Pack > Create temporary directory
-  tempfile:
-    state: directory
-    prefix: "vbox_extpack."
-  changed_when: false
-  register: vbox_extpack_dir
+- name: Virtualbox > Download hashes
+  uri:
+    url: "https://www.virtualbox.org/download/hashes/{{ vbox_version }}/SHA256SUMS"
+    return_content: true
+  register: vbox_hashes_response
+
+- name: Virtualbox > Create hashes dict
+  set_fact:
+    vbox_hashes: "{{ dict(vbox_hashes_response.content | replace('*', '') | split('\n') | select | map('split') | map('reverse')) }}"
+
+- name: Virtualbox > Extension Pack > Set extpack filename
+  set_fact:
+    vbox_extpack_filename: "Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version }}.vbox-extpack"
 
 - name: Virtualbox > Extension Pack > Download file
   get_url:
-    url: "https://download.virtualbox.org/virtualbox/{{ vbox_version }}/Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version }}.vbox-extpack"
-    dest: "{{ vbox_extpack_dir.path }}"
+    url: "https://download.virtualbox.org/virtualbox/{{ vbox_version }}/{{ vbox_extpack_filename }}"
+    dest: "/tmp/{{ vbox_extpack_filename }}"
+    checksum: "sha256:{{ vbox_hashes[vbox_extpack_filename] }}"
   changed_when: false
   register: vbox_extpack
 
@@ -56,10 +64,7 @@
   failed_when: "this.rc != 0 and 'already installed' not in this.stderr"
 
 - name: Virtualbox > Extension Pack > Cleanup
-  command: "{{ item }}"
-  loop:
-    - VBoxManage extpack cleanup
-    - rm -rf "{{ vbox_extpack_dir.path }}"
+  command: VBoxManage extpack cleanup
   changed_when: false
 
 # Install extpack from repositories
