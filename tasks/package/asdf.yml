@@ -19,7 +19,7 @@
 
 - name: Asdf > Set latest release
   set_fact:
-    asdf_release: "{{ asdf_release_response.location.split('/') | last }}"
+    asdf_release: "{{ asdf_release_response.location | split('/') | last }}"
 
 - name: Asdf > Latest release
   debug:

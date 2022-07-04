@@ -1,4 +1,4 @@
 ---
 key_dest: "{{ keyrings_dir }}/{{ repo_name }}-archive-keyring.{{ armored_key and 'asc' or 'gpg' }}"
 key_path: "{{ keyrings_dir }}/{{ repo_name }}-archive-keyring.gpg"
-repo_split: "{{ repo_source.split(maxsplit=1) }}"
+repo_split: "{{ repo_source | split(maxsplit=1) }}"

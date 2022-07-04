@@ -33,7 +33,7 @@
 
 - name: Virtualbox > Get version
   set_fact:
-    vbox_version: "{{ vbox_info.stdout_lines[0].split() | last | trim('v') }}"
+    vbox_version: "{{ vbox_info.stdout_lines[0] | split | last | trim('v') }}"
 
 - name: Virtualbox > Download hashes
   uri:
