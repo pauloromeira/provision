@@ -26,6 +26,44 @@
     groups: vboxusers
     append: true
 
+- name: Virtualbox > Extension Pack > Get Virtualbox info
+  command: virtualbox --help
+  changed_when: false
+  register: vbox_info
+
+- name: Virtualbox > Extension Pack > Get Virtualbox version
+  set_fact:
+    vbox_version: "{{ vbox_info.stdout_lines[0].split() | last | trim('v') }}"
+
+- name: Virtualbox > Extension Pack > Create temporary directory
+  tempfile:
+    state: directory
+    prefix: "vbox_extpack."
+  changed_when: false
+  register: vbox_extpack_dir
+
+- name: Virtualbox > Extension Pack > Download file
+  get_url:
+    url: "https://download.virtualbox.org/virtualbox/{{ vbox_version }}/Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version }}.vbox-extpack"
+    dest: "{{ vbox_extpack_dir.path }}"
+  changed_when: false
+  register: vbox_extpack
+
+- name: Virtualbox > Extension Pack > Install
+  shell: echo "y" | VBoxManage extpack install "{{ vbox_extpack.dest }}"
+  register: this
+  changed_when: "'Successfully installed' in this.stdout"
+  failed_when: "this.rc != 0 and 'already installed' not in this.stderr"
+
+- name: Virtualbox > Extension Pack > Cleanup
+  command: "{{ item }}"
+  loop:
+    - VBoxManage extpack cleanup
+    - rm -rf "{{ vbox_extpack_dir.path }}"
+  changed_when: false
+
+# Install extpack from repositories
+
 # - name: Virtualbox > Extension Pack > Accept license
 #   debconf:
 #     name: virtualbox-ext-pack
