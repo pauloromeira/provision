@@ -4,6 +4,7 @@
   tags: apt
   apt:
     update_cache: true
+  changed_when: false
   when: ansible_pkg_mgr == "apt"
 
 - name: Requirements > pacman > update cache
@@ -11,6 +12,7 @@
   tags: pacman
   pacman:
     update_cache: true
+  changed_when: false
   when: ansible_pkg_mgr == "pacman"
 
 - name: Requirements > Install system requirements
