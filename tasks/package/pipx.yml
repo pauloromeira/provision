@@ -42,6 +42,7 @@
     - ratarmount
     - tmuxp
     - youtube-dl
+    - eg
 
 - name: Pipx > Inject into ipython
   tags: pipx
