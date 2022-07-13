@@ -24,3 +24,4 @@
     - unzip
     - wget
     - xsel
+    - solaar  # logitech unifying utility
