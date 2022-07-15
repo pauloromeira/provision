@@ -43,6 +43,7 @@
     - tmuxp
     - youtube-dl
     - eg
+    - bpytop
 
 - name: Pipx > Inject into ipython
   tags: pipx
