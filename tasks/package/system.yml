@@ -25,3 +25,11 @@
     - wget
     - xsel
     - solaar  # logitech unifying utility
+
+- name: System > Disable autostart
+  file:
+    path: "/etc/xdg/autostart/{{ item }}.desktop"
+    state: absent
+  loop:
+    - solaar
+    - orca-autostart
