@@ -25,6 +25,7 @@
     - wget
     - xsel
     - solaar  # logitech unifying utility
+    - at  # schedule commands to be executed at a particular time
 
 - name: System > Disable autostart
   file:
