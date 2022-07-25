@@ -58,6 +58,7 @@ Repos:
   - https://github.com/geerlingguy/mac-dev-playbook
   - https://git.todevski.com/ansible/playbooks/workstation/
   - https://github.com/kespinola/dotfiles
+  - https://github.com/victorfsf/dotfiles
 
 User guide:
   - https://docs.ansible.com/ansible/latest/user_guide/index.html
