@@ -12,10 +12,8 @@
     - libnotify-bin
     - make
     - mkisofs
-    - network-manager-openvpn
-    - network-manager-openvpn-gnome
-    - openssh-client
     - openvpn
+    - openssh-client
     - pdftk
     - silversearcher-ag
     - sqlite3
@@ -24,13 +22,17 @@
     - unzip
     - wget
     - xsel
-    - solaar  # logitech unifying utility
     - at  # schedule commands to be executed at a particular time
+    # TODO: move to GUI
+    - solaar  # logitech unifying utility
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+    - gnome-tweaks
 
 - name: System > Disable autostart
   file:
     path: "/etc/xdg/autostart/{{ item }}.desktop"
     state: absent
   loop:
-    - solaar
+    - solaar  # TODO: move to GUI
     - orca-autostart
