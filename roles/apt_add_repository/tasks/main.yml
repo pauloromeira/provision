@@ -17,6 +17,11 @@
     - gpg
     - dirmngr
 
+- name: Create dirmngr directory
+  command: gpg -k
+  register: this
+  changed_when: "'created' in this.stderr"
+
 - name: "{{ repo_name }} > Get gpg key from url{{ armored_key and ' (armored)' or '' }}"
   get_url:
     url: "{{ key_url }}"
