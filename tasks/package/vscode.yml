@@ -10,7 +10,7 @@
 
 - name: VS Code > Add apt repository
   import_role:
-    name: apt_add_repository
+    name: add_apt_repository
   vars:
     repo_name: vscode
     repo_source: "deb https://packages.microsoft.com/repos/code stable main"

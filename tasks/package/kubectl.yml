@@ -13,7 +13,7 @@
 # As of this writing, the most recent repo available is from Ubuntu 16.04 Xenial Xerus
 - name: Kubectl > Add kubernetes apt repository (xenial)
   import_role:
-    name: apt_add_repository
+    name: add_apt_repository
   vars:
     repo_name: kubernetes
     repo_source: "deb https://apt.kubernetes.io/ kubernetes-xenial main"

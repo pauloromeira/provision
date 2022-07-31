@@ -1,7 +1,7 @@
 ---
 - name: Vim > Add jonathonf apt repository
   import_role:
-    name: apt_add_repository
+    name: add_apt_repository
   vars:
     repo_name: vim-jonathonf
     repo_source: "deb https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"

@@ -3,7 +3,7 @@
 #   - https://www.insynchq.com/downloads
 - name: Insync > Add apt repository
   import_role:
-    name: apt_add_repository
+    name: add_apt_repository
   vars:
     repo_name: insync
     repo_source: "deb http://apt.insync.io/ubuntu {{ ansible_lsb.codename }} non-free contrib"

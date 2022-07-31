@@ -3,7 +3,7 @@
 #   - https://www.virtualbox.org/wiki/Linux_Downloads
 - name: Virtualbox > Add apt repository
   import_role:
-    name: apt_add_repository
+    name: add_apt_repository
   vars:
     repo_name: virtualbox
     repo_source: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
