@@ -15,6 +15,7 @@
     state: present
   loop:
     - gpg
+    - dirmngr
 
 - name: "{{ repo_name }} > Get gpg key from url{{ armored_key and ' (armored)' or '' }}"
   get_url:
