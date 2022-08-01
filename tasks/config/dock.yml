@@ -7,9 +7,7 @@
     ext_name: Dash to dock
 
 # To get all dconf settings run: `dconf dump /`
-- name: Dock > dconf setup (gnome)
-  tags: gnome
-  when: user_desktop == "gnome"
+- name: Dock > Dash to dock > dconf setup
   become_user: "{{ user_id }}"
   dconf:
     key: "{{ '/org/gnome/shell/extensions/dash-to-dock/' + item.key }}"
@@ -26,9 +24,7 @@
     - { key: "transparency-mode", value: "'DYNAMIC'" }
     - { key: "show-trash", value: "false" }
 
-- name: Dock > Set favorite apps (gnome)
-  tags: gnome
-  when: user_desktop == "gnome"
+- name: Dock > Set favorite apps
   become_user: "{{ user_id }}"
   dconf:
     key: /org/gnome/shell/favorite-apps
