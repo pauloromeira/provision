@@ -1,8 +1,0 @@
----
-- hosts: all
-  become: false
-
-  tasks:
-    - name: Test
-      import_role:
-        name: add_gnome_extension
