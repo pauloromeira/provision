@@ -36,6 +36,9 @@
     - import_tasks: tasks/config/peripherals.yml
       tags: config,peripherals
 
+    - import_tasks: tasks/config/sound.yml
+      tags: config,sound
+
     - import_tasks: tasks/config/media.yml
       tags: config,media
 
