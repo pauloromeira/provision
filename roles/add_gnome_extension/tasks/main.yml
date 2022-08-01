@@ -49,11 +49,17 @@
 - name: "{{ ext_name }} > Install extension"
   become_user: "{{ user_id }}"
   command: gnome-extensions install "{{ download_response.dest }}"
-  register: this
-  failed_when: "this.rc != 0 and 'exists' not in this.stderr"
-  changed_when: this.rc == 0
+  register: install_result
+  failed_when: "install_result.rc != 0 and 'exists' not in install_result.stderr"
+  changed_when: install_result.rc == 0
 
 - name: "{{ ext_name }} > Enable extension"
   become_user: "{{ user_id }}"
   command: gnome-extensions enable "{{ ext_uuid }}"
   changed_when: false
+  when: install_result.changed
+
+- name: "{{ ext_name }} > Manual step"
+  debug:
+    msg: "For the changes to take effect, GNOME Shell needs to be restarted (Alt+F2 r <enter>)"
+  when: install_result.changed
