@@ -44,6 +44,9 @@
     - youtube-dl
     - eg
     - bpytop
+    - pyxtermjs  # fully functional terminal in the browser
+
+
 
 - name: Pipx > Inject into ipython
   tags: pipx
