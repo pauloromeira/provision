@@ -1,2 +1,2 @@
 ---
-ext_name: "{{ uuid }}"
+ext_name: "{{ ext_uuid }}"
