@@ -33,7 +33,7 @@
 
 - name: "{{ ext_name }} > Version info"
   debug:
-    msg: "shell version: {{ shell_version }}, extension compatible version: {{ version.key }}"
+    msg: "shell version: {{ shell_version }}, compatible extension version: {{ version.key }}"
 
 - name: "{{ ext_name }} > Set version_tag"
   set_fact:
@@ -45,6 +45,7 @@
     url: "https://extensions.gnome.org/download-extension/{{ ext_uuid }}.shell-extension.zip?version_tag={{ version_tag }}"
     dest: "/tmp/"
   register: download_response
+  changed_when: false
 
 - name: "{{ ext_name }} > Install extension"
   become_user: "{{ user_id }}"
