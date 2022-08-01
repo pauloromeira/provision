@@ -1,11 +1,4 @@
 ---
-- name: Dock > Dash to dock > Install gnome extension
-  import_role:
-    name: add_gnome_extension
-  vars:
-    ext_uuid: dash-to-dock@micxgx.gmail.com
-    ext_name: Dash to dock
-
 # To get all dconf settings run: `dconf dump /`
 - name: Dock > Dash to dock > dconf setup
   become_user: "{{ user_id }}"
@@ -37,4 +30,4 @@
       'firefox.desktop',
       'io.dbeaver.DBeaverCommunity.desktop',
       'virtualbox.desktop',
-    ]
+  ]

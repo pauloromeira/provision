@@ -1,0 +1,27 @@
+---
+# https://extensions.gnome.org/extension/307/dash-to-dock/
+- name: Dock > Dash to Dock > Install gnome extension
+  tags: dash-to-dock-extension
+  import_role:
+    name: add_gnome_extension
+  vars:
+    ext_uuid: dash-to-dock@micxgx.gmail.com
+    ext_name: Dash to Dock
+
+# https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+- name: Dock > Sound Input & Output Device Chooser  > Install gnome extension
+  tags: sound-output-device-chooser-extension
+  import_role:
+    name: add_gnome_extension
+  vars:
+    ext_uuid: sound-output-device-chooser@kgshank.net
+    ext_name: Sound Input & Output Device Chooser
+
+# https://extensions.gnome.org/extension/1460/vitals/
+- name: Dock > Vitals > Install gnome extension
+  tags: vitals-extension
+  import_role:
+    name: add_gnome_extension
+  vars:
+    ext_uuid: Vitals@CoreCoding.com
+    ext_name: Vitals
