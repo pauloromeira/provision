@@ -1,0 +1,87 @@
+---
+# References:
+#   - https://discourse.gnome.org/t/enable-gnome-extensions-without-session-restart/7936/4
+#   - https://gist.github.com/alexs77/b41f4140388f8a23e3013ef3226fc46a
+#   - https://www.reddit.com/r/gnome/comments/rbl85n/installing_gnomeshell_extensions_on_command_line/
+
+
+# - name: "GNOME Shell extensions > Install"
+#   become_user: "{{ user_id }}"
+#   command: >
+#     gdbus call
+#     --session
+#     --dest org.gnome.Shell.Extensions
+#     --object-path /org/gnome/Shell/Extensions
+#     --method org.gnome.Shell.Extensions.InstallRemoteExtension
+#     "dash-to-dock@micxgx.gmail.com"
+#   register: this
+
+
+# - debug: var=this
+
+
+# gdbus introspect --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions
+
+
+# gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "dash-to-dock@micxgx.gmail.com"
+
+# gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.UninstallExtension "dash-to-dock@micxgx.gmail.com"
+
+# https://extensions.gnome.org/extension-query/?uuid=dash-to-dock@micxgx.gmail.com
+
+
+# https://extensions.gnome.org/download-extension/dash-to-dock%40micxgx.gmail.com.shell-extension.zip?version_tag=19642
+
+
+# https://extensions.gnome.org/extension-query/?shell_version=3.36.7&uuid=dash-to-dock@micxgx.gmail.com
+
+
+- set_fact: 
+    uuid: dash-to-dock@micxgx.gmail.com  # param
+    # uuid: sound-output-device-chooser@kgshank.net
+    # uuid: Vitals@CoreCoding.com
+    user_dir: "{{ ansible_user_dir }}"  # in requirements
+
+
+- name: Get gnome-shell version
+  command: gnome-shell --version
+  register: shell_version_cmd
+  changed_when: false
+
+- name: Set gnome-shell version
+  set_fact: 
+    shell_version: "{{ shell_version_cmd.stdout | split | last }}"
+
+- name: Query extension by uuid
+  uri:
+    url: "https://extensions.gnome.org/extension-query/?shell_version={{ shell_version }}&uuid={{ uuid }}"
+    return_content: true
+  register: response
+
+- set_fact:
+    info: "{{ response.json.extensions | selectattr('uuid', 'equalto', uuid) | first }}"
+
+- set_fact:
+    version: "{{ info.shell_version_map | dict2items | selectattr('key', 'version', shell_version, '<=') | last }}"
+
+- debug:
+    msg: "shell version: {{ shell_version }}, extension: {{ version.key }}"
+
+- set_fact:
+    version_tag: "{{ version.value.pk }}"
+
+- name: Download package
+  get_url:
+    url: "https://extensions.gnome.org/download-extension/{{ uuid }}.shell-extension.zip?version_tag={{ version_tag }}"
+    dest: "/tmp/"
+  register: download
+
+- name: Install extension
+  command: gnome-extensions install "{{ download.dest }}"
+  register: this
+  failed_when: "this.rc != 0 and 'exists' not in this.stderr"
+  changed_when: this.rc == 0
+
+- name: Enable extension
+  command: gnome-extensions enable "{{ uuid }}"
+  changed_when: false
