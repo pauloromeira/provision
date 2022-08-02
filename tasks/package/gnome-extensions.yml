@@ -17,11 +17,11 @@
     ext_uuid: sound-output-device-chooser@kgshank.net
     ext_name: Sound Input & Output Device Chooser
 
-# https://extensions.gnome.org/extension/1460/vitals/
-- name: Dock > Vitals > Install gnome extension
-  tags: vitals-extension
-  import_role:
-    name: add_gnome_extension
-  vars:
-    ext_uuid: Vitals@CoreCoding.com
-    ext_name: Vitals
+# # https://extensions.gnome.org/extension/1460/vitals/
+# - name: Dock > Vitals > Install gnome extension
+#   tags: vitals-extension
+#   import_role:
+#     name: add_gnome_extension
+#   vars:
+#     ext_uuid: Vitals@CoreCoding.com
+#     ext_name: Vitals
