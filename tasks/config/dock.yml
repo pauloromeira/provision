@@ -12,6 +12,7 @@
     - { key: "extend-height", value: "false" }
     - { key: "dock-fixed", value: "false" }
     - { key: "intellihide", value: "true" }
+    - { key: "intellihide-mode", value: "'ALL_WINDOWS'" }
     - { key: "custom-theme-shrink", value: "true" }
     - { key: "customize-alphas", value: "true" }
     - { key: "max-alpha", value: "0.87" }
