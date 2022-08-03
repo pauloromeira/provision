@@ -1,0 +1,12 @@
+---
+- name: Tiling Window Manager > Config
+  tags: gnome
+  when: user_desktop == "gnome" and ansible_distribution == "Pop!_OS"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "{{ '/org/gnome/shell/extensions/pop-shell/' + item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "gap-inner", value: "uint32 1" }
+    - { key: "gap-outer", value: "uint32 1" }
+    - { key: "tile-by-default", value: "true" }

@@ -24,6 +24,9 @@
     - import_tasks: tasks/package/pipx.yml
       tags: package,cli,cmdline,pipx
 
+    - import_tasks: tasks/config/dotfiles.yml
+      tags: config,dotfiles
+
     - import_tasks: tasks/config/locale.yml
       tags: config,locale
 
@@ -42,8 +45,8 @@
     - import_tasks: tasks/config/media.yml
       tags: config,media
 
-    - import_tasks: tasks/config/dotfiles.yml
-      tags: config,dotfiles
+    - import_tasks: tasks/config/tiling.yml
+      tags: config,tiling
 
     - import_tasks: tasks/package/tmux.yml
       tags: package,cli,cmdline,tmux
