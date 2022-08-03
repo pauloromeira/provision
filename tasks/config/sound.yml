@@ -8,3 +8,13 @@
     value: "{{ item.value }}"
   loop:
     - { key: "allow-volume-above-100-percent", value: "true" }
+
+- name: Sound > Gnome Extension > Sount Input & Output Device Chooser
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "{{ '/org/gnome/desktop/sound/' + item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "hide-menu-icons", value: "true" }
