@@ -19,10 +19,14 @@
     mode: 0644
   when: user_desktop != "gnome"
 
-- name: Peripherals > Touchpad > enable natural scroll
+- name: Peripherals > Touchpad
   tags: gnome
   become_user: "{{ user_id }}"
-  dconf:
-    key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
-    value: "true"
   when: user_desktop == "gnome"
+  dconf:
+    key: "{{ '/org/gnome/desktop/peripherals/touchpad/' + item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "natural-scroll", value: "true" }
+    - { key: "tap-to-click", value: "true" }
+    - { key: "two-finger-scrolling-enabled", value: "true" }
