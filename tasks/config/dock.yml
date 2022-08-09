@@ -26,13 +26,12 @@
   become_user: "{{ user_id }}"
   dconf:
     key: /org/gnome/shell/favorite-apps
-    value: [
-      'org.chromium.Chromium.desktop',
-      'org.gnome.Terminal.desktop',
-      'org.gnome.Nautilus.desktop',
-      'com.getpostman.Postman.desktop',
-      'com.spotify.Client.desktop',
-      'firefox.desktop',
-      'io.dbeaver.DBeaverCommunity.desktop',
-      'virtualbox.desktop',
-  ]
+    value:
+      - 'org.chromium.Chromium.desktop'
+      - 'org.gnome.Terminal.desktop'
+      - 'org.gnome.Nautilus.desktop'
+      - 'com.getpostman.Postman.desktop'
+      - 'com.spotify.Client.desktop'
+      - 'firefox.desktop'
+      - 'io.dbeaver.DBeaverCommunity.desktop'
+      - 'virtualbox.desktop'
