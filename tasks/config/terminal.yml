@@ -1,0 +1,27 @@
+---
+- name: Terminal > Get default profile
+  become_user: "{{ user_id }}"
+  command: gsettings get org.gnome.Terminal.ProfilesList default
+  register: default_terminal_profile_cmd
+  changed_when: false
+
+- name: Terminal > Set default profile id
+  become_user: "{{ user_id }}"
+  set_fact:
+    default_terminal_profile_id: "{{ default_terminal_profile_cmd.stdout | trim(\"'\") }}"
+
+- name: Terminal > Set default profile configuration
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:{{ default_terminal_profile_id }}/{{ item.key }}"
+    value: "{{ item.value }}"
+  loop:
+   - { key: background-color, value: "'rgb(38,38,38)'" }
+   - { key: cursor-background-color, value: "'rgb(110,110,110)'" }
+   - { key: cursor-foreground-color, value: "'rgb(38,38,38)'" }
+   - { key: font, value: "'Inconsolata for Powerline Medium 12'" }
+   - { key: highlight-background-color, value: "'rgb(135,175,175)'" }
+   - { key: scrollbar-policy, value: "'never'" }
+   - { key: visible-name, value: "'Main'" }

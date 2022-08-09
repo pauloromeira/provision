@@ -48,6 +48,9 @@
     - import_tasks: tasks/config/tiling.yml
       tags: config,tiling
 
+    - import_tasks: tasks/config/terminal.yml
+      tags: config,terminal
+
     - import_tasks: tasks/package/tmux.yml
       tags: package,cli,cmdline,tmux
 
