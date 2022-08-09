@@ -46,8 +46,6 @@
     - bpytop
     - pyxtermjs  # fully functional terminal in the browser
 
-
-
 - name: Pipx > Inject into ipython
   tags: pipx
   become_user: "{{ user_id }}"
