@@ -5,7 +5,7 @@
   when: user_desktop == "gnome"
   become_user: "{{ user_id }}"
   dconf:
-    key: "{{ '/org/gnome/shell/extensions/dash-to-dock/' + item.key }}"
+    key: "/org/gnome/shell/extensions/dash-to-dock/{{ item.key }}"
     value: "{{ item.value }}"
   loop:
     - { key: "dock-position", value: "'BOTTOM'" }

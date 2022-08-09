@@ -4,7 +4,7 @@
   when: user_desktop == "gnome"
   become_user: "{{ user_id }}"
   dconf:
-    key: "{{ '/org/gnome/desktop/media-handling/' + item.key }}"
+    key: "/org/gnome/desktop/media-handling/{{ item.key }}"
     value: "{{ item.value }}"
   loop:
     - { key: "automount", value: "false" }

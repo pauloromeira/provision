@@ -24,7 +24,7 @@
   become_user: "{{ user_id }}"
   when: user_desktop == "gnome"
   dconf:
-    key: "{{ '/org/gnome/desktop/peripherals/touchpad/' + item.key }}"
+    key: "/org/gnome/desktop/peripherals/touchpad/{{ item.key }}"
     value: "{{ item.value }}"
   loop:
     - { key: "natural-scroll", value: "true" }
