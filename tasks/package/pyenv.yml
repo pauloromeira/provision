@@ -36,12 +36,13 @@
 - name: Pyenv > Clone pyenv plugins repositories
   become_user: "{{ user_id }}"
   git:
-    repo: "https://github.com/pyenv/{{ item }}.git"
-    dest: "{{ pyenv_dir }}/plugins/{{ item }}"
+    repo: "https://github.com/{{ item }}.git"
+    dest: "{{ pyenv_dir }}/plugins/{{ item | split('/') | last }}"
     depth: 1
   loop:
-    - pyenv-doctor
-    - pyenv-installer
-    - pyenv-update
-    - pyenv-virtualenv
-    - pyenv-which-ext
+    - pyenv/pyenv-doctor
+    - pyenv/pyenv-installer
+    - pyenv/pyenv-update
+    - pyenv/pyenv-virtualenv
+    - pyenv/pyenv-which-ext
+    - momo-lab/xxenv-latest  # install latest version with `pyenv latest install`
