@@ -46,3 +46,19 @@
     - pyenv/pyenv-virtualenv
     - pyenv/pyenv-which-ext
     - momo-lab/xxenv-latest  # install latest version with `pyenv latest install`
+
+- name: Pyenv > Install Python latest version
+  become_user: "{{ user_id }}"
+  command: pyenv latest install --skip-existing
+  environment:
+    PATH: '{{ pyenv_dir }}/bin:{{ ansible_env.PATH }}'
+  register: pyenv_latest_install_cmd
+  changed_when: "'Install' in pyenv_latest_install_cmd.stderr"
+
+- name: Pyenv > Set Python latest version
+  set_fact:
+    python_latest: "{{ pyenv_latest_install_cmd.stdout | regex_search(\"Latest version is '(.*)'\", '\\1') | first }}"
+
+- name: Pyenv > Python latest version
+  debug:
+    var: python_latest
