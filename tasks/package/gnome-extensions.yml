@@ -1,7 +1,7 @@
 ---
 # https://extensions.gnome.org/extension/307/dash-to-dock/
-- name: Dock > Dash to Dock > Install gnome extension
-  tags: dash-to-dock-extension
+- name: Gnome Extension > Dash to Dock > Install
+  tags: dash-to-dock
   import_role:
     name: add_gnome_extension
   vars:
@@ -9,8 +9,8 @@
     ext_name: Dash to Dock
 
 # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
-- name: Dock > Sound Input & Output Device Chooser  > Install gnome extension
-  tags: sound-output-device-chooser-extension
+- name: Gnome Extension > Sound Input & Output Device Chooser  > Install
+  tags: sound-output-device-chooser
   import_role:
     name: add_gnome_extension
   vars:
@@ -18,8 +18,8 @@
     ext_name: Sound Input & Output Device Chooser
 
 # # https://extensions.gnome.org/extension/1460/vitals/
-# - name: Dock > Vitals > Install gnome extension
-#   tags: vitals-extension
+# - name: Gnome Extension > Vitals > Install
+#   tags: vitals
 #   import_role:
 #     name: add_gnome_extension
 #   vars:
@@ -27,10 +27,20 @@
 #     ext_name: Vitals
 
 # # https://extensions.gnome.org/extension/517/caffeine/
-# - name: Dock > Caffeine > Install gnome extension
+# - name: Gnome Extension > Caffeine > Install
 #   tags: caffeine
 #   import_role:
 #     name: add_gnome_extension
 #   vars:
 #     ext_uuid: caffeine@patapon.info
 #     ext_name: Caffeine
+
+# ERROR (not finding matching shell version)
+# # https://extensions.gnome.org/extension/442/drop-down-terminal/
+# - name: Gnome Extension > Drop Down Terminal > Install
+#   tags: drop-down-terminal
+#   import_role:
+#     name: add_gnome_extension
+#   vars:
+#     ext_uuid: drop-down-terminal@gs-extensions.zzrough.org
+#     ext_name: Drop Down Terminal
