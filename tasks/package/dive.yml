@@ -1,0 +1,22 @@
+---
+# References:
+#   - https://github.com/wagoodman/dive#installation
+- name: Dive > Get latest release
+  uri:
+    url: https://github.com/wagoodman/dive/releases/latest
+    method: HEAD
+    follow_redirects: false
+  register: dive_release_response
+  failed_when: dive_release_response.status != 302
+
+- name: Dive > Set latest release
+  set_fact:
+    dive_release: "{{ dive_release_response.location | split('/') | last }}"
+
+- name: Dive > Latest release
+  debug:
+    var: dive_release
+
+- name: Dive > Install
+  apt:
+    deb: "https://github.com/wagoodman/dive/releases/download/{{ dive_release }}/dive_{{ dive_release | trim('v') }}_linux_{{ dpkg_arch }}.deb"
