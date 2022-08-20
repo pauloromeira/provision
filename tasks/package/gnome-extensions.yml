@@ -25,3 +25,12 @@
 #   vars:
 #     ext_uuid: Vitals@CoreCoding.com
 #     ext_name: Vitals
+
+# # https://extensions.gnome.org/extension/517/caffeine/
+# - name: Dock > Caffeine > Install gnome extension
+#   tags: caffeine
+#   import_role:
+#     name: add_gnome_extension
+#   vars:
+#     ext_uuid: caffeine@patapon.info
+#     ext_name: Caffeine
