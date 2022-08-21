@@ -2,6 +2,7 @@
 # References:
 #   - https://docs.docker.com/engine/install/ubuntu/
 #   - https://docs.docker.com/engine/install/linux-postinstall/
+#   - https://docs.docker.com/compose/install/compose-plugin/#install-using-the-repository
 - name: Docker > Uninstall old versions
   apt:
     name: "{{ item }}"
@@ -57,3 +58,8 @@
     name: docker
     state: started
     enabled: true
+
+- name: Docker Compose > Install CLI plugin
+  apt:
+    name: docker-compose-plugin
+    state: present
