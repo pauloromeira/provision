@@ -1,0 +1,7 @@
+---
+- name: Icon > copy file
+  copy:
+    src: files/config/icon.png
+    dest: "/var/lib/AccountsService/icons/{{ user_id }}"
+    owner: root
+    group: root

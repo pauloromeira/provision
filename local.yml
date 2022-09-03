@@ -92,6 +92,9 @@
         - import_tasks: tasks/config/wallpaper.yml
           tags: never,config,wallpaper,appearance
 
+        - import_tasks: tasks/config/icon.yml
+          tags: never,config,icon,appearance
+
         - import_tasks: tasks/package/gnome-extensions.yml
           tags: never,package,gnome-extensions,gnome-shell-extensions
 
