@@ -63,3 +63,11 @@
   apt:
     name: docker-compose-plugin
     state: present
+
+- name: Docker Compose > Copy docker-compose compatibility script
+  copy:
+    src: files/package/docker-compose.sh
+    dest: /usr/local/bin/docker-compose
+    owner: root
+    group: root
+    mode: 0755
