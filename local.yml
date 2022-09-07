@@ -107,6 +107,9 @@
         - import_tasks: tasks/package/vscode.yml
           tags: never,package,vscode
 
+        - import_tasks: tasks/package/qbittorrent.yml
+          tags: never,package,qbittorrent
+
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 
