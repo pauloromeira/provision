@@ -110,6 +110,9 @@
         - import_tasks: tasks/package/qbittorrent.yml
           tags: never,package,qbittorrent
 
+        - import_tasks: tasks/package/syncthing.yml
+          tags: never,package,syncthing
+
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 

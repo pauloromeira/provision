@@ -1,0 +1,26 @@
+---
+# References:
+#   - https://docs.syncthing.net/intro/getting-started.html#installing
+#   - https://apt.syncthing.net/
+- name: Syncthing > Install requirements
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+
+- name: Syncthing > Add apt repository
+  import_role:
+    name: add_apt_repository
+  vars:
+    repo_name: syncthing
+    repo_source: "deb https://apt.syncthing.net/ syncthing stable"
+    key_url: https://syncthing.net/release-key.gpg
+
+- name: Syncthing > Install
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - syncthing
