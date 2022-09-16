@@ -35,15 +35,15 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name: Create a temporary artifact folder
-        run: mkdir tmp_artifact
+        run: mkdir _gh_pages
 
       - name: Copy provision file
-        run: cp provision.sh tmp_artifact/index.html
+        run: cp provision.sh _gh_pages/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: tmp_artifact
+          path: _gh_pages
 
       - name: Deploy to GitHub Pages
         id: deployment
