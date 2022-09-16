@@ -1,25 +1,25 @@
 ### System bootstrap
 ```sh
-curl pauloromeira.com/bootstrap | bash
+curl provision.pauloromeira.com | bash
 ```
 OR
 ```sh
-wget -O - pauloromeira.com/bootstrap | bash
+wget -O - provision.pauloromeira.com | bash
 ```
 
 Full bootstrap (includes GUI applications)
 ```sh
-curl pauloromeira.com/bootstrap | bash -s - --tags full
+curl provision.pauloromeira.com | bash -s - --tags full
 ```
 
 Run specific tags
 ```sh
-curl pauloromeira.com/bootstrap | bash -s - --tags TAGS
+curl provision.pauloromeira.com | bash -s - --tags TAGS
 ```
 
 Skip specific tags
 ```sh
-curl pauloromeira.com/bootstrap | bash -s - --skip-tags SKIP_TAGS
+curl provision.pauloromeira.com | bash -s - --skip-tags SKIP_TAGS
 ```
 
 ### Commands
