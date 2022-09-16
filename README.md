@@ -49,6 +49,9 @@ provision setup
 ```
 
 ### References
+My dotfiles:
+  - https://github.com/pauloromeira/dotfiles
+
 Tutorials/arcticles:
   - [Using Ansible to automate your Laptop and Desktop configs](https://www.youtube.com/watch?v=gIDywsGBqf4)
   - https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb
