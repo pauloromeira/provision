@@ -23,9 +23,9 @@
         path: "{{ user_dir }}/.local/bin/"
         state: directory
 
-    - name: Provision > create hard link on ~/.local/bin/provision
+    - name: Provision > create symlink on ~/.local/bin/provision
       file:
         src: "{{ provision_dir }}/provision.sh"
         dest: "{{ user_dir }}/.local/bin/provision"
-        state: hard
+        state: link
         force: true
