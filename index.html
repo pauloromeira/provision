@@ -1,1 +1,8 @@
-provision.sh
+#!/bin/bash
+if command -v curl > /dev/null; then
+  FETCH='curl -s'
+else
+  FETCH='wget -qO -'
+fi
+
+$FETCH https://raw.githubusercontent.com/pauloromeira/provision/main/provision.sh | bash -s -- pull ${@}
