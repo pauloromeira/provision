@@ -30,12 +30,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Pages
         uses: actions/configure-pages@v2
+
+      - name: Create a temporary artifact folder
+        run: mkdir tmp_artifact
+
+      - name: Copy provision file
+        run: cp provision.sh tmp_artifact/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'gh_pages'
+          path: tmp_artifact
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
