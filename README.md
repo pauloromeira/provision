@@ -17,6 +17,11 @@ Run specific tags
 curl https://provision.pauloromeira.com | bash -s pull --tags TAGS
 ```
 
+Example: install docker (and docker-compose)
+```sh
+curl https://provision.pauloromeira.com | bash -s pull --tags docker
+```
+
 Skip specific tags
 ```sh
 curl https://provision.pauloromeira.com | bash -s pull --skip-tags SKIP_TAGS
