@@ -1,0 +1,17 @@
+---
+# References:
+#   - https://www.vagrantup.com/docs/installation
+#   - https://www.vagrantup.com/downloads
+- name: Vagrant > Add hashicorp apt repository
+  import_role:
+    name: add_apt_repository
+  vars:
+    repo_name: hashicorp
+    repo_source: "deb https://apt.releases.hashicorp.com {{ ansible_lsb.codename }} main"
+    key_url: https://apt.releases.hashicorp.com/gpg
+    armored_key: true
+
+- name: Vagrant > Install
+  apt:
+    name: vagrant
+    state: present
