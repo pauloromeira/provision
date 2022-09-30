@@ -2,6 +2,8 @@
 # References:
 #   - https://www.wireshark.org/download.html
 #   - https://launchpad.net/~wireshark-dev/+archive/ubuntu/stable
+#   - https://www.wireshark.org/docs/wsug_html_chunked/ChBuildInstallUnixInstallBins.html
+#   - https://gitlab.com/wireshark/wireshark/blob/master/packaging/debian/README.Debian
 - name: Wireshark > Add apt repository
   import_role:
     name: add_apt_repository
@@ -16,3 +18,28 @@
     state: present
   loop:
     - wireshark
+
+# Questions: debconf-show wireshark-common
+- name: Wireshark > Enable non-superusers to capture packets
+  debconf:
+    name: virtualbox-ext-pack
+    question: wireshark-common/install-setuid
+    vtype: select
+    value: 'true'
+  register: wireshark_common_install_setuid
+
+- name: Wireshark > Reconfigure dpkg
+  command: dpkg-reconfigure -f noninteractive wireshark-common
+  when: wireshark_common_install_setuid.changed
+
+- name: Wireshark > Add user to wireshark group
+  user:
+    name: "{{ user_id }}"
+    groups: wireshark
+    append: true
+  register: wireshark_add_user_to_group
+
+- name: Wireshark > Manual step
+  debug:
+    msg: "For the changes to take effect, log out and log in again."
+  when: wireshark_common_install_setuid.changed or wireshark_add_user_to_group.changed
