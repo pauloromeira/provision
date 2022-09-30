@@ -120,6 +120,9 @@
         - import_tasks: tasks/package/syncthing.yml
           tags: never,package,syncthing
 
+        - import_tasks: tasks/package/wireshark.yml
+          tags: never,package,wireshark
+
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 

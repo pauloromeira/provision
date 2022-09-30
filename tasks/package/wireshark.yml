@@ -1,0 +1,18 @@
+---
+# References:
+#   - https://www.wireshark.org/download.html
+#   - https://launchpad.net/~wireshark-dev/+archive/ubuntu/stable
+- name: Wireshark > Add apt repository
+  import_role:
+    name: add_apt_repository
+  vars:
+    repo_name: wireshark
+    repo_source: "deb https://ppa.launchpadcontent.net/wireshark-dev/stable/ubuntu {{ ansible_lsb.codename }} main" 
+    key_id: A2E402B85A4B70CD78D8A3D9D875551314ECA0F0
+
+- name: Wireshark > Install
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - wireshark
