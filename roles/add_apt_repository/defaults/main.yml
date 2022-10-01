@@ -2,3 +2,4 @@
 armored_key: "{{ key_url | default(False) and key_url.endswith('.asc') }}"
 key_server: keyserver.ubuntu.com
 keyrings_dir: /usr/share/keyrings
+repo_arch: "{{ dpkg_arch }}"

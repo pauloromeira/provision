@@ -52,7 +52,7 @@
 
 - name: "{{ repo_name }} > Add apt repository"
   apt_repository:
-    repo: "{{ repo_split[0] }} [arch={{ dpkg_arch }} signed-by={{ key_path }}] {{ repo_split[1] }}"
+    repo: "{{ repo_split[0] }} [arch={{ repo_arch }} signed-by={{ key_path }}] {{ repo_split[1] }}"
     filename: "{{ repo_name }}"
     state: present
     update_cache: true
