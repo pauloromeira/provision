@@ -123,6 +123,9 @@
         - import_tasks: tasks/package/wireshark.yml
           tags: never,package,wireshark
 
+        - import_tasks: tasks/package/winehq.yml
+          tags: never,package,winehq,wine
+
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 
