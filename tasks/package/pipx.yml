@@ -44,6 +44,7 @@
     - eg
     - bpytop
     - pyxtermjs  # fully functional terminal in the browser
+    - rich-cli
 
 - name: Pipx > Inject into ipython
   tags: pipx
