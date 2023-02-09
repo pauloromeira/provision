@@ -45,6 +45,7 @@
     - bpytop
     - pyxtermjs  # fully functional terminal in the browser
     - rich-cli
+    - ffsubsync  # automatic synchronization of subtitles with video (dep: ffmpeg)
 
 - name: Pipx > Inject into ipython
   tags: pipx
