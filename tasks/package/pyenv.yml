@@ -45,4 +45,3 @@
     - pyenv/pyenv-update
     - pyenv/pyenv-virtualenv
     - pyenv/pyenv-which-ext
-    - momo-lab/xxenv-latest  # install latest version with `pyenv latest install`
