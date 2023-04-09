@@ -68,6 +68,7 @@
 
     - import_tasks: tasks/package/tlp.yml
       tags: package,cli,cmdline,tlp
+      when: ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
 
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
