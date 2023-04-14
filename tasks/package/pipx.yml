@@ -31,21 +31,24 @@
     name: "{{ item }}"
   loop:
     - awscli
+    - bpytop
     - dvc
+    - eg
+    - ffsubsync  # automatic synchronization of subtitles with video (dep: ffmpeg)
     - flake8
     - ipython
     - magic-wormhole
     - mitmproxy
     - notebook
+    - pypistats
+    - pyxtermjs  # fully functional terminal in the browser
     - ranger-fm
     - ratarmount
-    - tmuxp
-    - youtube-dl
-    - eg
-    - bpytop
-    - pyxtermjs  # fully functional terminal in the browser
     - rich-cli
-    - ffsubsync  # automatic synchronization of subtitles with video (dep: ffmpeg)
+    - shell-functools
+    - tmuxp
+    - tox
+    - youtube-dl
 
 - name: Pipx > Inject into ipython
   tags: pipx
