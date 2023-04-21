@@ -48,7 +48,7 @@
     - shell-functools
     - tmuxp
     - tox
-    - youtube-dl
+    - yt-dlp
 
 - name: Pipx > Inject into ipython
   tags: pipx
