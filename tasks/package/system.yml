@@ -23,6 +23,7 @@
     - wget
     - xsel
     - at  # schedule commands to be executed at a particular time
+    - wireguard
     # TODO: move to GUI
     - solaar  # logitech unifying utility
     - network-manager-openvpn
