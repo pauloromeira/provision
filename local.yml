@@ -60,8 +60,8 @@
     - import_tasks: tasks/package/vim.yml
       tags: package,cli,cmdline,vim
 
-    - import_tasks: tasks/package/asdf.yml
-      tags: package,cli,cmdline,asdf
+    # - import_tasks: tasks/package/asdf.yml
+    #   tags: package,cli,cmdline,asdf
 
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
@@ -79,8 +79,8 @@
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
 
-    - import_tasks: tasks/package/aws-ssm-plugin.yml
-      tags: package,cli,cmdline,aws-ssm-plugin
+    # - import_tasks: tasks/package/aws-ssm-plugin.yml
+    #   tags: package,cli,cmdline,aws-ssm-plugin
 
     # Installed via asdf
     # - import_tasks: tasks/package/kubectl.yml
@@ -124,11 +124,11 @@
         - import_tasks: tasks/package/wireshark.yml
           tags: never,package,wireshark
 
-        - import_tasks: tasks/package/mono.yml
-          tags: never,package,mono
+        # - import_tasks: tasks/package/mono.yml
+        #   tags: never,package,mono
 
-        - import_tasks: tasks/package/winehq.yml
-          tags: never,package,winehq,wine
+        # - import_tasks: tasks/package/winehq.yml
+        #   tags: never,package,winehq,wine
 
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync

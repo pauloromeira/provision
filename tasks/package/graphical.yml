@@ -29,5 +29,5 @@
     - org.gnome.Cheese
     - org.gimp.GIMP
     - org.videolan.VLC
-    - com.google.AndroidStudio
+    # - com.google.AndroidStudio
     - com.github.johnfactotum.Foliate
