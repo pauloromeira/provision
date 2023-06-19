@@ -49,6 +49,7 @@
     - tmuxp
     - tox
     - yt-dlp
+    - tldr  # similar to eg
 
 - name: Pipx > Inject into ipython
   tags: pipx
