@@ -30,9 +30,7 @@
   community.general.pipx:
     name: "{{ item }}"
   loop:
-    - awscli
     - bpytop
-    - dvc
     - eg
     - ffsubsync  # automatic synchronization of subtitles with video (dep: ffmpeg)
     - flake8
@@ -40,8 +38,6 @@
     - magic-wormhole
     - mitmproxy
     - notebook
-    - pypistats
-    - pyxtermjs  # fully functional terminal in the browser
     - ranger-fm
     - ratarmount
     - rich-cli
@@ -50,6 +46,10 @@
     - tox
     - yt-dlp
     - tldr  # similar to eg
+    # - pyxtermjs  # fully functional terminal in the browser
+    # - pypistats
+    # - awscli
+    # - dvc
 
 - name: Pipx > Inject into ipython
   tags: pipx
