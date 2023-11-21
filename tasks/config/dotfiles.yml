@@ -37,10 +37,27 @@
     - name: Dotfiles > stow > create symlinks
       command:
         chdir: "{{ dotfiles_dir }}"
-        cmd: stow --no-folding --adopt --verbose=2 "{{ item }}"
+        cmd: stow --no-folding --adopt --verbose=2 --ignore='^@.*' -t "{{ user_dir }}" "{{ item }}"
       register: this
       changed_when: this.stderr | regex_search('(?m)^LINK')
       with_items: "{{ packages.files | map(attribute='path') | map('basename') }}"
+
+    - name: Dotfiles > find os-specific packages
+      find:
+        paths: "{{ dotfiles_dir }}"
+        patterns: "@{{ os_id }}"
+        recurse: true
+        depth: 2
+        file_type: directory
+      register: os_packages
+
+    - name: Dotfiles > stow > create os-specific symlinks
+      command:
+        chdir: "{{ dotfiles_dir }}"
+        cmd: stow --no-folding --adopt --verbose=2 -d "{{ item }}" -t "{{ user_dir }}" "@{{ os_id }}"
+      register: this
+      changed_when: this.stderr | regex_search('(?m)^LINK')
+      with_items: "{{ os_packages.files | map(attribute='path') | map('dirname') | map('basename') }}"
 
 - name: Dotfiles > stash local differences
   become_user: "{{ user_id }}"
