@@ -35,3 +35,4 @@
     - { key: "user_dir", value: "{{ ansible_user_dir }}" }
     - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP') | split(':') | last | lower | trim }}" }
     - { key: "dpkg_arch", value: "{{ dpkg_arch_mapping[ansible_architecture] }}" }
+    - { key: "os_id", value: "{{ ansible_lsb.id | lower }}" }
