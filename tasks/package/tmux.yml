@@ -1,4 +1,11 @@
 ---
+- name: Tmux > Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - xsel  # tmux-yank plugin
+
 - name: Tmux > install tmux
   package:
     name: tmux
