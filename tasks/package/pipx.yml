@@ -1,21 +1,11 @@
 ---
 - name: Pipx > Install dependencies
-  apt:
+  package:
     name: "{{ item }}"
     state: present
   loop:
     - python3
     - python3-pip
-
-# https://github.com/mxmlnkn/ratarmount
-- name: Pipx > ratarmount > dependencies
-  apt:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - fuse
-    - sqlite3
-    - unar
 
 - name: Pipx > Install
   tags: pipx
@@ -32,24 +22,18 @@
   loop:
     - bpytop
     - eg
-    - ffsubsync  # automatic synchronization of subtitles with video (dep: ffmpeg)
     - flake8
     - ipython
     - magic-wormhole
     - mitmproxy
     - notebook
     - ranger-fm
-    - ratarmount
     - rich-cli
     - shell-functools
     - tmuxp
     - tox
     - yt-dlp
     - tldr  # similar to eg
-    # - pyxtermjs  # fully functional terminal in the browser
-    # - pypistats
-    # - awscli
-    # - dvc
 
 - name: Pipx > Inject into ipython
   tags: pipx
