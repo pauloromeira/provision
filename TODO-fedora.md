@@ -13,7 +13,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/config/icon.yml
 - [ ] tasks/config/locale.yml
 - [x] tasks/config/media.yml
-- [ ] tasks/config/peripherals.yml
+- [x] tasks/config/peripherals.yml
 - [ ] tasks/config/power.yml
 - [ ] tasks/config/privacy.yml
 - [x] tasks/config/provision.yml
