@@ -10,6 +10,7 @@ Tip: use gf ("goto file") to open each file
 ## Config
 - [ ] tasks/config/dock.yml
 - [x] tasks/config/dotfiles.yml
+- [x] tasks/config/extensions.yml
 - [x] tasks/config/icon.yml
 - [ ] tasks/config/locale.yml
 - [x] tasks/config/media.yml
@@ -30,7 +31,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/package/aws-ssm-plugin.yml
 - [ ] tasks/package/dive.yml
 - [ ] tasks/package/docker.yml
-- [ ] tasks/package/gnome-extensions.yml
+- [x] tasks/package/gnome-extensions.yml
 - [ ] tasks/package/graphical.yml
 - [ ] tasks/package/hardware.yml
 - [ ] tasks/package/insync.yml
