@@ -39,7 +39,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/package/mergerfs.yml
 - [ ] tasks/package/mono.yml
 - [x] tasks/package/pipx.yml
-- [ ] tasks/package/pyenv.yml
+- [x] tasks/package/pyenv.yml
 - [ ] tasks/package/qbittorrent.yml
 - [ ] tasks/package/syncthing.yml
 - [ ] tasks/package/system.yml
