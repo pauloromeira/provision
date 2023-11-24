@@ -1,10 +1,5 @@
 ---
 
-# Fedora (TODO):
-# - `sudo dnf install gnome-extensions-app`
-# - `sudo dnf install gnome-shell-extension-dash-to-dock`
-# - `sudo dnf install gnome-shell-extension-pop-shell xprop`  # window tiling
-
 - name: Gnome Extensions App >  Install (dnf)
   tags: gnome-extensions-app
   dnf:
@@ -38,7 +33,7 @@
     - gnome-shell-extension-pop-shell
   when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
 
-# NOT NEEDED - for fedora
+# NOT NEEDED - for fedora and probably gnome 45
 # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
 - name: Gnome Extension > Sound Input & Output Device Chooser  > Install
   tags: sound-output-device-chooser
