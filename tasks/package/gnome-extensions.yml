@@ -8,11 +8,20 @@
 # https://extensions.gnome.org/extension/307/dash-to-dock/
 - name: Gnome Extension > Dash to Dock > Install
   tags: dash-to-dock
-  import_role:
-    name: add_gnome_extension
-  vars:
-    ext_uuid: dash-to-dock@micxgx.gmail.com
-    ext_name: Dash to Dock
+  block:
+    - name: Gnome Extension > Dash to Dock > Install (dnf)
+      dnf:
+        name: gnome-shell-extension-dash-to-dock
+      when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
+
+    - name: Gnome Extension > Dash to Dock > Install
+      tags: dash-to-dock
+      import_role:
+        name: add_gnome_extension
+      vars:
+        ext_uuid: dash-to-dock@micxgx.gmail.com
+        ext_name: Dash to Dock
+      when: user_desktop == "gnome" and ansible_pkg_mgr != "dnf"
 
 # NOT NEEDED - for fedora
 # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
@@ -23,6 +32,7 @@
   vars:
     ext_uuid: sound-output-device-chooser@kgshank.net
     ext_name: Sound Input & Output Device Chooser
+  when: user_desktop == "gnome" and ansible_pkg_mgr != "dnf"
 
 # # https://extensions.gnome.org/extension/1460/vitals/
 # - name: Gnome Extension > Vitals > Install
