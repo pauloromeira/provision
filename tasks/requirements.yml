@@ -1,4 +1,23 @@
 ---
+- name: Requirements > Gather extra facts > os-release
+  set_fact:
+    "os_release_{{ item.split('=', 1)[0] | lower }}": "{{ item.split('=', 1)[1] }}"
+  when: "'=' in item"
+  loop: "{{ lookup('file', '/etc/os-release').splitlines() }}"
+
+- name: Requirements > Gather extra facts
+  set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  loop:
+    - { key: "user_id", value: "{{ ansible_user_id }}" }
+    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
+    - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP') | split(':') | last | lower | trim }}" }
+    - { key: "dpkg_arch", value: "{{ dpkg_arch_mapping[ansible_architecture] }}" }
+    - { key: "os_id", value: "{{ os_release_id | lower }}" }
+
+- name: Requirements > Import os-specific vars
+  include_vars: "{{ os_id }}.yml"
+
 - name: Requirements > apt > update cache
   become: true
   tags: apt
@@ -18,19 +37,3 @@
   pip:
     name: psutil
     extra_args: --user
-
-- name: Requirements > Gather extra facts > os-release
-  set_fact:
-    "os_release_{{ item.split('=', 1)[0] | lower }}": "{{ item.split('=', 1)[1] }}"
-  when: "'=' in item"
-  loop: "{{ lookup('file', '/etc/os-release').splitlines() }}"
-
-- name: Requirements > Gather extra facts
-  set_fact:
-    "{{ item.key }}": "{{ item.value }}"
-  loop:
-    - { key: "user_id", value: "{{ ansible_user_id }}" }
-    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
-    - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP') | split(':') | last | lower | trim }}" }
-    - { key: "dpkg_arch", value: "{{ dpkg_arch_mapping[ansible_architecture] }}" }
-    - { key: "os_id", value: "{{ os_release_id | lower }}" }
