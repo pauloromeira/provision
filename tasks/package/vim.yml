@@ -14,6 +14,13 @@
     name: "{{ vim_package }}"
     state: present
 
+- name: Vim > create symlink to /usr/bin/vimx (fedora)
+  file:
+    src: "vimx"
+    dest: "/usr/bin/vim"
+    state: link
+  when: os_id == "fedora"
+
 - name: Vim > install YouCompleteMe dependencies (apt)
   package:
     name: "{{ item }}"
