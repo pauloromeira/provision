@@ -1,0 +1,22 @@
+---
+# To get all dconf settings run: `dconf dump /`
+- name: Shortcuts > Custom > Terminal (<Super>t)
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-terminal/{{ item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "binding", value: "'<Super>t'" }
+    - { key: "command", value: "'gnome-terminal'" }
+    - { key: "name", value: "'terminal'" }
+
+- name: Shortcuts > Custom > Register shortcuts
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+    value:
+      - '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-terminal/'

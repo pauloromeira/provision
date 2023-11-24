@@ -24,6 +24,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/config/tiling.yml
 - [x] tasks/config/wallpaper.yml
 - [ ] tasks/config/workspaces.yml
+- [x] tasks/config/shortcuts.yml
 
 ## Package
 - [ ] tasks/package/1password-cli.yml
