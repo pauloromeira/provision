@@ -1,0 +1,30 @@
+---
+# To get all dconf settings run: `dconf dump /`
+- name: Enable Extensions (gnome)
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: /org/gnome/shell/disable-user-extensions
+    value: "false"
+
+- name: Set Enabled Extensions (gnome)
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: /org/gnome/shell/enabled-extensions
+    value:
+      - 'background-logo@fedorahosted.org'
+      - 'pop-shell@system76.com'
+      - 'dash-to-dock@micxgx.gmail.com'
+      - 'apps-menu@gnome-shell-extensions.gcampax.github.com'
+      - 'places-menu@gnome-shell-extensions.gcampax.github.com'
+
+- name: Set Disabled Extensions (gnome)
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: /org/gnome/shell/disabled-extensions
+    value: "@as []"
