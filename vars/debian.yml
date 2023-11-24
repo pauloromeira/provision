@@ -1,1 +1,2 @@
-vim_package: vim-gtk3
+vim_package: "vim-gtk3"
+ctags_package: "universal-ctags"

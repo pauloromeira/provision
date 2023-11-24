@@ -46,7 +46,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/package/tlp.yml
 - [x] tasks/package/tmux.yml
 - [ ] tasks/package/vagrant.yml
-- [ ] tasks/package/vim.yml
+- [x] tasks/package/vim.yml
 - [ ] tasks/package/virtualbox.yml
 - [ ] tasks/package/vscode.yml
 - [ ] tasks/package/winehq.yml

@@ -1,1 +1,2 @@
-vim_package: vim-enhanced
+vim_package: "vim-enhanced"
+ctags_package: "ctags"
