@@ -27,7 +27,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/config/shortcuts.yml
 
 ## Package
-- [ ] tasks/package/1password-cli.yml
+- [x] tasks/package/1password-cli.yml
 - [ ] tasks/package/asdf.yml
 - [ ] tasks/package/aws-ssm-plugin.yml
 - [ ] tasks/package/dive.yml
