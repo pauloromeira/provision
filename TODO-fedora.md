@@ -42,7 +42,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/pipx.yml
 - [x] tasks/package/pyenv.yml
 - [ ] tasks/package/qbittorrent.yml
-- [ ] tasks/package/syncthing.yml
+- [x] tasks/package/syncthing.yml
 - [ ] tasks/package/system.yml
 - [ ] tasks/package/tlp.yml
 - [x] tasks/package/tmux.yml
