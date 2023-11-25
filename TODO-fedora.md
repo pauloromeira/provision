@@ -31,7 +31,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/package/asdf.yml
 - [ ] tasks/package/aws-ssm-plugin.yml
 - [ ] tasks/package/dive.yml
-- [ ] tasks/package/docker.yml
+- [x] tasks/package/docker.yml
 - [x] tasks/package/gnome-extensions.yml
 - [ ] tasks/package/graphical.yml
 - [ ] tasks/package/hardware.yml

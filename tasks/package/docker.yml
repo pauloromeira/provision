@@ -1,28 +1,39 @@
 ---
 # References:
 #   - https://docs.docker.com/engine/install/ubuntu/
+#   - https://docs.docker.com/engine/install/fedora/
 #   - https://docs.docker.com/engine/install/linux-postinstall/
 #   - https://docs.docker.com/compose/install/compose-plugin/#install-using-the-repository
-- name: Docker > Uninstall old versions
+- name: Docker > Uninstall old versions (apt)
   apt:
     name: "{{ item }}"
     state: absent
   loop:
-    - docker
-    - docker-engine
     - docker.io
+    - docker-doc
+    - docker-compose
+    - docker-compose-v2
+    - podman-docker
     - containerd
     - runc
+  when: ansible_pkg_mgr == "apt"
 
-- name: Docker > Install dependencies
-  apt:
+- name: Docker > Uninstall old versions (dnf)
+  dnf:
     name: "{{ item }}"
-    state: present
+    state: absent
   loop:
-    - ca-certificates
-    - curl
-    - gnupg
-    - lsb-release
+    - docker
+    - docker-client
+    - docker-client-latest
+    - docker-common
+    - docker-latest
+    - docker-latest-logrotate
+    - docker-logrotate
+    - docker-selinux
+    - docker-engine-selinux
+    - docker-engine
+  when: ansible_pkg_mgr == "dnf"
 
 - name: Docker > Add apt repository
   import_role:
@@ -32,15 +43,28 @@
     repo_source: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
     key_url: https://download.docker.com/linux/ubuntu/gpg
     armored_key: true
+  when: ansible_pkg_mgr == "apt"
+
+- name: Docker > Add yum repository (dnf)
+  yum_repository:
+    name: docker-ce
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+  when: ansible_pkg_mgr == "dnf"
 
 - name: Docker > Install Docker Engine
-  apt:
+  package:
     name: "{{ item }}"
     state: present
   loop:
+    - containerd.io
+    - docker-buildx-plugin
     - docker-ce
     - docker-ce-cli
-    - containerd.io
+    - docker-compose-plugin
 
 - name: Docker > Ensure docker group exists
   group:
@@ -58,11 +82,6 @@
     name: docker
     state: started
     enabled: true
-
-- name: Docker Compose > Install CLI plugin
-  apt:
-    name: docker-compose-plugin
-    state: present
 
 - name: Docker Compose > Copy docker-compose compatibility script
   copy:
