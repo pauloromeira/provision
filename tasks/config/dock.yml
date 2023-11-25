@@ -14,11 +14,12 @@
     - { key: "intellihide", value: "true" }
     - { key: "intellihide-mode", value: "'ALL_WINDOWS'" }
     - { key: "custom-theme-shrink", value: "true" }
-    - { key: "customize-alphas", value: "true" }
-    - { key: "max-alpha", value: "0.87" }
-    - { key: "min-alpha", value: "0.87" }
-    - { key: "transparency-mode", value: "'DYNAMIC'" }
-    - { key: "show-trash", value: "false" }
+    - { key: "transparency-mode", value: "'FIXED'" }
+    - { key: "background-opacity", value: "0.6" }
+    - { key: "dash-max-icon-size", value: "48" }
+    - { key: "show-mounts", value: "true" }
+    - { key: "show-mounts-only-mounted", value: "true" }
+    - { key: "show-trash", value: "true" }
 
 - name: Dock > Set favorite apps
   tags: gnome
@@ -27,11 +28,13 @@
   dconf:
     key: /org/gnome/shell/favorite-apps
     value:
-      - 'org.chromium.Chromium.desktop'
+      - 'chromium-browser.desktop'  # native
+      - 'org.chromium.Chromium.desktop'  # flatpak
       - 'org.gnome.Terminal.desktop'
       - 'org.gnome.Nautilus.desktop'
-      - 'com.getpostman.Postman.desktop'
       - 'com.spotify.Client.desktop'
       - 'firefox.desktop'
       - 'io.dbeaver.DBeaverCommunity.desktop'
       - 'virtualbox.desktop'
+      - 'org.gnome.Calendar.desktop'
+      - 'org.gnome.Software.desktop'

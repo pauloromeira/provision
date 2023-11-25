@@ -8,7 +8,7 @@ Tip: use gf ("goto file") to open each file
 - [x] provision.sh
 
 ## Config
-- [ ] tasks/config/dock.yml
+- [x] tasks/config/dock.yml
 - [x] tasks/config/dotfiles.yml
 - [x] tasks/config/extensions.yml
 - [x] tasks/config/icon.yml
