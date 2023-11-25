@@ -111,8 +111,8 @@
         - import_tasks: tasks/config/extensions.yml
           tags: never,config,extensions,appearance
 
-        - import_tasks: tasks/package/graphical.yml
-          tags: never,package
+        - import_tasks: tasks/package/flatpak.yml
+          tags: never,package,flatpak
 
         - import_tasks: tasks/package/virtualbox.yml
           tags: never,package,virtualbox
