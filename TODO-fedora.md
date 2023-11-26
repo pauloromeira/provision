@@ -12,18 +12,18 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/config/dotfiles.yml
 - [x] tasks/config/extensions.yml
 - [x] tasks/config/icon.yml
-- [ ] tasks/config/locale.yml
+- [x] tasks/config/locale.yml
 - [x] tasks/config/media.yml
 - [x] tasks/config/peripherals.yml
-- [ ] tasks/config/power.yml
-- [ ] tasks/config/privacy.yml
+- [x] tasks/config/power.yml
+- [x] tasks/config/privacy.yml
 - [x] tasks/config/provision.yml
-- [ ] tasks/config/sound.yml
+- [x] tasks/config/sound.yml
     - [x] allow volume above 100%
 - [ ] tasks/config/terminal.yml
-- [ ] tasks/config/tiling.yml
+- [x] tasks/config/tiling.yml
 - [x] tasks/config/wallpaper.yml
-- [ ] tasks/config/workspaces.yml
+- [x] tasks/config/workspaces.yml
 - [x] tasks/config/shortcuts.yml
 
 ## Package

@@ -9,6 +9,7 @@
   loop:
     - { key: "allow-volume-above-100-percent", value: "true" }
 
+# NOT NEEDED - for fedora and probably gnome 45
 - name: Sound > Gnome Extension > Sount Input & Output Device Chooser
   tags: gnome
   when: user_desktop == "gnome"

@@ -1,7 +1,7 @@
 ---
 - name: Tiling Window Manager > Config
   tags: gnome
-  when: user_desktop == "gnome" and ansible_distribution == "Pop!_OS"
+  when: user_desktop == "gnome"
   become_user: "{{ user_id }}"
   dconf:
     key: "/org/gnome/shell/extensions/pop-shell/{{ item.key }}"
