@@ -55,11 +55,3 @@
     # - solaar  # logitech unifying utility
     # - network-manager-openvpn
     # - network-manager-openvpn-gnome
-
-- name: System > Disable autostart
-  file:
-    path: "/etc/xdg/autostart/{{ item }}.desktop"
-    state: absent
-  loop:
-    - solaar  # TODO: move to GUI
-    - orca-autostart

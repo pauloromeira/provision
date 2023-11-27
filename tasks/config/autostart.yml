@@ -1,0 +1,7 @@
+- name: System > Disable autostart
+  file:
+    path: "/etc/xdg/autostart/{{ item }}.desktop"
+    state: absent
+  loop:
+    - solaar  # TODO: move to GUI
+    - orca-autostart

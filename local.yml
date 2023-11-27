@@ -142,6 +142,8 @@
         # - import_tasks: tasks/package/insync.yml
         #   tags: never,package,insync
 
+    - import_tasks: tasks/config/autostart.yml
+      tags: config,autostart
 
 - hosts: all
   become: false
