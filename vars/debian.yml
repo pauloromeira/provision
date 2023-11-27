@@ -1,2 +1,7 @@
 vim_package: "vim-gtk3"
 ctags_package: "universal-ctags"
+libnotify_package: "libnotify-bin"
+mkisofs_package: "mkisofs"
+openssh_client_package: "openssh-client"
+the_silver_searcher_package: "silversearcher-ag"
+wireguard_package: "wireguard"

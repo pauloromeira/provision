@@ -43,7 +43,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/pyenv.yml
 - [ ] tasks/package/qbittorrent.yml
 - [x] tasks/package/syncthing.yml
-- [ ] tasks/package/system.yml
+- [x] tasks/package/system.yml
 - [ ] tasks/package/tlp.yml
 - [x] tasks/package/tmux.yml
 - [ ] tasks/package/vagrant.yml

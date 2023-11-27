@@ -1,2 +1,7 @@
 vim_package: "vim-X11"
 ctags_package: "ctags"
+libnotify_package: "libnotify"
+mkisofs_package: "genisoimage"
+openssh_client_package: "openssh-clients"
+the_silver_searcher_package: "the_silver_searcher"
+wireguard_package: "wireguard-tools"

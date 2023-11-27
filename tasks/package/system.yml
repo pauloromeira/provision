@@ -35,26 +35,26 @@
     - gcc
     - htop
     - jq
-    - libnotify-bin
+    - "{{ libnotify_package }}"
     - make
-    - mkisofs
+    - "{{ mkisofs_package }}"
     - openvpn
-    - openssh-client
+    - "{{ openssh_client_package }}"
     - pdftk
-    - silversearcher-ag
+    - "{{ the_silver_searcher_package }}"
     - sqlite3
     - tree
     - unrar
     - unzip
     - wget
     - xsel
-    - at  # schedule commands to be executed at a particular time
-    - wireguard
+    - at
+    - "{{ wireguard_package }}"
     # TODO: move to GUI
-    - solaar  # logitech unifying utility
-    - network-manager-openvpn
-    - network-manager-openvpn-gnome
     - gnome-tweaks
+    # - solaar  # logitech unifying utility
+    # - network-manager-openvpn
+    # - network-manager-openvpn-gnome
 
 - name: System > Disable autostart
   file:
