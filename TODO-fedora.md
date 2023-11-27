@@ -33,6 +33,7 @@ Tip: use gf ("goto file") to open each file
 - [ ] tasks/package/dive.yml
 - [x] tasks/package/docker.yml
 - [x] tasks/package/gnome-extensions.yml
+- [x] tasks/package/ffmpeg.yml
 - [x] tasks/package/flatpak.yml
 - [ ] tasks/package/hardware.yml
 - [ ] tasks/package/insync.yml
