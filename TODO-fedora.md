@@ -20,7 +20,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/config/provision.yml
 - [x] tasks/config/sound.yml
     - [x] allow volume above 100%
-- [ ] tasks/config/terminal.yml
+- [x] tasks/config/terminal.yml
 - [x] tasks/config/tiling.yml
 - [x] tasks/config/wallpaper.yml
 - [x] tasks/config/workspaces.yml
