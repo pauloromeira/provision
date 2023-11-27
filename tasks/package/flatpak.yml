@@ -12,22 +12,21 @@
     name: flathub
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    method: user
 
 - name: Package > GUI > flatpak > install packages
   tags: flatpak
   become_user: "{{ user_id }}"
   flatpak:
-    method: user
     name: "{{ item }}"
   loop:
-    - com.spotify.Client
-    - org.chromium.Chromium
-    - io.dbeaver.DBeaverCommunity
-    - com.getpostman.Postman
-    - org.remmina.Remmina
-    - org.gnome.Cheese
-    - org.gimp.GIMP
-    - org.videolan.VLC
-    # - com.google.AndroidStudio
     - com.github.johnfactotum.Foliate
+    - com.spotify.Client
+    - io.dbeaver.DBeaverCommunity
+    - org.chromium.Chromium
+    - org.gimp.GIMP
+    - org.remmina.Remmina
+    - org.videolan.VLC
+    - com.bitwig.BitwigStudio
+    # - com.getpostman.Postman
+    # - com.google.AndroidStudio
+    # - org.gnome.Cheese
