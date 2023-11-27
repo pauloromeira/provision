@@ -28,21 +28,13 @@ Tip: use gf ("goto file") to open each file
 
 ## Package
 - [x] tasks/package/1password-cli.yml
-- [ ] tasks/package/asdf.yml
-- [ ] tasks/package/aws-ssm-plugin.yml
 - [ ] tasks/package/dive.yml
 - [x] tasks/package/docker.yml
 - [x] tasks/package/gnome-extensions.yml
 - [x] tasks/package/ffmpeg.yml
 - [x] tasks/package/flatpak.yml
-- [ ] tasks/package/hardware.yml
-- [ ] tasks/package/insync.yml
-- [ ] tasks/package/kubectl.yml
-- [ ] tasks/package/mergerfs.yml
-- [ ] tasks/package/mono.yml
 - [x] tasks/package/pipx.yml
 - [x] tasks/package/pyenv.yml
-- [ ] tasks/package/qbittorrent.yml
 - [x] tasks/package/syncthing.yml
 - [x] tasks/package/system.yml
 - [ ] tasks/package/tlp.yml
@@ -51,5 +43,4 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/vim.yml
 - [ ] tasks/package/virtualbox.yml
 - [ ] tasks/package/vscode.yml
-- [ ] tasks/package/winehq.yml
 - [ ] tasks/package/wireshark.yml
