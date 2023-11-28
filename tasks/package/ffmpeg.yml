@@ -1,0 +1,11 @@
+---
+- name: FFmpeg > Install
+  package:
+    name: ffmpeg
+  when: ansible_pkg_mgr != "dnf"
+
+- name: FFmpeg > Install (dnf)
+  dnf:
+    name: ffmpeg
+    allowerasing: true
+  when: ansible_pkg_mgr == "dnf"
