@@ -20,9 +20,6 @@
       tags: config,provision
 
   tasks:
-    - import_tasks: tasks/package/hardware.yml
-      tags: package,hw,hardware
-
     - import_tasks: tasks/package/system.yml
       tags: package,cli,cmdline,system
 
@@ -77,9 +74,6 @@
     - import_tasks: tasks/package/vim.yml
       tags: package,cli,cmdline,vim
 
-    # - import_tasks: tasks/package/asdf.yml
-    #   tags: package,cli,cmdline,asdf
-
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 
@@ -95,16 +89,6 @@
 
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
-
-    - import_tasks: tasks/package/mergerfs.yml
-      tags: package,cli,cmdline,mergerfs
-
-    # - import_tasks: tasks/package/aws-ssm-plugin.yml
-    #   tags: package,cli,cmdline,aws-ssm-plugin
-
-    # Installed via asdf
-    # - import_tasks: tasks/package/kubectl.yml
-    #   tags: package,cli,cmdline,kubectl
 
     - name: GUI tasks
       when: user_desktop
@@ -138,23 +122,11 @@
         # - import_tasks: tasks/package/vscode.yml
         #   tags: never,package,vscode
 
-        - import_tasks: tasks/package/qbittorrent.yml
-          tags: never,package,qbittorrent
-
         - import_tasks: tasks/package/syncthing.yml
           tags: never,package,syncthing
 
         # - import_tasks: tasks/package/wireshark.yml
         #   tags: never,package,wireshark
-
-        # - import_tasks: tasks/package/mono.yml
-        #   tags: never,package,mono
-
-        # - import_tasks: tasks/package/winehq.yml
-        #   tags: never,package,winehq,wine
-
-        # - import_tasks: tasks/package/insync.yml
-        #   tags: never,package,insync
 
     - import_tasks: tasks/config/autostart.yml
       tags: config,autostart
