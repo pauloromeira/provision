@@ -1,0 +1,14 @@
+---
+- name: Multitasking > General > Disable Hot Corner
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/desktop/interface/enable-hot-corners"
+    value: "false"
+
+- name: Multitasking > Multi-Monitor > Workspaces on primary display only
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/mutter/workspaces-only-on-primary"
+    value: "true"

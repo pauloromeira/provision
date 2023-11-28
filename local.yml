@@ -56,8 +56,8 @@
     - import_tasks: tasks/config/tiling.yml
       tags: config,tiling
 
-    - import_tasks: tasks/config/workspaces.yml
-      tags: config,workspaces
+    - import_tasks: tasks/config/multitasking.yml
+      tags: config,multitasking
 
     - import_tasks: tasks/config/terminal.yml
       tags: config,terminal
