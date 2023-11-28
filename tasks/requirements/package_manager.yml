@@ -11,6 +11,7 @@
   loop:
     - { key: "fastestmirror", value: true }
     - { key: "defaultyes", value: true }
+    - { key: "max_parallel_downloads", value: "10" }
 
 - name: Package manager > Dnf > Configure RPM Fusion repos (fedora)
   tags: rpmfusion
