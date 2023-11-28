@@ -84,9 +84,6 @@
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
-    - import_tasks: tasks/package/dive.yml
-      tags: package,cli,cmdline,dive
-
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
 

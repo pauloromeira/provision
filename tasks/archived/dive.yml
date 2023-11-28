@@ -1,4 +1,6 @@
 ---
+# Archived: Run with 'docker-dive' alias
+#
 # References:
 #   - https://github.com/wagoodman/dive#installation
 - name: Dive > Get latest release
