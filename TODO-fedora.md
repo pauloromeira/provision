@@ -29,7 +29,7 @@ Tip: use gf ("goto file") to open each file
 
 ## Package
 - [x] tasks/package/1password-cli.yml
-- [ ] tasks/package/dive.yml
+- [x] tasks/package/dive.yml
 - [x] tasks/package/docker.yml
 - [x] tasks/package/gnome-extensions.yml
 - [x] tasks/package/ffmpeg.yml
