@@ -1,3 +1,4 @@
+---
 - name: System > Disable autostart
   file:
     path: "/etc/xdg/autostart/{{ item }}.desktop"
