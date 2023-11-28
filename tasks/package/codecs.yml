@@ -1,0 +1,16 @@
+---
+# References:
+#   - https://rpmfusion.org/Howto/Multimedia
+- name: Codecs > Install @multimedia group package (dnf)
+  dnf:
+    name: "@multimedia"
+    state: latest
+    install_weak_deps: false
+    exclude: "PackageKit-gstreamer-plugin"
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Codecs > Install @sound-and-video group package (dnf)
+  dnf:
+    name: "@sound-and-video"
+    state: latest
+  when: ansible_pkg_mgr == "dnf"
