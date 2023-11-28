@@ -1,7 +1,13 @@
 ---
 # References:
 #   - https://rpmfusion.org/Howto/Multimedia
-- name: Codecs > Install @multimedia group package (dnf)
+- name: Codecs > Remove conflicting packages (dnf)
+  dnf:
+    name: ffmpeg-free
+    state: absent
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Codecs > @multimedia > Install group package (dnf)
   dnf:
     name: "@multimedia"
     state: latest
@@ -9,7 +15,7 @@
     exclude: "PackageKit-gstreamer-plugin"
   when: ansible_pkg_mgr == "dnf"
 
-- name: Codecs > Install @sound-and-video group package (dnf)
+- name: Codecs > @sound-and-video > Install group package (dnf)
   dnf:
     name: "@sound-and-video"
     state: latest
