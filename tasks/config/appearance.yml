@@ -1,13 +1,22 @@
 ---
-- name: Wallpaper > copy file
+- name: Style > Set to dark
+  tags: style,color-scheme
+  become_user: "{{ user_id }}"
+  when: user_desktop == "gnome"
+  dconf:
+    key: "/org/gnome/desktop/interface/color-scheme"
+    value: "'prefer-dark'"
+
+- name: Background > Copy wallpaper file
+  tags: background,wallpaper
   copy:
     src: files/config/wallpaper.png
     dest: /usr/share/backgrounds/wallpaper.png
     owner: root
     group: root
 
-- name: Wallpaper > dconf setup (gnome)
-  tags: gnome
+- name: Background > Set wallpaper
+  tags: background,wallpaper
   when: user_desktop == "gnome"
   become_user: "{{ user_id }}"
   dconf:

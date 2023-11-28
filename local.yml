@@ -95,19 +95,19 @@
       tags: gui,desktop,graphical
       block:
         - import_tasks: tasks/config/dock.yml
-          tags: config,dock,appearance
+          tags: config,dock
 
-        - import_tasks: tasks/config/wallpaper.yml
-          tags: never,config,wallpaper,appearance
+        - import_tasks: tasks/config/appearance.yml
+          tags: never,config,appearance
 
         - import_tasks: tasks/config/icon.yml
-          tags: never,config,icon,appearance
+          tags: never,config,icon
 
         - import_tasks: tasks/package/gnome-extensions.yml
           tags: never,package,gnome-extensions,gnome-shell-extensions
 
         - import_tasks: tasks/config/extensions.yml
-          tags: never,config,extensions,appearance
+          tags: never,config,extensions
 
         - import_tasks: tasks/package/flatpak.yml
           tags: never,package,flatpak
