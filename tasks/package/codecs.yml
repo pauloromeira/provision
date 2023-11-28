@@ -2,10 +2,12 @@
 # References:
 #   - https://rpmfusion.org/Howto/Multimedia
 - name: Codecs > Remove conflicting packages (dnf)
-  dnf:
-    name: ffmpeg-free
-    state: absent
   when: ansible_pkg_mgr == "dnf"
+  dnf:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - ffmpeg-free
 
 - name: Codecs > @multimedia > Install group package (dnf)
   dnf:
