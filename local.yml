@@ -77,15 +77,15 @@
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 
-    - import_tasks: tasks/package/tlp.yml
-      tags: package,cli,cmdline,tlp
-      when: ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
+    # - import_tasks: tasks/package/tlp.yml
+    #   tags: package,cli,cmdline,tlp
+    #   when: ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
 
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker
 
-    - import_tasks: tasks/package/dive.yml
-      tags: package,cli,cmdline,dive
+    # - import_tasks: tasks/package/dive.yml
+    #   tags: package,cli,cmdline,dive
 
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
@@ -112,21 +112,21 @@
         - import_tasks: tasks/package/flatpak.yml
           tags: never,package,flatpak
 
-        - import_tasks: tasks/package/virtualbox.yml
-          tags: never,package,virtualbox
+        # - import_tasks: tasks/package/virtualbox.yml
+        #   tags: never,package,virtualbox
 
-        # TODO: cli but depends on virtualbox
-        - import_tasks: tasks/package/vagrant.yml
-          tags: never,package,vagrant
+        # # TODO: cli but depends on virtualbox
+        # - import_tasks: tasks/package/vagrant.yml
+        #   tags: never,package,vagrant
 
-        - import_tasks: tasks/package/vscode.yml
-          tags: never,package,vscode
+        # - import_tasks: tasks/package/vscode.yml
+        #   tags: never,package,vscode
 
         - import_tasks: tasks/package/syncthing.yml
           tags: never,package,syncthing
 
-        - import_tasks: tasks/package/wireshark.yml
-          tags: never,package,wireshark
+        # - import_tasks: tasks/package/wireshark.yml
+        #   tags: never,package,wireshark
 
     - import_tasks: tasks/config/autostart.yml
       tags: config,autostart
