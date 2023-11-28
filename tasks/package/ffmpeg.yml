@@ -1,11 +1,20 @@
 ---
+# References:
+#   - https://rpmfusion.org/Howto/Multimedia
 - name: FFmpeg > Install
   package:
     name: ffmpeg
   when: ansible_pkg_mgr != "dnf"
 
-- name: FFmpeg > Install (dnf)
-  dnf:
-    name: ffmpeg
-    allowerasing: true
+- name: FFmpeg > Swap with RPM Fusion's (dnf)
   when: ansible_pkg_mgr == "dnf"
+  block:
+    - name: FFmpeg > Uninstall ffmpeg-free (dnf)
+      dnf:
+        name: ffmpeg-free
+        state: absent
+
+    - name: FFmpeg > Install (dnf)
+      dnf:
+        name: ffmpeg
+        allowerasing: true
