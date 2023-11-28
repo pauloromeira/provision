@@ -19,14 +19,15 @@
   flatpak:
     name: "{{ item }}"
   loop:
+    - com.bitwig.BitwigStudio
     - com.github.johnfactotum.Foliate
+    - com.mattjakeman.ExtensionManager
     - com.spotify.Client
     - io.dbeaver.DBeaverCommunity
     - org.chromium.Chromium
     - org.gimp.GIMP
     - org.remmina.Remmina
     - org.videolan.VLC
-    - com.bitwig.BitwigStudio
     # - com.getpostman.Postman
     # - com.google.AndroidStudio
     # - org.gnome.Cheese

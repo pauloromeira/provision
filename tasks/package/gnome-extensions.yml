@@ -1,11 +1,5 @@
 ---
 
-- name: Gnome Extensions App >  Install (dnf)
-  tags: gnome-extensions-app
-  dnf:
-    name: gnome-extensions-app
-  when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
-
 # https://extensions.gnome.org/extension/307/dash-to-dock/
 - name: Gnome Extension > Dash to Dock > Install
   tags: dash-to-dock
