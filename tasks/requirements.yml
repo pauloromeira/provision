@@ -19,12 +19,30 @@
   include_vars: "{{ os_id }}.yml"
 
 - name: Requirements > apt > update cache
-  become: true
   tags: apt
+  become: true
   apt:
     update_cache: true
   changed_when: false
   when: ansible_pkg_mgr == "apt"
+
+- name: Requirements > dnf
+  tags: dnf
+  become: true
+  when: ansible_pkg_mgr == "dnf"
+  block:
+    - name: Requirements > dnf > set fastestmirror
+      ini_file:
+        path: /etc/dnf/dnf.conf
+        section: main
+        option: fastestmirror
+        value: true
+        no_extra_spaces: true
+
+    - name: Requirements > dnf > update cache
+      dnf:
+        update_cache: yes
+      changed_when: false
 
 - name: Requirements > Install system requirements
   become: true
