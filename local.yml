@@ -21,9 +21,6 @@
     - import_tasks: tasks/package/system.yml
       tags: package,cli,cmdline,system
 
-    - import_tasks: tasks/package/ffmpeg.yml
-      tags: package,cli,cmdline,ffmpeg
-
     - import_tasks: tasks/package/pipx.yml
       tags: package,cli,cmdline,pipx
 

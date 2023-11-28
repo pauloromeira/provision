@@ -5,6 +5,7 @@
   loop:
     - bat
     - curl
+    - ffmpeg
     - gcc
     - htop
     - jq
