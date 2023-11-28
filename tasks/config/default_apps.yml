@@ -1,0 +1,14 @@
+---
+- name: Default Apps > Web > Chromium
+  become_user: "{{ user_id }}"
+  ini_file:
+    path: "{{ user_dir }}/.config/mimeapps.list"
+    section: Default Applications
+    option: "{{ item }}"
+    value: org.chromium.Chromium.desktop
+    no_extra_spaces: true
+  loop:
+    - x-scheme-handler/http
+    - text/html
+    - application/xhtml+xml
+    - x-scheme-handler/https

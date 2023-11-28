@@ -39,6 +39,9 @@
     - import_tasks: tasks/config/peripherals.yml
       tags: config,peripherals
 
+    - import_tasks: tasks/config/default_apps.yml
+      tags: config,default-apps
+
     - import_tasks: tasks/config/shortcuts.yml
       tags: config,shortcuts
 
