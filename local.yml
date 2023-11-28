@@ -119,8 +119,8 @@
         # - import_tasks: tasks/package/vagrant.yml
         #   tags: never,package,vagrant
 
-        # - import_tasks: tasks/package/vscode.yml
-        #   tags: never,package,vscode
+        - import_tasks: tasks/package/vscode.yml
+          tags: never,package,vscode
 
         - import_tasks: tasks/package/syncthing.yml
           tags: never,package,syncthing

@@ -1,22 +1,35 @@
 ---
 # References:
 #   - https://code.visualstudio.com/docs/setup/linux#_debian-and-ubuntu-based-distributions
-- name: VS Code > Install dependencies
+#   - https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions
+- name: VS Code > Install dependencies (apt)
   apt:
     name: "{{ item }}"
     state: present
   loop:
     - apt-transport-https
+  when: ansible_pkg_mgr == "apt"
 
-- name: VS Code > Add apt repository
+- name: VS Code > Add repository (apt)
   import_role:
     name: add_apt_repository
   vars:
     repo_name: vscode
     repo_source: "deb https://packages.microsoft.com/repos/code stable main"
     key_url: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_pkg_mgr == "apt"
+
+- name: VS Code > Add yum repository (dnf)
+  yum_repository:
+    name: code
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_pkg_mgr == "dnf"
 
 - name: VS Code > Install
-  apt:
+  package:
     name: code
     state: present
