@@ -36,5 +36,4 @@
       - 'firefox.desktop'
       - 'io.dbeaver.DBeaverCommunity.desktop'
       - 'virtualbox.desktop'
-      - 'org.gnome.Calendar.desktop'
-      - 'org.gnome.Software.desktop'
+      - 'com.bitwig.BitwigStudio.desktop'
