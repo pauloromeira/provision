@@ -1,5 +1,5 @@
 ---
-- name: Dnf > Config
+- name: Package manager > Dnf > Config
   tags: dnf
   when: ansible_pkg_mgr == "dnf"
   ini_file:
@@ -12,11 +12,12 @@
     - { key: "fastestmirror", value: true }
     - { key: "defaultyes", value: true }
 
-- name: Dnf > Configure RPM Fusion repos (fedora)
+- name: Package manager > Dnf > Configure RPM Fusion repos (fedora)
   tags: rpmfusion
+  become: true
   when: os_id == "fedora"
   block:
-    - name: Dnf > Install RPM Fusion GPG key (fedora)
+    - name: Package manager > Dnf > Install RPM Fusion GPG key (fedora)
       rpm_key:
         key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-{{ item }}-fedora-2020"
         state: present
@@ -24,9 +25,25 @@
         - free
         - nonfree
 
-    - name: Dnf > Add RPM Fusion repos (fedora)
+    - name: Package manager > Dnf > Add RPM Fusion repos (fedora)
       dnf:
         name: "https://mirrors.rpmfusion.org/{{ item }}/fedora/rpmfusion-{{ item }}-release-{{ ansible_distribution_major_version }}.noarch.rpm"
       loop:
         - free
         - nonfree
+
+- name: Package manager > Apt > update cache
+  tags: apt
+  become: true
+  apt:
+    update_cache: true
+  changed_when: false
+  when: ansible_pkg_mgr == "apt"
+
+- name: Package manager > Dnf > update cache
+  tags: dnf
+  become: true
+  dnf:
+    update_cache: yes
+  changed_when: false
+  when: ansible_pkg_mgr == "dnf"

@@ -1,0 +1,12 @@
+---
+- name: Dependencies > Install system requirements
+  become: true
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+
+- name: Dependencies > Install pip requirements
+  pip:
+    name: psutil
+    extra_args: --user

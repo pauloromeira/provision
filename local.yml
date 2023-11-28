@@ -3,9 +3,14 @@
   become: false
   tags: full,always
   pre_tasks:
-    - import_tasks: tasks/requirements.yml
-      tags: requirements
+    - import_tasks: tasks/requirements/facts.yml
+      tags: requirements,facts
 
+    - import_tasks: tasks/requirements/package_manager.yml
+      tags: requirements,package-manager
+
+    - import_tasks: tasks/requirements/dependencies.yml
+      tags: requirements,dependencies
 
 - hosts: all
   become: true
@@ -15,9 +20,6 @@
       tags: config,provision
 
   tasks:
-    - import_tasks: tasks/config/package_manager.yml
-      tags: config,package-manager
-
     - import_tasks: tasks/package/system.yml
       tags: package,cli,cmdline,system
 
