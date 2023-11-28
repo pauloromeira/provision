@@ -1,0 +1,13 @@
+---
+- name: Package manager > dnf config
+  tags: dnf
+  when: ansible_pkg_mgr == "dnf"
+  ini_file:
+    path: /etc/dnf/dnf.conf
+    section: main
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: true
+  loop:
+    - { key: "fastestmirror", value: true }
+    - { key: "defaultyes", value: true }

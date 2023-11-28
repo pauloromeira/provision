@@ -15,6 +15,9 @@
       tags: config,provision
 
   tasks:
+    - import_tasks: tasks/config/package_manager.yml
+      tags: config,package-manager
+
     - import_tasks: tasks/package/system.yml
       tags: package,cli,cmdline,system
 
