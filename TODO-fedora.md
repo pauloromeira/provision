@@ -31,17 +31,17 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/1password-cli.yml
 - [x] tasks/package/dive.yml
 - [x] tasks/package/docker.yml
-- [x] tasks/package/gnome-extensions.yml
 - [x] tasks/package/ffmpeg.yml
 - [x] tasks/package/flatpak.yml
+- [x] tasks/package/gnome-extensions.yml
 - [x] tasks/package/pipx.yml
 - [x] tasks/package/pyenv.yml
 - [x] tasks/package/syncthing.yml
 - [x] tasks/package/system.yml
-- [ ] tasks/package/tlp.yml
 - [x] tasks/package/tmux.yml
-- [ ] tasks/package/vagrant.yml
 - [x] tasks/package/vim.yml
-- [ ] tasks/package/virtualbox.yml
 - [x] tasks/package/vscode.yml
+- [ ] tasks/package/tlp.yml
+- [ ] tasks/package/vagrant.yml
+- [ ] tasks/package/virtualbox.yml
 - [ ] tasks/package/wireshark.yml
