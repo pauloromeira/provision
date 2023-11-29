@@ -1,11 +1,13 @@
 ---
 # References:
 #   - https://wiki.winehq.org/Ubuntu
+#   - https://wiki.winehq.org/Fedora
 - name: WineHQ > Enable i386 architecture
   command: dpkg --add-architecture i386
   changed_when: false
+  when: ansible_pkg_mgr == "apt"
 
-- name: WineHQ > Add apt repository
+- name: WineHQ > Add repository (apt)
   import_role:
     name: add_apt_repository
   vars:
@@ -14,11 +16,27 @@
     repo_arch: "{{ dpkg_arch }},i386"
     key_url: https://dl.winehq.org/wine-builds/winehq.key
     armored_key: true
+  when: ansible_pkg_mgr == "apt"
 
-- name: WineHQ > Install
+- name: WineHQ > Add yum repository (dnf)
+  yum_repository:
+    name: WineHQ
+    description: WineHQ packages
+    baseurl: https://dl.winehq.org/wine-builds/fedora/$releasever
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://dl.winehq.org/wine-builds/winehq.key
+  when: ansible_pkg_mgr == "dnf"
+
+- name: WineHQ > Install (apt)
   apt:
-    name: "{{ item }}"
+    name: winehq-stable
     state: present
     install_recommends: true
-  loop:
-    - winehq-stable
+  when: ansible_pkg_mgr == "apt"
+
+- name: WineHQ > Install (dnf)
+  dnf:
+    name: winehq-stable
+    state: present
+  when: ansible_pkg_mgr == "dnf"
