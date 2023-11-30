@@ -77,9 +77,11 @@
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 
-    # - import_tasks: tasks/package/tlp.yml
-    #   tags: package,cli,cmdline,tlp
-    #   when: ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
+    - import_tasks: tasks/package/tlp.yml
+      tags: package,cli,cmdline,tlp
+      when:
+        - ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
+        - ansible_distribution != "Fedora"   # not working: https://linrunner.de/tlp/installation/fedora.html
 
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker

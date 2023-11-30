@@ -1,8 +1,9 @@
 ---
 # References:
 #   - https://linrunner.de/tlp/installation/ubuntu.html
+#   - https://linrunner.de/tlp/installation/fedora.html
 - name: Tlp > Uninstall conflicting packages
-  apt:
+  package:
     name: "{{ item }}"
     state: absent
   loop:
@@ -15,9 +16,10 @@
     repo_name: tlp
     repo_source: "deb https://ppa.launchpadcontent.net/linrunner/tlp/ubuntu {{ ansible_lsb.codename }} main"
     key_id: 2042F03C5FABD0BA2CED40412B3F92F902D65EFF
+  when: ansible_pkg_mgr == "apt"
 
 - name: Tlp > Install
-  apt:
+  package:
     name: "{{ item }}"
     state: present
   loop:

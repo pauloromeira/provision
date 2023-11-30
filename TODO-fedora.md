@@ -41,7 +41,7 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/tmux.yml
 - [x] tasks/package/vim.yml
 - [x] tasks/package/vscode.yml
-- [ ] tasks/package/tlp.yml
+- [x] tasks/package/tlp.yml
 - [ ] tasks/package/vagrant.yml
 - [ ] tasks/package/virtualbox.yml
 - [ ] tasks/package/wireshark.yml
