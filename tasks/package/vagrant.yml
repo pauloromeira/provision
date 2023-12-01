@@ -2,7 +2,7 @@
 # References:
 #   - https://www.vagrantup.com/docs/installation
 #   - https://www.vagrantup.com/downloads
-- name: Vagrant > Add hashicorp apt repository
+- name: Vagrant > Add hashicorp repository (apt)
   import_role:
     name: add_apt_repository
   vars:
@@ -10,8 +10,19 @@
     repo_source: "deb https://apt.releases.hashicorp.com {{ ansible_lsb.codename }} main"
     key_url: https://apt.releases.hashicorp.com/gpg
     armored_key: true
+  when: ansible_pkg_mgr == "apt"
+
+- name: Vagrant > Add hashicorp repository (dnf)
+  yum_repository:
+    name: hashicorp
+    description: Hashicorp Stable - $basearch
+    baseurl: https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+  when: ansible_pkg_mgr == "dnf"
 
 - name: Vagrant > Install
-  apt:
+  package:
     name: vagrant
     state: present

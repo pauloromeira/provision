@@ -120,9 +120,9 @@
         - import_tasks: tasks/package/virtualbox-extpack.yml
           tags: never,package,virtualbox-extpack
 
-        # # TODO: cli but depends on virtualbox
-        # - import_tasks: tasks/package/vagrant.yml
-        #   tags: never,package,vagrant
+        # cli but depends on virtualbox
+        - import_tasks: tasks/package/vagrant.yml
+          tags: never,package,vagrant
 
         - import_tasks: tasks/package/vscode.yml
           tags: never,package,vscode
