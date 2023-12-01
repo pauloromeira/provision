@@ -1,13 +1,9 @@
 ---
 # References:
 #   - https://rpmfusion.org/Howto/Multimedia
-- name: Codecs > Remove conflicting packages (dnf)
-  when: ansible_pkg_mgr == "dnf"
-  dnf:
-    name: "{{ item }}"
-    state: absent
-  loop:
-    - ffmpeg-free
+
+# WARN: ffmpeg task is a requirement for fedora (with allowerasing)
+# TODO: ass ffmpeg task as dependency or something like that
 
 - name: Codecs > @multimedia > Install group package (dnf)
   dnf:

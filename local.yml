@@ -62,11 +62,11 @@
     - import_tasks: tasks/config/terminal.yml
       tags: config,terminal
 
-    - import_tasks: tasks/package/codecs.yml
-      tags: package,cli,cmdline,codecs
-
     - import_tasks: tasks/package/ffmpeg.yml
       tags: package,cli,cmdline,ffmpeg
+
+    - import_tasks: tasks/package/codecs.yml
+      tags: package,cli,cmdline,codecs
 
     - import_tasks: tasks/package/tmux.yml
       tags: package,cli,cmdline,tmux
