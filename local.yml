@@ -74,6 +74,9 @@
     - import_tasks: tasks/package/vim.yml
       tags: package,cli,cmdline,vim
 
+    - import_tasks: tasks/package/neovim.yml
+      tags: package,cli,cmdline,neovim,nvim
+
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 

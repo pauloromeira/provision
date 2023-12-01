@@ -1,0 +1,20 @@
+---
+# References:
+#   - https://github.com/neovim/neovim/wiki/Installing-Neovim#fedora
+#   - https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+#   - https://launchpad.net/~neovim-ppa/+archive/ubuntu/stable
+- name: Neovim > Add repository (apt)
+  import_role:
+    name: add_apt_repository
+  vars:
+    repo_name: neovim
+    repo_source: "deb https://ppa.launchpadcontent.net/neovim-ppa/stable/ubuntu {{ ansible_lsb.codename }} main"
+    key_id: 9DBB0BE9366964F134855E2255F96FCF8231B6DD
+  when: ansible_pkg_mgr == "apt"
+
+- name: Neovim > Install
+  package:
+    name: "{{ item }}"
+  loop:
+    - neovim
+    - python3-neovim
