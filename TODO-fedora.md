@@ -44,4 +44,4 @@ Tip: use gf ("goto file") to open each file
 - [x] tasks/package/tlp.yml
 - [x] tasks/package/virtualbox.yml
 - [x] tasks/package/vagrant.yml
-- [ ] tasks/package/wireshark.yml
+- [x] tasks/package/wireshark.yml

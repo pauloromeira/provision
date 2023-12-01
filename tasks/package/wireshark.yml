@@ -11,26 +11,28 @@
     repo_name: wireshark
     repo_source: "deb https://ppa.launchpadcontent.net/wireshark-dev/stable/ubuntu {{ ansible_lsb.codename }} main" 
     key_id: A2E402B85A4B70CD78D8A3D9D875551314ECA0F0
+  when: ansible_pkg_mgr == "apt"
 
 - name: Wireshark > Install
-  apt:
-    name: "{{ item }}"
+  package:
+    name: wireshark
     state: present
-  loop:
-    - wireshark
 
-# Questions: debconf-show wireshark-common
 - name: Wireshark > Enable non-superusers to capture packets
-  debconf:
-    name: virtualbox-ext-pack
-    question: wireshark-common/install-setuid
-    vtype: select
-    value: 'true'
-  register: wireshark_common_install_setuid
+  when: ansible_pkg_mgr == "apt"
+  block:
+    # Questions: debconf-show wireshark-common
+    - name: Wireshark > Accept dpkg-reconfigure question
+      debconf:
+        name: wireshark-common  # TODO: check if this 'name' is correct
+        question: wireshark-common/install-setuid
+        vtype: select
+        value: 'true'
+      register: wireshark_common_install_setuid
 
-- name: Wireshark > Reconfigure dpkg
-  command: dpkg-reconfigure -f noninteractive wireshark-common
-  when: wireshark_common_install_setuid.changed
+    - name: Wireshark > Reconfigure dpkg for enabling non-superusers to capture packets
+      command: dpkg-reconfigure -f noninteractive wireshark-common
+      when: wireshark_common_install_setuid.changed
 
 - name: Wireshark > Add user to wireshark group
   user:
