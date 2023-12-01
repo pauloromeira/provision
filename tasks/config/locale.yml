@@ -10,6 +10,14 @@
     - /org/gnome/desktop/interface
     - /org/gtk/settings/file-chooser
 
+- name: Clock > Show week day
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-show-weekday"
+    value: "true"
+
 - name: Formats > Set formats to UK
   tags: gnome
   when: user_desktop == "gnome"
