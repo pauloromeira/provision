@@ -1,6 +1,11 @@
 ## Provision
 Provision my personal environment for Fedora and Ubuntu-based distributions, powered by ansible.
 
+Tip for reading this on terminal:
+```sh
+curl https://provision.pauloromeira.com/readme | less
+```
+
 ### System bootstrap
 ```sh
 curl https://provision.pauloromeira.com | bash

@@ -40,6 +40,9 @@ jobs:
       - name: Copy provision file
         run: cp provision.sh _gh_pages/index.html
 
+      - name: Copy README file
+        run: cp README.md _gh_pages/readme; cp README.md _gh_pages/help
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
