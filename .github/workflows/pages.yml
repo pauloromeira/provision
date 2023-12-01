@@ -41,7 +41,7 @@ jobs:
         run: cp provision.sh _gh_pages/index.html
 
       - name: Copy README file
-        run: cp README.md _gh_pages/readme; cp README.md _gh_pages/help
+        run: tee < README.md _gh_pages/{readme,readme.md,help,help.md} > /dev/null
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
