@@ -28,6 +28,6 @@
     - org.gimp.GIMP
     - org.remmina.Remmina
     - org.videolan.VLC
-    # - com.getpostman.Postman
+    - com.getpostman.Postman
     # - com.google.AndroidStudio
     # - org.gnome.Cheese
