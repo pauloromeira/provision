@@ -89,6 +89,9 @@
     - import_tasks: tasks/package/1password-cli.yml
       tags: package,cli,cmdline,1password,1password-cli
 
+    - import_tasks: tasks/package/syncthing.yml
+      tags: package,cli,cmdline,syncthing
+
     - name: GUI tasks
       when: user_desktop
       tags: gui,desktop,graphical
@@ -120,9 +123,6 @@
 
         - import_tasks: tasks/package/vscode.yml
           tags: never,package,vscode
-
-        - import_tasks: tasks/package/syncthing.yml
-          tags: never,package,syncthing
 
         # - import_tasks: tasks/package/wireshark.yml
         #   tags: never,package,wireshark
