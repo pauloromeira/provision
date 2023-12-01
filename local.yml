@@ -117,6 +117,9 @@
         - import_tasks: tasks/package/virtualbox.yml
           tags: never,package,virtualbox
 
+        - import_tasks: tasks/package/virtualbox-extpack.yml
+          tags: never,package,virtualbox-extpack
+
         # # TODO: cli but depends on virtualbox
         # - import_tasks: tasks/package/vagrant.yml
         #   tags: never,package,vagrant
