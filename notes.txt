@@ -1,15 +1,9 @@
 # create role structure:
 ./provision.sh ansible-galaxy role init
 
-
 * ------------ TODO ------------- *
-[ ] Configure terminal
-[ ] Make chromium the default browser
-[ ] Drivers
-[ ] Tlp
-  [ ] thinkpad-specific
-  [ ] add tlp config to dotfiles?
-[ ] Browser: add extensions
-  - Ref: https://github.com/mlangry/ansible-role-google-chrome
-[ ] Dock: add dash-to-dock gnome extension if not pop-os 22.04
-  - https://extensions.gnome.org/extension/307/dash-to-dock/
+[ ] Configure Browser
+  [ ] Add extensions
+    - Ref: https://github.com/mlangry/ansible-role-google-chrome
+  [ ] Sync bookmarks
+  [ ] Sync settings
