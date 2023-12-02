@@ -1,5 +1,5 @@
 ---
-- name: Power > disable auto brightness
+- name: Power > Disable auto brightness
   tags: gnome
   become_user: "{{ user_id }}"
   dconf:
@@ -7,7 +7,15 @@
     value: "false"
   when: user_desktop == "gnome"
 
-- name: Power > show battery percentage
+- name: Power > Disable auto suspend when on AC
+  tags: gnome
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+    value: "'nothing'"
+  when: user_desktop == "gnome"
+
+- name: Power > Show battery percentage
   tags: gnome
   become_user: "{{ user_id }}"
   dconf:
