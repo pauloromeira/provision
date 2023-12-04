@@ -1,0 +1,29 @@
+---
+# References:
+#   - https://www.insynchq.com/downloads
+#   - https://www.insynchq.com/downloads/linux#apt
+#   - https://www.insynchq.com/downloads/linux#yum
+- name: Insync > Add repository (apt)
+  import_role:
+    name: add_apt_repository
+  vars:
+    repo_name: insync
+    repo_source: "deb http://apt.insync.io/ubuntu {{ ansible_lsb.codename }} non-free contrib"
+    key_id: ACCAF35C
+  when: ansible_pkg_mgr == "apt"
+
+- name: Insync > Add yum repository (dnf)
+  yum_repository:
+    name: insync
+    description: insync repo
+    baseurl: http://yum.insync.io/fedora/$releasever/
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+    metadata_expire: 7200  # 120m
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Insync > Install
+  package:
+    name: insync
+    state: present
