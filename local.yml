@@ -47,8 +47,8 @@
     - import_tasks: tasks/config/shortcuts.yml
       tags: config,shortcuts
 
-    - import_tasks: tasks/config/software.yml
-      tags: config,software
+    - import_tasks: tasks/config/software-updates.yml
+      tags: config,software-updates
 
     - import_tasks: tasks/config/sound.yml
       tags: config,sound

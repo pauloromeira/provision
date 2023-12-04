@@ -1,0 +1,12 @@
+---
+- name: Software Updates > Disable automatic updates
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  dconf:
+    key: "/org/gnome/software/{{ item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "allow-updates", value: "false" }
+    - { key: "download-updates", value: "false" }
+    - { key: "download-updates-notify", value: "false" }

@@ -1,8 +1,0 @@
----
-- name: Software > Disable pending software updates on shutdown
-  tags: gnome
-  when: user_desktop == "gnome"
-  become_user: "{{ user_id }}"
-  dconf:
-    key: "/org/gnome/software/allow-updates"
-    value: "false"
