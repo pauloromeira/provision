@@ -1,5 +1,5 @@
 ## Provision
-Provision my personal environment for Fedora and Ubuntu-based distributions, powered by ansible.
+Provision my personal environment for Fedora and Ubuntu-based distributions. Powered by [ansible](https://docs.ansible.com/).
 
 Tip for reading this on terminal:
 ```sh
