@@ -1,24 +1,23 @@
 ---
-
 # https://extensions.gnome.org/extension/307/dash-to-dock/
 - name: Gnome Extension > Dash to Dock > Install
   tags: dash-to-dock
+  when: user_desktop == "gnome"
   block:
-    - name: Gnome Extension > Dash to Dock > Install (dnf)
-      dnf:
-        name: gnome-shell-extension-dash-to-dock
-      when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
-
     - name: Gnome Extension > Dash to Dock > Install
-      tags: dash-to-dock
       import_role:
         name: add_gnome_extension
       vars:
         ext_uuid: dash-to-dock@micxgx.gmail.com
         ext_name: Dash to Dock
-      when: user_desktop == "gnome" and ansible_pkg_mgr != "dnf"
+      when: ansible_pkg_mgr != "dnf"
 
-- name: Gnome Extension >  Pop Shell (dnf)
+    - name: Gnome Extension > Dash to Dock > Install (dnf)
+      dnf:
+        name: gnome-shell-extension-dash-to-dock
+      when: ansible_pkg_mgr == "dnf"
+
+- name: Gnome Extension > Pop Shell > Install (dnf)
   tags: pop-shell
   dnf:
     name: "{{ item }}"
@@ -26,6 +25,24 @@
     - xprop
     - gnome-shell-extension-pop-shell
   when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
+
+# https://extensions.gnome.org/extension/517/caffeine/
+- name: Gnome Extension > Caffeine > Install
+  tags: caffeine
+  when: user_desktop == "gnome"
+  block:
+    - name: Gnome Extension > Caffeine > Install
+      import_role:
+        name: add_gnome_extension
+      vars:
+        ext_uuid: caffeine@patapon.info
+        ext_name: Caffeine
+      when: ansible_pkg_mgr != "dnf"
+
+    - name: Gnome Extension > Caffeine > Install (dnf)
+      dnf:
+        name: gnome-shell-extension-caffeine
+      when: ansible_pkg_mgr == "dnf"
 
 # NOT NEEDED - for fedora and probably gnome 45
 # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
@@ -38,6 +55,7 @@
     ext_name: Sound Input & Output Device Chooser
   when: user_desktop == "gnome" and ansible_pkg_mgr != "dnf"
 
+# # ------------------------------------------------------------------- #
 # # https://extensions.gnome.org/extension/1460/vitals/
 # - name: Gnome Extension > Vitals > Install
 #   tags: vitals
@@ -46,15 +64,6 @@
 #   vars:
 #     ext_uuid: Vitals@CoreCoding.com
 #     ext_name: Vitals
-
-# # https://extensions.gnome.org/extension/517/caffeine/
-# - name: Gnome Extension > Caffeine > Install
-#   tags: caffeine
-#   import_role:
-#     name: add_gnome_extension
-#   vars:
-#     ext_uuid: caffeine@patapon.info
-#     ext_name: Caffeine
 
 # ERROR (not finding matching shell version)
 # # https://extensions.gnome.org/extension/442/drop-down-terminal/
