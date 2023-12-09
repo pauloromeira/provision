@@ -53,6 +53,9 @@
     - import_tasks: tasks/config/sound.yml
       tags: config,sound
 
+    - import_tasks: tasks/config/sudoers.yml
+      tags: config,sudoers
+
     - import_tasks: tasks/config/media.yml
       tags: config,media
 

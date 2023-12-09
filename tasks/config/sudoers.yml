@@ -1,0 +1,10 @@
+---
+# References:
+#   -  https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+- name: Sudoers > Keep EDITOR and SYSTEMD_EDITOR env variables when on sudo
+  lineinfile:
+    path: /etc/sudoers
+    insertafter: '^Defaults\s+env_keep\s*\+?='
+    line: 'Defaults    env_keep += "EDITOR SYSTEMD_EDITOR"'
+    firstmatch: false  # last match
+    validate: /usr/sbin/visudo -cf %s
