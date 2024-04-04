@@ -1,0 +1,34 @@
+---
+# References:
+#   - https://go.dev/doc/install
+#   - https://go.dev/dl/
+#   - https://go.dev/dl/?mode=json
+#   - https://pkg.go.dev/golang.org/x/website/internal/dl
+
+- name: Go > Query stable downloads
+  uri:
+    url: "https://go.dev/dl/?mode=json"
+    method: GET
+    return_content: true
+  register: query_response
+
+- name: Go > Select latest version by OS and architecture
+  set_fact:
+    info: "{{ query_response.json[0].files | selectattr('arch', 'equalto', dpkg_arch) | selectattr('os', 'equalto', ansible_system | lower) | first }}"
+
+- name: Go > Show file info
+  debug:
+    var: info
+
+- name: "Go > Download with check (sha256) > {{ info.version }}"
+  get_url:
+    url: "https://go.dev/dl/{{ info.filename }}"
+    dest: "/tmp/{{ info.filename }}"
+    checksum: "sha256:{{ info.sha256 }}"
+
+- name: "Go > Unarchive {{ info.filename }}"
+  unarchive:
+    src: "/tmp/{{ info.filename }}"
+    dest: /usr/local
+    creates: /usr/local/go
+    remote_src: yes

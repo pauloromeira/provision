@@ -86,6 +86,9 @@
     - import_tasks: tasks/package/pyenv.yml
       tags: package,cli,cmdline,pyenv
 
+    - import_tasks: tasks/package/go.yml
+      tags: package,cli,cmdline,go
+
     - import_tasks: tasks/package/tlp.yml
       tags: package,cli,cmdline,tlp
       when:
