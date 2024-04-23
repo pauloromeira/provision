@@ -1,6 +1,6 @@
 ---
 # To get all dconf settings run: `dconf dump /`
-- name: Shortcuts > Custom > Terminal (<Super>t)
+- name: Shortcuts > Custom > Terminal (Super+T)
   tags: gnome
   when: user_desktop == "gnome"
   become_user: "{{ user_id }}"
@@ -20,3 +20,26 @@
     key: /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
     value:
       - '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-terminal/'
+
+- name: Shortcuts > Navigation > Switch workspaces
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  block:
+    # This step is required to unlock 'Ctrl+Super+H' and 'Ctrl+Super+L'
+    #   (default uses both Left/Right and H/L)
+    - name: Shortcuts > Windows > View split on left/right (Ctrl+Super+Left/Right)
+      dconf:
+        key: "/org/gnome/mutter/keybindings/{{ item.key }}"
+        value: "{{ item.value }}"
+      loop:
+        - { key: "toggle-tiled-left", value: "['<Control><Super>Left']" }
+        - { key: "toggle-tiled-right", value: "['<Control><Super>Right']" }
+
+    - name: Shortcuts > Navigation > Switch to workspace on the left/right (Ctrl+Super+H/L)
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
+        value: "{{ item.value }}"
+      loop:
+        - { key: "switch-to-workspace-left", value: "['<Control><Super>h']" }
+        - { key: "switch-to-workspace-right", value: "['<Control><Super>l']" }
