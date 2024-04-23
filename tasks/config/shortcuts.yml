@@ -43,3 +43,29 @@
       loop:
         - { key: "switch-to-workspace-left", value: "['<Control><Super>h']" }
         - { key: "switch-to-workspace-right", value: "['<Control><Super>l']" }
+
+- name: Shortcuts > Navigation > Move window between workspaces
+  tags: gnome
+  when: user_desktop == "gnome"
+  become_user: "{{ user_id }}"
+  block:
+    # This step is required to unlock 'Shift+Super+H' and 'Shift+Super+L'
+    #   (default uses both Left/Right and H/L)
+    - name: Shortcuts > Move, resize, and swap windows > Move window to leftward/rightward monitor (Shift+Super+Left/Right)
+      dconf:
+        key: "/org/gnome/shell/extensions/pop-shell/{{ item.key }}"
+        value: "{{ item.value }}"
+      loop:
+        - { key: "pop-monitor-left", value: "['<Shift><Super>Left']" }
+        - { key: "pop-monitor-right", value: "['<Shift><Super>Right']" }
+
+    - name: Shortcuts > Navigation > Move window one workspace to the left/right (Shift+Super+H/L)
+      tags: gnome
+      when: user_desktop == "gnome"
+      become_user: "{{ user_id }}"
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
+        value: "{{ item.value }}"
+      loop:
+        - { key: "move-to-workspace-left", value: "['<Shift><Super>h']" }
+        - { key: "move-to-workspace-right", value: "['<Shift><Super>l']" }
