@@ -1,6 +1,5 @@
 #!/bin/bash
 REPO="https://github.com/pauloromeira/provision.git"
-VENV="${HOME}/.local/pipx/venvs/ansible"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
@@ -30,4 +29,5 @@ export ANSIBLE_PYTHON_INTERPRETER="${PYTHON}"
 
 "${PYTHON}" -m pip install --user --disable-pip-version-check pipx > /dev/null \
   && "${PYTHON}" -m pipx install ansible --include-deps > /dev/null \
-  && "${VENV}/bin/"${CMND} ${ARGS[@]}
+  && export $("${PYTHON}" -m pipx environment | grep "^PIPX_LOCAL_VENVS=") \
+  && "${PIPX_LOCAL_VENVS}/ansible/bin/"${CMND} ${ARGS[@]}
