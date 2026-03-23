@@ -9,10 +9,10 @@
   set_fact:
     "{{ item.key }}": "{{ item.value }}"
   loop:
-    - { key: "user_id", value: "{{ ansible_user_id }}" }
-    - { key: "user_dir", value: "{{ ansible_user_dir }}" }
+    - { key: "user_id", value: "{{ ansible_facts.user_id }}" }
+    - { key: "user_dir", value: "{{ ansible_facts.user_dir }}" }
     - { key: "user_desktop", value: "{{ lookup('env','XDG_CURRENT_DESKTOP') | split(':') | last | lower | trim }}" }
-    - { key: "dpkg_arch", value: "{{ dpkg_arch_mapping[ansible_architecture] }}" }
+    - { key: "dpkg_arch", value: "{{ dpkg_arch_mapping[ansible_facts.architecture] }}" }
     - { key: "os_id", value: "{{ os_release_id | lower }}" }
 
 - name: Facts > Import os-specific vars

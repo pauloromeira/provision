@@ -8,9 +8,9 @@
     name: add_apt_repository
   vars:
     repo_name: neovim
-    repo_source: "deb https://ppa.launchpadcontent.net/neovim-ppa/stable/ubuntu {{ ansible_lsb.codename }} main"
+    repo_source: "deb https://ppa.launchpadcontent.net/neovim-ppa/stable/ubuntu {{ ansible_facts.lsb.codename }} main"
     key_id: 9DBB0BE9366964F134855E2255F96FCF8231B6DD
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Neovim > Install
   package:

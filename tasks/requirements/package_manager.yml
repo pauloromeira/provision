@@ -2,7 +2,7 @@
 - name: Package manager > Dnf > Config
   tags: dnf
   become: true
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
   ini_file:
     path: /etc/dnf/dnf.conf
     section: main
@@ -29,7 +29,7 @@
 
     - name: Package manager > Dnf > Add RPM Fusion repos (fedora)
       dnf:
-        name: "https://mirrors.rpmfusion.org/{{ item }}/fedora/rpmfusion-{{ item }}-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+        name: "https://mirrors.rpmfusion.org/{{ item }}/fedora/rpmfusion-{{ item }}-release-{{ ansible_facts.distribution_major_version }}.noarch.rpm"
       loop:
         - free
         - nonfree
@@ -40,7 +40,7 @@
   apt:
     update_cache: true
   changed_when: false
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Package manager > Dnf > update cache
   tags: dnf
@@ -48,4 +48,4 @@
   dnf:
     update_cache: yes
   changed_when: false
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"

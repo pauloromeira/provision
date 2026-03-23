@@ -10,12 +10,12 @@
       vars:
         ext_uuid: dash-to-dock@micxgx.gmail.com
         ext_name: Dash to Dock
-      when: ansible_pkg_mgr != "dnf"
+      when: ansible_facts.pkg_mgr != "dnf"
 
     - name: Gnome Extension > Dash to Dock > Install (dnf)
       dnf:
         name: gnome-shell-extension-dash-to-dock
-      when: ansible_pkg_mgr == "dnf"
+      when: ansible_facts.pkg_mgr == "dnf"
 
 - name: Gnome Extension > Pop Shell > Install (dnf)
   tags: pop-shell
@@ -24,7 +24,7 @@
   loop:
     - xprop
     - gnome-shell-extension-pop-shell
-  when: user_desktop == "gnome" and ansible_pkg_mgr == "dnf"
+  when: user_desktop == "gnome" and ansible_facts.pkg_mgr == "dnf"
 
 # https://extensions.gnome.org/extension/517/caffeine/
 - name: Gnome Extension > Caffeine > Install
@@ -37,12 +37,12 @@
       vars:
         ext_uuid: caffeine@patapon.info
         ext_name: Caffeine
-      when: ansible_pkg_mgr != "dnf"
+      when: ansible_facts.pkg_mgr != "dnf"
 
     - name: Gnome Extension > Caffeine > Install (dnf)
       dnf:
         name: gnome-shell-extension-caffeine
-      when: ansible_pkg_mgr == "dnf"
+      when: ansible_facts.pkg_mgr == "dnf"
 
 # NOT NEEDED - for fedora and probably gnome 45
 # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
@@ -53,7 +53,7 @@
   vars:
     ext_uuid: sound-output-device-chooser@kgshank.net
     ext_name: Sound Input & Output Device Chooser
-  when: user_desktop == "gnome" and ansible_pkg_mgr != "dnf"
+  when: user_desktop == "gnome" and ansible_facts.pkg_mgr != "dnf"
 
 # # ------------------------------------------------------------------- #
 # # https://extensions.gnome.org/extension/1460/vitals/

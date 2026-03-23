@@ -8,9 +8,9 @@
     name: add_apt_repository
   vars:
     repo_name: insync
-    repo_source: "deb http://apt.insync.io/ubuntu {{ ansible_lsb.codename }} non-free contrib"
+    repo_source: "deb http://apt.insync.io/ubuntu {{ ansible_facts.lsb.codename }} non-free contrib"
     key_id: ACCAF35C
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Insync > Add yum repository (dnf)
   yum_repository:
@@ -21,7 +21,7 @@
     gpgcheck: true
     gpgkey: https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
     metadata_expire: 7200  # 120m
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
 
 - name: Insync > Install
   package:

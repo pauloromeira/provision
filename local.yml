@@ -92,8 +92,8 @@
     - import_tasks: tasks/package/tlp.yml
       tags: package,cli,cmdline,tlp
       when:
-        - ansible_distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
-        - ansible_distribution != "Fedora"   # not working: https://linrunner.de/tlp/installation/fedora.html
+        - ansible_facts.distribution != "Pop!_OS"  # not recommended: https://support.system76.com/articles/battery/
+        - ansible_facts.distribution != "Fedora"   # not working: https://linrunner.de/tlp/installation/fedora.html
 
     - import_tasks: tasks/package/docker.yml
       tags: package,cli,cmdline,docker

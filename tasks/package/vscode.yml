@@ -8,7 +8,7 @@
     state: present
   loop:
     - apt-transport-https
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: VS Code > Add repository (apt)
   import_role:
@@ -17,7 +17,7 @@
     repo_name: vscode
     repo_source: "deb https://packages.microsoft.com/repos/code stable main"
     key_url: https://packages.microsoft.com/keys/microsoft.asc
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: VS Code > Add yum repository (dnf)
   yum_repository:
@@ -27,7 +27,7 @@
     enabled: true
     gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
 
 - name: VS Code > Install
   package:

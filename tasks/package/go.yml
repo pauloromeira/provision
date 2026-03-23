@@ -14,7 +14,7 @@
 
 - name: Go > Select latest version by OS and architecture
   set_fact:
-    info: "{{ query_response.json[0].files | selectattr('arch', 'equalto', dpkg_arch) | selectattr('os', 'equalto', ansible_system | lower) | first }}"
+    info: "{{ query_response.json[0].files | selectattr('arch', 'equalto', dpkg_arch) | selectattr('os', 'equalto', ansible_facts.system | lower) | first }}"
 
 - name: Go > Show file info
   debug:

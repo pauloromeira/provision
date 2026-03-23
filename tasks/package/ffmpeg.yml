@@ -4,10 +4,10 @@
 - name: FFmpeg > Install
   package:
     name: ffmpeg
-  when: ansible_pkg_mgr != "dnf"
+  when: ansible_facts.pkg_mgr != "dnf"
 
 - name: FFmpeg > Swap with RPM Fusion's (dnf)
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
   block:
     - name: FFmpeg > Uninstall ffmpeg-free (dnf)
       dnf:

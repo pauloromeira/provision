@@ -5,9 +5,9 @@
     name: add_apt_repository
   vars:
     repo_name: vim-jonathonf
-    repo_source: "deb https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_lsb.codename }} main"
+    repo_source: "deb https://ppa.launchpadcontent.net/jonathonf/vim/ubuntu {{ ansible_facts.lsb.codename }} main"
     key_id: 4AB0F789CBA31744CC7DA76A8CF63AD3F06FC659
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Vim > install vim
   package:
@@ -28,7 +28,7 @@
     - build-essential
     - cmake3
     - python3-dev
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Vim > install YouCompleteMe dependencies (dnf)
   package:
@@ -38,7 +38,7 @@
     - gcc-c++
     - make
     - python3-devel
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
 
 - name: Vim > install tagbar dependencies
   package:

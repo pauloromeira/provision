@@ -58,7 +58,7 @@
   changed_when: "'already installed' not in asdf_plugins_installed.stdout"
   with_items: "{{ asdf_plugins }}"
   environment:
-    PATH: '{{ asdf_dir }}/bin:{{ ansible_env.PATH }}'
+    PATH: '{{ asdf_dir }}/bin:{{ ansible_facts.env.PATH }}'
 
 - name: Asdf > Set plugins global versions
   become_user: "{{ user_id }}"
@@ -66,4 +66,4 @@
   when: item.changed
   with_items: "{{ asdf_plugins_installed.results }}"
   environment:
-    PATH: '{{ asdf_dir }}/bin:{{ ansible_env.PATH }}'
+    PATH: '{{ asdf_dir }}/bin:{{ ansible_facts.env.PATH }}'

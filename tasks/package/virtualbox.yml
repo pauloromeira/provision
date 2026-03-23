@@ -7,9 +7,9 @@
     name: add_apt_repository
   vars:
     repo_name: virtualbox
-    repo_source: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+    repo_source: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_facts.lsb.codename }} contrib"
     key_url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Virtualbox > Add yum repository (dnf)
   yum_repository:
@@ -21,8 +21,8 @@
     repo_gpgcheck: true
     gpgkey: https://www.virtualbox.org/download/oracle_vbox_2016.asc
   when:
-    - ansible_pkg_mgr == "dnf"
-    - ansible_distribution_major_version < "39"  # not yet supported, but present in rpmfusion
+    - ansible_facts.pkg_mgr == "dnf"
+    - ansible_facts.distribution_major_version < "39"  # not yet supported, but present in rpmfusion
 
 - name: Virtualbox > Install
   package:

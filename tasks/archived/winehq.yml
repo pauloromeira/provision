@@ -5,18 +5,18 @@
 - name: WineHQ > Enable i386 architecture
   command: dpkg --add-architecture i386
   changed_when: false
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: WineHQ > Add repository (apt)
   import_role:
     name: add_apt_repository
   vars:
     repo_name: winehq
-    repo_source: "deb https://dl.winehq.org/wine-builds/ubuntu {{ ansible_lsb.codename }} main"
+    repo_source: "deb https://dl.winehq.org/wine-builds/ubuntu {{ ansible_facts.lsb.codename }} main"
     repo_arch: "{{ dpkg_arch }},i386"
     key_url: https://dl.winehq.org/wine-builds/winehq.key
     armored_key: true
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: WineHQ > Add yum repository (dnf)
   yum_repository:
@@ -26,17 +26,17 @@
     enabled: 1
     gpgcheck: 1
     gpgkey: https://dl.winehq.org/wine-builds/winehq.key
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
 
 - name: WineHQ > Install (apt)
   apt:
     name: winehq-stable
     state: present
     install_recommends: true
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: WineHQ > Install (dnf)
   dnf:
     name: winehq-stable
     state: present
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"

@@ -19,4 +19,4 @@
 
 - name: MergerFS > Install
   apt:
-    deb: "https://github.com/trapexit/mergerfs/releases/download/{{ mergerfs_release }}/mergerfs_{{ mergerfs_release | trim('v') }}.ubuntu-{{ ansible_lsb.codename }}_{{ dpkg_arch }}.deb"
+    deb: "https://github.com/trapexit/mergerfs/releases/download/{{ mergerfs_release }}/mergerfs_{{ mergerfs_release | trim('v') }}.ubuntu-{{ ansible_facts.lsb.codename }}_{{ dpkg_arch }}.deb"

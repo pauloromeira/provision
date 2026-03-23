@@ -7,10 +7,10 @@
     name: add_apt_repository
   vars:
     repo_name: hashicorp
-    repo_source: "deb https://apt.releases.hashicorp.com {{ ansible_lsb.codename }} main"
+    repo_source: "deb https://apt.releases.hashicorp.com {{ ansible_facts.lsb.codename }} main"
     key_url: https://apt.releases.hashicorp.com/gpg
     armored_key: true
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Vagrant > Add hashicorp repository (dnf)
   yum_repository:
@@ -20,7 +20,7 @@
     enabled: true
     gpgcheck: true
     gpgkey: https://rpm.releases.hashicorp.com/gpg
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
 
 - name: Vagrant > Install
   package:

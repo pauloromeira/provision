@@ -9,7 +9,7 @@
   loop:
     - apt-transport-https
     - ca-certificates
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Syncthing > Add apt repository
   import_role:
@@ -18,7 +18,7 @@
     repo_name: syncthing
     repo_source: "deb https://apt.syncthing.net/ syncthing stable"
     key_url: https://syncthing.net/release-key.gpg
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Syncthing > Install
   package:

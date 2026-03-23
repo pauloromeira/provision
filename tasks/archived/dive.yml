@@ -23,11 +23,11 @@
   apt:
     deb: "https://github.com/wagoodman/dive/releases/download/{{ dive_release }}/dive_{{ dive_release | trim('v') }}_linux_{{ dpkg_arch }}.deb"
     state: present
-  when: ansible_pkg_mgr == "apt"
+  when: ansible_facts.pkg_mgr == "apt"
 
 - name: Dive > Install (dnf)
   dnf:
     name: "https://github.com/wagoodman/dive/releases/download/{{ dive_release }}/dive_{{ dive_release | trim('v') }}_linux_{{ dpkg_arch }}.rpm"
     disable_gpg_check: true
     state: present
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_facts.pkg_mgr == "dnf"
