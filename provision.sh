@@ -26,6 +26,6 @@ PYTHON="$(command -v python3 || command -v python)"
 export ANSIBLE_PYTHON_INTERPRETER="${PYTHON}"
 [ -n "${SUDO}" ] && export ANSIBLE_BECOME_ASK_PASS="True"
 
-pipx ensurepath > /dev/null \
+pipx ensurepath -q > /dev/null \
   && pipx install --python "${PYTHON}" ansible --include-deps > /dev/null \
-  && pipx run --spec ansible ${CMND} ${ARGS[@]}
+  && "${HOME}"/.local/bin/${CMND} ${ARGS[@]}
