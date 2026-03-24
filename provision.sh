@@ -3,8 +3,8 @@ REPO="https://github.com/pauloromeira/provision.git"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
-DEBIAN_DEPS=(git python3 python3-venv pipx)
-FEDORA_DEPS=(git python3 pipx)
+DEBIAN_DEPS=(git python3 python3-pip python3-venv pipx)
+FEDORA_DEPS=(git python3 python3-pip pipx)
 
 [ "${EUID}" -ne 0 ] && SUDO="sudo "
 [[ "$#" -eq 0 || "${CMND}" = "bootstrap" ]] && CMND="pull"
