@@ -3,8 +3,8 @@ REPO="https://github.com/pauloromeira/provision.git"
 CMND="${1}"
 ARGS="${@:2}"
 SUDO=""
-DEBIAN_DEPS=(git python3 python3-pip python3-venv pipx)
-FEDORA_DEPS=(git python3 python3-pip pipx)
+DEBIAN_DEPS=(git python3 python3-pip python3-venv)
+FEDORA_DEPS=(git python3 python3-pip)
 
 [ "${EUID}" -ne 0 ] && SUDO="sudo "
 [[ "$#" -eq 0 || "${CMND}" = "bootstrap" ]] && CMND="pull"
@@ -22,10 +22,22 @@ FEDORA_DEPS=(git python3 python3-pip pipx)
 (command -v rpm && rpm -q ${FEDORA_DEPS[@]} || ! command -v dnf) &> /dev/null \
   || ${SUDO}dnf install -y ${FEDORA_DEPS[@]}
 
+# Pipx
 PYTHON="$(command -v python3 || command -v python)"
+PIPX_HOME="${HOME}/.local/share/pipx"
+PIPX="${PIPX_HOME}/venvs/pipx/bin/pipx"
+
+if [ ! -x "${PIPX}" ]; then
+  tmp_venv="$(mktemp -d)"
+  "${PYTHON}" -m venv "${tmp_venv}"
+  "${tmp_venv}/bin/pip" install pipx
+  "${tmp_venv}/bin/pipx" install pipx
+  rm -rf "${tmp_venv}"
+fi
+
+# Ansible
 export ANSIBLE_PYTHON_INTERPRETER="${PYTHON}"
 [ -n "${SUDO}" ] && export ANSIBLE_BECOME_ASK_PASS="True"
 
-pipx ensurepath -q > /dev/null \
-  && pipx install --python "${PYTHON}" ansible --include-deps > /dev/null \
-  && "${HOME}"/.local/bin/${CMND} ${ARGS[@]}
+"${PIPX}" install --python "${PYTHON}" ansible --include-deps > /dev/null \
+  && "${PIPX_HOME}/venvs/ansible/bin/"${CMND} ${ARGS[@]}
