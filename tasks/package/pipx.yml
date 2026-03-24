@@ -39,7 +39,6 @@
     - rich-cli
     - shell-functools
     - tmuxp
-    - tox
     - yt-dlp
     - tldr  # similar to eg
 
