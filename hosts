@@ -14,3 +14,4 @@ asdf_dir = "{{ user_dir }}/.asdf"
 provision_dir = "{{ user_dir }}/.{{ provision_repo }}"
 dotfiles_dir = "{{ user_dir }}/.{{ dotfiles_repo }}"
 dpkg_arch_mapping = {"armv6l": "armhf", "armv7l": "armhf", "aarch64": "arm64", "x86_64": "amd64", "i386": "i386"}
+pipx_home = "{{ user_dir }}/.local/share/pipx"

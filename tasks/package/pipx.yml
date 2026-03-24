@@ -1,4 +1,6 @@
 ---
+
+
 - name: Pipx > Install dependencies (Debian)
   apt:
     name: "{{ item }}"
@@ -18,14 +20,17 @@
     - python3-pip
   when: ansible_facts.pkg_mgr == "dnf"
 
-- name: Pipx > Install
-  package:
-    name: pipx
-    state: present
+- name: Pipx > Set executable path
+  set_fact:
+    pipx_executable: "{{ pipx_home }}/venvs/pipx/bin/pipx"
+
+# - name: Pipx > Install
+# TODO: Same as in provision.sh - check if executable exists
 
 - name: Pipx > Install packages
   become_user: "{{ user_id }}"
   community.general.pipx:
+    executable: "{{ pipx_executable }}"
     name: "{{ item }}"
   loop:
     - bpytop
@@ -45,6 +50,7 @@
 - name: Pipx > Inject into ipython
   become_user: "{{ user_id }}"
   community.general.pipx:
+    executable: "{{ pipx_executable }}"
     name: ipython
     inject_packages: "{{ item }}"
     state: inject
