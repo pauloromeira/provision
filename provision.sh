@@ -24,7 +24,7 @@ FEDORA_DEPS=(git python3 python3-pip)
 
 # Pipx
 PYTHON="$(command -v python3 || command -v python)"
-PIPX_HOME="${HOME}/.local/share/pipx"
+export PIPX_HOME="${HOME}/.local/share/pipx"
 PIPX="${PIPX_HOME}/venvs/pipx/bin/pipx"
 
 if [ ! -x "${PIPX}" ]; then
