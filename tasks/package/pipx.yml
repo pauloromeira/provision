@@ -46,6 +46,8 @@
     - tmuxp
     - yt-dlp
     - tldr  # similar to eg
+    - esptool
+    - httpie
 
 - name: Pipx > Inject into ipython
   become_user: "{{ user_id }}"
